@@ -22,19 +22,42 @@
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="highlightedColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bch-EF-TtZ">
-                                <rect key="frame" x="1221" y="40" width="100" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="+">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="60"/>
-                                </buttonConfiguration>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w1W-tr-78m">
+                                <rect key="frame" x="651.5" y="35" width="63" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="xFa-GB-5p4">
+                                <rect key="frame" x="80" y="35" width="300" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Nmi-3m-SzC"/>
+                                    <constraint firstAttribute="width" constant="300" id="yl5-zq-3ck"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Files"/>
+                                    <segment title="Highlights"/>
+                                </segments>
+                            </segmentedControl>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="p6O-AD-HdQ">
+                                <rect key="frame" x="986" y="35" width="300" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="4Zd-5t-I0j"/>
+                                    <constraint firstAttribute="height" constant="30" id="w1G-Bf-ZCi"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="EUr-Kr-hDL" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="1na-iT-aQe"/>
+                            <constraint firstItem="xFa-GB-5p4" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="80" id="Qdf-z8-fCq"/>
+                            <constraint firstItem="w1W-tr-78m" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="WPN-Nw-w0Z"/>
+                            <constraint firstItem="p6O-AD-HdQ" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="35" id="XBg-RY-BZg"/>
+                            <constraint firstItem="xFa-GB-5p4" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="35" id="Zoc-nC-HDe"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="p6O-AD-HdQ" secondAttribute="trailing" constant="80" id="kZA-i8-8DE"/>
+                            <constraint firstItem="w1W-tr-78m" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="35" id="lMS-EI-DRE"/>
                             <constraint firstItem="EUr-Kr-hDL" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="vmz-wj-izs"/>
                         </constraints>
                     </view>
