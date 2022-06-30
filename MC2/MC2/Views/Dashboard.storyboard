@@ -47,22 +47,45 @@
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Ht5-SD-xEB">
+                                <rect key="frame" x="80" y="65" width="1236" height="889"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Wax-To-6M1">
+                                        <rect key="frame" x="0.0" y="44.5" width="1236" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wax-To-6M1" id="Gca-nC-H91">
+                                            <rect key="frame" x="0.0" y="0.0" width="1236" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Ht5-SD-xEB" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="50" id="162-xx-u33"/>
                             <constraint firstItem="EUr-Kr-hDL" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="1na-iT-aQe"/>
+                            <constraint firstItem="Ht5-SD-xEB" firstAttribute="top" secondItem="xFa-GB-5p4" secondAttribute="bottom" id="Og0-zX-BKV"/>
                             <constraint firstItem="xFa-GB-5p4" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="80" id="Qdf-z8-fCq"/>
+                            <constraint firstItem="Ht5-SD-xEB" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="RJC-Pb-guR"/>
                             <constraint firstItem="w1W-tr-78m" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="WPN-Nw-w0Z"/>
                             <constraint firstItem="p6O-AD-HdQ" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="35" id="XBg-RY-BZg"/>
                             <constraint firstItem="xFa-GB-5p4" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="35" id="Zoc-nC-HDe"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="p6O-AD-HdQ" secondAttribute="trailing" constant="80" id="kZA-i8-8DE"/>
                             <constraint firstItem="w1W-tr-78m" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="35" id="lMS-EI-DRE"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Ht5-SD-xEB" secondAttribute="trailing" constant="50" id="mBk-Yk-58N"/>
+                            <constraint firstItem="Ht5-SD-xEB" firstAttribute="top" secondItem="xFa-GB-5p4" secondAttribute="bottom" id="vaC-u3-5Xf"/>
                             <constraint firstItem="EUr-Kr-hDL" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="vmz-wj-izs"/>
+                            <constraint firstItem="Ht5-SD-xEB" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="xsw-Dn-dS6"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="Ht5-SD-xEB" id="mBv-ym-cBw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

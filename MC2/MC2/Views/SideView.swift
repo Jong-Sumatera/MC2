@@ -13,12 +13,22 @@ struct SideView: View {
     @State var isShowing: Bool = false
     @State var filePath: URL?
     @State var lastPath: String = ""
-    
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(sortDescriptors: []) var files: FetchedResults<File>
     @State var isGotoDocumentview: Bool = false
     
     var body: some View {
         NavigationView {
             
+            //            Text("total files\(files.count )")
+            //            List {
+            //                ForEach(files) {
+            //                    file in
+            //                    VStack{
+            //                        Text("\(file.fileName ?? "")")
+            //                    }
+            //                }
+            //            }
             
             List {
                 NavigationLink(destination:DashboardView()) {
@@ -62,6 +72,7 @@ struct SideView: View {
                             }
                             
                             Button(action:  {
+                                addFileToCoreData()
                                 self.isGotoDocumentview = true
                                 self.showPopover = false
                             }) {
@@ -73,7 +84,7 @@ struct SideView: View {
                         
                         if lastPath != "" {
                             Text(lastPath)
-                
+                            
                         }
                         Button(action: {
                             isShowing = true
@@ -107,6 +118,21 @@ struct SideView: View {
             
             
             DashboardView()
+        }
+    }
+    func addFileToCoreData(){
+        let newFile = File(context: viewContext)
+        newFile.fileName = fileName
+        newFile.id = UUID()
+        newFile.fileType = "pdf"
+        newFile.createdDate = Date()
+        newFile.fileTitle = lastPath
+        newFile.fileUrl = filePath?.absoluteString
+        newFile.modifiedDate = Date()
+        do {
+            try viewContext.save()
+        } catch{
+            print(error.localizedDescription)
         }
     }
 }
