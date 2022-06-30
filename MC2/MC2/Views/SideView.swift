@@ -11,11 +11,15 @@ struct SideView: View {
     @State var showPopover: Bool = false
     @State var fileName: String = ""
     @State var isShowing: Bool = false
-    @State var path: String = ""
+    @State var filePath: URL?
     @State var lastPath: String = ""
+    
+    @State var isGotoDocumentview: Bool = false
     
     var body: some View {
         NavigationView {
+            
+            
             List {
                 NavigationLink(destination:DashboardView()) {
                     Label("Home",systemImage: "house")
@@ -26,11 +30,13 @@ struct SideView: View {
                 NavigationLink(destination:SettingView()) {
                     Label("Favorite Topics",systemImage: "star")
                 }
-            }
-            
-            
-            //            .navigationTitle("Learn Up")
-            .navigationBarItems(trailing:
+                
+                if isGotoDocumentview {
+                    NavigationLink(destination: DocumentView(filePath: filePath!), isActive: $isGotoDocumentview) {
+                    }.hidden()
+                }
+                
+            }.navigationBarItems(trailing:
                                     HStack {
                 
                 Button(action: {
@@ -56,10 +62,11 @@ struct SideView: View {
                             }
                             
                             Button(action:  {
-                                self.isShowing = true
+                                self.isGotoDocumentview = true
+                                self.showPopover = false
                             }) {
                                 Text("Add")
-                            }
+                            }.disabled(self.filePath != nil ? false : true)
                             
                         }
                         TextField("File Name", text: $fileName)
@@ -83,7 +90,7 @@ struct SideView: View {
                             case .success(let fileurls):
                                 
                                 for fileurl in fileurls {
-                                    path = fileurl.path
+                                    filePath = fileurl
                                     lastPath = fileurl.lastPathComponent
                                 }
                                 
@@ -96,6 +103,7 @@ struct SideView: View {
                     .frame(width: 200, height: 200, alignment: .topLeading)
                 }
             })
+            
             
             
             DashboardView()

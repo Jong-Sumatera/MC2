@@ -11,9 +11,10 @@ import UIKit
 struct DashboardVCRepresentable: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> some UIViewController {
         let storyboard = UIStoryboard(name: "Dashboard", bundle: Bundle.main)
-                let controller = storyboard.instantiateViewController(identifier: "dashboard")
-                return controller
-            }
+        let controller = storyboard.instantiateViewController(identifier: "dashboard")
+        return controller
+    }
+    
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
     }
 }
