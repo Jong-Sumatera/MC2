@@ -9,10 +9,23 @@ import SwiftUI
 
 struct DocumentVCRepresentable: UIViewControllerRepresentable {
     var filePath: URL
+    
+    func makeCoordinator() -> Self.Coordinator { Coordinator() }
+    
+    class Coordinator {
+            var parentObserver: NSKeyValueObservation?
+        }
+
+    
     func makeUIViewController(context: Context) -> some UIViewController {
         let storyboard = UIStoryboard(name: "Document", bundle: Bundle.main)
         let controller = storyboard.instantiateViewController(identifier: "document") as! DocumentViewController
         controller.filePath = filePath
+        
+        context.coordinator.parentObserver = controller.observe(\.parent, changeHandler: { vc, _ in
+            
+        })
+        
         return controller
     }
     
@@ -23,7 +36,10 @@ struct DocumentVCRepresentable: UIViewControllerRepresentable {
 struct DocumentView: View {
     var filePath: URL
     var body: some View {
-        DocumentVCRepresentable(filePath: filePath)
+        VStack{
+            
+            DocumentVCRepresentable(filePath: filePath)
+        }
     }
 }
 
