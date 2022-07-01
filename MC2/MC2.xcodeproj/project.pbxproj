@@ -23,6 +23,7 @@
 		65EC7FE9286C4288007F47D4 /* SideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EC7FE5286C4288007F47D4 /* SideView.swift */; };
 		65EC7FEB286C4456007F47D4 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EC7FEA286C4456007F47D4 /* DashboardViewController.swift */; };
 		65EC7FEF286C45AC007F47D4 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65EC7FEE286C45AC007F47D4 /* Dashboard.storyboard */; };
+		65FEAD13286F2FAC008D330D /* RightSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FEAD12286F2FAC008D330D /* RightSideView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		65EC7FE5286C4288007F47D4 /* SideView.swift */ = {isa = PBXFileReference; fileEncoding = 2147484672; lastKnownFileType = sourcecode.swift; path = SideView.swift; sourceTree = "<group>"; };
 		65EC7FEA286C4456007F47D4 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		65EC7FEE286C45AC007F47D4 /* Dashboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
+		65FEAD12286F2FAC008D330D /* RightSideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightSideView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 		65EC7FC1286C40BA007F47D4 = {
 			isa = PBXGroup;
 			children = (
+				65FEAD12286F2FAC008D330D /* RightSideView.swift */,
 				65EC7FCC286C40BA007F47D4 /* MC2 */,
 				65EC7FCB286C40BA007F47D4 /* Products */,
 			);
@@ -199,6 +202,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65FEAD13286F2FAC008D330D /* RightSideView.swift in Sources */,
 				65EC7FD7286C40BB007F47D4 /* Persistence.swift in Sources */,
 				65EC7FE8286C4288007F47D4 /* HighlightView.swift in Sources */,
 				65EC7FE6286C4288007F47D4 /* DashboardView.swift in Sources */,

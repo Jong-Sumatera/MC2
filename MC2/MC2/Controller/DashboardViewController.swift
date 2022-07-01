@@ -9,6 +9,15 @@ import UIKit
 
 class DashboardViewController: UIViewController {
     
+    @IBAction func didChangeSegment(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+        
+        }
+        else if sender.selectedSegmentIndex == 1 {
+        
+        }
+    }
+    
     @IBOutlet weak var tableView: UITableView!
     var result : [File] = []
     var context = PersistenceController.shared.container.viewContext
@@ -23,6 +32,8 @@ class DashboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         fetchFiles()
         tableView.dataSource = self
         tableView.delegate = self
@@ -39,7 +50,6 @@ extension DashboardViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 //        var rowContent = cell.defaultContentConfiguration()
 //        rowContent.text = result[indexPath.row].fileName
-        print("ada apa denganmu",result[indexPath.row].fileName)
         cell.textLabel!.text = result[indexPath.row].fileName
         cell.textLabel?.textColor = UIColor.black
         return cell
