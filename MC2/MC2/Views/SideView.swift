@@ -34,11 +34,9 @@ struct SideView: View {
                 NavigationLink(destination:DashboardView()) {
                     Label("Home",systemImage: "house")
                 }
-                NavigationLink(destination:HighlightView()) {
-                    Label("Recent Files",systemImage: "folder")
-                }
-                NavigationLink(destination:SettingView()) {
-                    Label("Favorite Topics",systemImage: "star")
+                
+                List {
+                    
                 }
                 
                 if isGotoDocumentview {
@@ -68,7 +66,7 @@ struct SideView: View {
                             Button(action: {
                                 
                             }) {
-                                Text("Cancel")
+                                Text("Cancel").padding(.init(top: 15, leading: 15, bottom: 15, trailing: 80))
                             }
                             
                             Button(action:  {
@@ -76,11 +74,13 @@ struct SideView: View {
                                 self.isGotoDocumentview = true
                                 self.showPopover = false
                             }) {
-                                Text("Add")
+                                Text("Add").padding(.init(top: 15, leading: 80, bottom: 15, trailing: 15))
                             }.disabled(self.filePath != nil ? false : true)
                             
                         }
                         TextField("File Name", text: $fileName)
+                            .padding(.init(top: 15, leading: 15, bottom: 15, trailing: 15))
+                        
                         
                         if lastPath != "" {
                             Text(lastPath)
@@ -111,7 +111,7 @@ struct SideView: View {
                             
                         })
                     }
-                    .frame(width: 200, height: 200, alignment: .topLeading)
+                    .frame(width: 300, height: 150, alignment: .topTrailing)
                 }
             })
             
