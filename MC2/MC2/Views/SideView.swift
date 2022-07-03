@@ -20,23 +20,9 @@ struct SideView: View {
     var body: some View {
         NavigationView {
             
-            //            Text("total files\(files.count )")
-            //            List {
-            //                ForEach(files) {
-            //                    file in
-            //                    VStack{
-            //                        Text("\(file.fileName ?? "")")
-            //                    }
-            //                }
-            //            }
-            
             List {
                 NavigationLink(destination:DashboardView()) {
                     Label("Home",systemImage: "house")
-                }
-                
-                List {
-                    
                 }
                 
                 if isGotoDocumentview {
@@ -44,8 +30,7 @@ struct SideView: View {
                     }.hidden()
                 }
                 
-            }.navigationBarItems(trailing:
-                                    HStack {
+            }.navigationBarItems(trailing: HStack {
                 
                 Button(action: {
                     print("Reload button pressed...")

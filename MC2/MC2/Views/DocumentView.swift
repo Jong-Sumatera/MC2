@@ -14,9 +14,9 @@ struct DocumentVCRepresentable: UIViewControllerRepresentable {
     func makeCoordinator() -> Self.Coordinator { Coordinator() }
     
     class Coordinator {
-            var parentObserver: NSKeyValueObservation?
-        }
-
+        var parentObserver: NSKeyValueObservation?
+    }
+    
     
     func makeUIViewController(context: Context) -> some UIViewController {
         let storyboard = UIStoryboard(name: "Document", bundle: Bundle.main)

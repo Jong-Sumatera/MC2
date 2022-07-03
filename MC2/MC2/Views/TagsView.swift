@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct HighlightsView: View {
+struct TagsView: View {
     var body: some View {
-        Text("highlights")
+        Text("tags")
     }
 }
 
-struct HighlightsView_Previews: PreviewProvider {
+struct TagsView_Previews: PreviewProvider {
     static var previews: some View {
-        HighlightsView()
+        TagsView()
     }
 }

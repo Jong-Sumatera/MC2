@@ -11,8 +11,10 @@
 		0A8B3F26286CB99E003DE765 /* Document.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A8B3F25286CB99E003DE765 /* Document.storyboard */; };
 		0A8B3F28286CB9B0003DE765 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8B3F27286CB9B0003DE765 /* DocumentViewController.swift */; };
 		658D76302871CD7100C60B5C /* FilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658D762F2871CD7100C60B5C /* FilesView.swift */; };
-		658D76322871CD7E00C60B5C /* HighlightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658D76312871CD7E00C60B5C /* HighlightsView.swift */; };
+		658D76322871CD7E00C60B5C /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658D76312871CD7E00C60B5C /* TagsView.swift */; };
 		658D76342871D31200C60B5C /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658D76332871D31200C60B5C /* EmptyView.swift */; };
+		658D76362871EA3100C60B5C /* SearchObservableObjectFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658D76352871EA3100C60B5C /* SearchObservableObjectFile.swift */; };
+		658D763A28721A1D00C60B5C /* RecentlyViewedDropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658D763928721A1D00C60B5C /* RecentlyViewedDropdownView.swift */; };
 		65EC7FCE286C40BA007F47D4 /* MC2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EC7FCD286C40BA007F47D4 /* MC2App.swift */; };
 		65EC7FD0286C40BA007F47D4 /* ContentViewExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EC7FCF286C40BA007F47D4 /* ContentViewExample.swift */; };
 		65EC7FD2286C40BB007F47D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65EC7FD1286C40BB007F47D4 /* Assets.xcassets */; };
@@ -30,8 +32,10 @@
 		0A8B3F25286CB99E003DE765 /* Document.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Document.storyboard; sourceTree = "<group>"; };
 		0A8B3F27286CB9B0003DE765 /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
 		658D762F2871CD7100C60B5C /* FilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesView.swift; sourceTree = "<group>"; };
-		658D76312871CD7E00C60B5C /* HighlightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsView.swift; sourceTree = "<group>"; };
+		658D76312871CD7E00C60B5C /* TagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
 		658D76332871D31200C60B5C /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		658D76352871EA3100C60B5C /* SearchObservableObjectFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchObservableObjectFile.swift; sourceTree = "<group>"; };
+		658D763928721A1D00C60B5C /* RecentlyViewedDropdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyViewedDropdownView.swift; sourceTree = "<group>"; };
 		65EC7FCA286C40BA007F47D4 /* MC2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MC2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65EC7FCD286C40BA007F47D4 /* MC2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MC2App.swift; sourceTree = "<group>"; };
 		65EC7FCF286C40BA007F47D4 /* ContentViewExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewExample.swift; sourceTree = "<group>"; };
@@ -63,11 +67,13 @@
 				65EC7FE2286C4288007F47D4 /* DashboardView.swift */,
 				65EC7FE3286C4288007F47D4 /* SettingView.swift */,
 				65EC7FE5286C4288007F47D4 /* SideView.swift */,
+				658D763928721A1D00C60B5C /* RecentlyViewedDropdownView.swift */,
 				0A8B3F1D286CAA9E003DE765 /* DocumentView.swift */,
 				0A8B3F25286CB99E003DE765 /* Document.storyboard */,
 				658D762F2871CD7100C60B5C /* FilesView.swift */,
-				658D76312871CD7E00C60B5C /* HighlightsView.swift */,
+				658D76312871CD7E00C60B5C /* TagsView.swift */,
 				658D76332871D31200C60B5C /* EmptyView.swift */,
+				658D76352871EA3100C60B5C /* SearchObservableObjectFile.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -199,14 +205,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				65EC7FD7286C40BB007F47D4 /* Persistence.swift in Sources */,
-				658D76322871CD7E00C60B5C /* HighlightsView.swift in Sources */,
+				658D76322871CD7E00C60B5C /* TagsView.swift in Sources */,
 				65EC7FE6286C4288007F47D4 /* DashboardView.swift in Sources */,
 				65EC7FE9286C4288007F47D4 /* SideView.swift in Sources */,
 				65EC7FD0286C40BA007F47D4 /* ContentViewExample.swift in Sources */,
 				658D76302871CD7100C60B5C /* FilesView.swift in Sources */,
 				65EC7FE7286C4288007F47D4 /* SettingView.swift in Sources */,
 				65EC7FDA286C40BB007F47D4 /* MC2.xcdatamodeld in Sources */,
+				658D763A28721A1D00C60B5C /* RecentlyViewedDropdownView.swift in Sources */,
 				0A8B3F1E286CAA9E003DE765 /* DocumentView.swift in Sources */,
+				658D76362871EA3100C60B5C /* SearchObservableObjectFile.swift in Sources */,
 				0A8B3F28286CB9B0003DE765 /* DocumentViewController.swift in Sources */,
 				65EC7FCE286C40BA007F47D4 /* MC2App.swift in Sources */,
 				658D76342871D31200C60B5C /* EmptyView.swift in Sources */,
