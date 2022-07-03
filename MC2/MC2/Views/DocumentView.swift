@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DocumentVCRepresentable: UIViewControllerRepresentable {
     var filePath: URL
+    var fileName: String
     
     func makeCoordinator() -> Self.Coordinator { Coordinator() }
     
@@ -21,6 +22,7 @@ struct DocumentVCRepresentable: UIViewControllerRepresentable {
         let storyboard = UIStoryboard(name: "Document", bundle: Bundle.main)
         let controller = storyboard.instantiateViewController(identifier: "document") as! DocumentViewController
         controller.filePath = filePath
+        controller.fileName = fileName
         
         context.coordinator.parentObserver = controller.observe(\.parent, changeHandler: { vc, _ in
             
@@ -35,16 +37,17 @@ struct DocumentVCRepresentable: UIViewControllerRepresentable {
 
 struct DocumentView: View {
     var filePath: URL
+    var fileName: String
     var body: some View {
         VStack{
             
-            DocumentVCRepresentable(filePath: filePath)
+            DocumentVCRepresentable(filePath: filePath, fileName: fileName)
         }
     }
 }
 
 struct DocumentView_Previews: PreviewProvider {
     static var previews: some View {
-        DocumentView(filePath: URL(fileURLWithPath: ""))
+        DocumentView(filePath: URL(fileURLWithPath: ""), fileName: "")
     }
 }

@@ -9,6 +9,7 @@ import UIKit
 import PDFKit
 
 class DocumentViewController: UIViewController {
+    var fileName: String?
     var filePath: URL?
     var pdfView: PDFView!
     override func viewDidLoad() {
@@ -34,7 +35,7 @@ class DocumentViewController: UIViewController {
         let bounds = self.navigationController!.navigationBar.bounds
         self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height - height)
         
-        self.parent!.navigationItem.title = filePath?.lastPathComponent
+        self.parent!.navigationItem.title = fileName ?? ""
         self.parent!.navigationItem.largeTitleDisplayMode = .never
     }
     

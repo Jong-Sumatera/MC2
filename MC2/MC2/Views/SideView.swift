@@ -40,7 +40,7 @@ struct SideView: View {
                 }
                 
                 if isGotoDocumentview {
-                    NavigationLink(destination: DocumentView(filePath: filePath!), isActive: $isGotoDocumentview) {
+                    NavigationLink(destination: DocumentView(filePath: filePath!, fileName: fileName), isActive: $isGotoDocumentview) {
                     }.hidden()
                 }
                 

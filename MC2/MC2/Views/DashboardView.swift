@@ -6,22 +6,35 @@
 //
 
 import SwiftUI
-import UIKit
-
-struct DashboardVCRepresentable: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> some UIViewController {
-        let storyboard = UIStoryboard(name: "Dashboard", bundle: Bundle.main)
-        let controller = storyboard.instantiateViewController(identifier: "dashboard")
-        return controller
-    }
-    
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-    }
-}
 
 struct DashboardView: View {
+    @State private var selectedIndex = 0
+    @State private var searchText = ""
+    
     var body: some View {
-        DashboardVCRepresentable().ignoresSafeArea()
+        VStack{
+            if selectedIndex == 0 {
+                FilesView()
+            } else {
+                HighlightsView()
+            }
+
+        } .navigationBarTitle("Home", displayMode: .inline)
+        .toolbar {
+            ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading){
+                Picker(selection: $selectedIndex, label: EmptyView()) {
+                    Text("Files")
+                        .tag(0)
+                    Text("Highlights")
+                        .tag(1)
+                }
+                .pickerStyle(SegmentedPickerStyle())
+            }
+            ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing){
+                Text("")
+                    .searchable(text: $searchText)
+            }
+        }
     }
 }
 

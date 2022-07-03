@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@main
+ @main
 struct MC2App: App {
     let persistenceController = PersistenceController.shared
 
