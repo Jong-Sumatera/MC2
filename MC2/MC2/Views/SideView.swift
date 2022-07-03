@@ -84,13 +84,14 @@ struct SideView: View {
                         
                         if lastPath != "" {
                             Text(lastPath)
-                            
+                            Spacer()
+                                .frame(height: 10)
                         }
                         Button(action: {
                             isShowing = true
                         }) {
                             HStack{
-                                Image(systemName: "plus")
+                                Image(systemName: "square.and.arrow.down")
                                 Text("Import PDF")
                             }
                         }
@@ -111,7 +112,7 @@ struct SideView: View {
                             
                         })
                     }
-                    .frame(width: 300, height: 150, alignment: .topTrailing)
+                    .frame(width: 300, height: 210, alignment: .topTrailing)
                 }
             })
             
