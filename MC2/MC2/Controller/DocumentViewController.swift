@@ -25,18 +25,20 @@ class DocumentViewController: UIViewController {
         pdfView!.document = PDFDocument(url: filePath!)
         
         filePath!.stopAccessingSecurityScopedResource()
-
+        
         pdfView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        self.navigationController?.isNavigationBarHidden = true
+        //        self.navigationController?.isNavigationBarHidden = true
         let height: CGFloat = 50 //whatever height you want to add to the existing height
         let bounds = self.navigationController!.navigationBar.bounds
-        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height - height)
+        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 20, width: bounds.width, height: bounds.height - height)
         
         self.parent!.navigationItem.title = fileName ?? ""
         self.parent!.navigationItem.largeTitleDisplayMode = .never
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -55,9 +57,9 @@ class DocumentViewController: UIViewController {
     
     func highlightSelection() {
         let selections = pdfView!.currentSelection
-//        print(selections?.string)
-//        let lines = selections?.selectionsByLine()
-//        print(lines?.count)
+        //        print(selections?.string)
+        //        let lines = selections?.selectionsByLine()
+        //        print(lines?.count)
         
         let lines = selections?.selectionsByLine()
         print(lines?.count ?? selections as Any)
@@ -69,8 +71,8 @@ class DocumentViewController: UIViewController {
             highlight.color = UIColor.yellow
             selection.pages[0].addAnnotation(highlight)
         }
-
+        
     }
     
 }
-   
+

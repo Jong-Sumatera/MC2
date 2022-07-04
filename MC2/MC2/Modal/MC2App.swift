@@ -7,14 +7,14 @@
 
 import SwiftUI
 
- @main
+@main
 struct MC2App: App {
     let persistenceController = PersistenceController.shared
-
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SplashScreenView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(SearchObservableObject())
         }
     }
 }

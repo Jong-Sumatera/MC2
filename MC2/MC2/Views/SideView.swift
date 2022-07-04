@@ -20,38 +20,25 @@ struct SideView: View {
     var body: some View {
         NavigationView {
             
-            //            Text("total files\(files.count )")
-            //            List {
-            //                ForEach(files) {
-            //                    file in
-            //                    VStack{
-            //                        Text("\(file.fileName ?? "")")
-            //                    }
-            //                }
-            //            }
-            
             List {
                 NavigationLink(destination:DashboardView()) {
-                    Label("Home",systemImage: "house")
+                    Label("Dashboard",systemImage: "house.fill")
                 }
-                
-                List {
-                    
-                }
+                .font(.system(size: 20))
+                .foregroundColor(Color("AccentColor"))
                 
                 if isGotoDocumentview {
                     NavigationLink(destination: DocumentView(filePath: filePath!, fileName: fileName), isActive: $isGotoDocumentview) {
                     }.hidden()
                 }
                 
-            }.navigationBarItems(trailing:
-                                    HStack {
+            }.navigationBarItems(trailing: HStack {
                 
-                Button(action: {
-                    print("Reload button pressed...")
-                }) {
-                    Image(systemName: "gear")
-                }
+//                Button(action: {
+//                    print("Reload button pressed...")
+//                }) {
+//                    Image(systemName: "gear")
+//                }
                 
                 Button(action: {
                     self.showPopover = true
@@ -113,13 +100,17 @@ struct SideView: View {
                         })
                     }
                     .frame(width: 300, height: 210, alignment: .topTrailing)
+                    
                 }
             })
             
-            
+            .navigationTitle("LearnUp")
+            .foregroundColor(Color("AccentColor"))
             
             DashboardView()
-        }
+        }.navigationBarHidden(true)
+            
+            
     }
     func addFileToCoreData(){
         let newFile = File(context: viewContext)
