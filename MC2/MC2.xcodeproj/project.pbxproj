@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A35A1C628729A070001CFBD /* HighlightTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35A1C428729A070001CFBD /* HighlightTableViewCell.swift */; };
+		0A35A1C728729A070001CFBD /* HighlightTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A35A1C528729A070001CFBD /* HighlightTableViewCell.xib */; };
 		0A8B3F1E286CAA9E003DE765 /* DocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8B3F1D286CAA9E003DE765 /* DocumentView.swift */; };
 		0A8B3F26286CB99E003DE765 /* Document.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A8B3F25286CB99E003DE765 /* Document.storyboard */; };
 		0A8B3F28286CB9B0003DE765 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8B3F27286CB9B0003DE765 /* DocumentViewController.swift */; };
@@ -28,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A35A1C428729A070001CFBD /* HighlightTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightTableViewCell.swift; sourceTree = "<group>"; };
+		0A35A1C528729A070001CFBD /* HighlightTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HighlightTableViewCell.xib; sourceTree = "<group>"; };
 		0A8B3F1D286CAA9E003DE765 /* DocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentView.swift; sourceTree = "<group>"; };
 		0A8B3F25286CB99E003DE765 /* Document.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Document.storyboard; sourceTree = "<group>"; };
 		0A8B3F27286CB9B0003DE765 /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
@@ -60,9 +64,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A35A1C3287299D80001CFBD /* components */ = {
+			isa = PBXGroup;
+			children = (
+				0A35A1C428729A070001CFBD /* HighlightTableViewCell.swift */,
+				0A35A1C528729A070001CFBD /* HighlightTableViewCell.xib */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
 		650429F5286C4F98000DD875 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0A35A1C3287299D80001CFBD /* components */,
 				65EC7FE0286C41BE007F47D4 /* ContentView.swift */,
 				65EC7FE2286C4288007F47D4 /* DashboardView.swift */,
 				65EC7FE3286C4288007F47D4 /* SettingView.swift */,
@@ -193,6 +207,7 @@
 			files = (
 				65EC7FD5286C40BB007F47D4 /* Preview Assets.xcassets in Resources */,
 				0A8B3F26286CB99E003DE765 /* Document.storyboard in Resources */,
+				0A35A1C728729A070001CFBD /* HighlightTableViewCell.xib in Resources */,
 				65EC7FD2286C40BB007F47D4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -206,6 +221,7 @@
 			files = (
 				65EC7FD7286C40BB007F47D4 /* Persistence.swift in Sources */,
 				658D76322871CD7E00C60B5C /* TagsView.swift in Sources */,
+				0A35A1C628729A070001CFBD /* HighlightTableViewCell.swift in Sources */,
 				65EC7FE6286C4288007F47D4 /* DashboardView.swift in Sources */,
 				65EC7FE9286C4288007F47D4 /* SideView.swift in Sources */,
 				65EC7FD0286C40BA007F47D4 /* ContentViewExample.swift in Sources */,

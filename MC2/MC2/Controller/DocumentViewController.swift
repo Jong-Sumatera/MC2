@@ -11,17 +11,24 @@ import PDFKit
 class DocumentViewController: UIViewController {
     var fileName: String?
     var filePath: URL?
+    @IBOutlet weak var contentPdfView: UIView!
     var pdfView: PDFView!
+    @IBOutlet weak var sideView: UIView!
+    var isHiddenSideView: Bool = true 
+    @IBOutlet weak var contentStackView: UIStackView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let menuItem = UIMenuItem(title: "Add Highlight", action: #selector(addHighlight))
         UIMenuController.shared.menuItems = [menuItem]
+        self.setPdfView()
+    }
+    
+    func setPdfView() {
         let _ = filePath!.startAccessingSecurityScopedResource()
-        print("ViewDidLoad", filePath!)
         
-        view.backgroundColor = UIColor.red
-        pdfView = PDFView(frame: self.view.bounds)
-        self.view.addSubview(pdfView)
+        pdfView = PDFView(frame: self.contentPdfView.bounds)
+        self.contentPdfView.addSubview(pdfView)
         pdfView!.document = PDFDocument(url: filePath!)
         
         filePath!.stopAccessingSecurityScopedResource()
@@ -41,7 +48,6 @@ class DocumentViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         
     }
     
@@ -69,6 +75,30 @@ class DocumentViewController: UIViewController {
             highlight.color = UIColor.yellow
             selection.pages[0].addAnnotation(highlight)
         }
+        
+    }
+    
+    func toggleAnimated() {
+        self.isHiddenSideView = !self.isHiddenSideView
+        
+        UIView.animate(
+                    withDuration: 0.35,
+                    delay: 0,
+                    usingSpringWithDamping: 0.9,
+                    initialSpringVelocity: 1,
+                    options: [],
+                    animations: {
+                        self.sideView.isHidden = self.isHiddenSideView
+                        self.sideView.alpha = self.isHiddenSideView ? 0 : 1
+                    },
+                    completion: nil
+                )
+        
+//        UIView.animate(withDuration: 0.3, delay: 0) {
+//            self.sideView.isHidden = self.isHiddenSideView
+//            self.sideView.alpha = self.isHiddenSideView ? 0 : 1
+//            print(self.isHiddenSideView)
+//        }
         
     }
     

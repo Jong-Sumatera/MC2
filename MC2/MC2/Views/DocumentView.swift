@@ -10,7 +10,7 @@ import SwiftUI
 struct DocumentVCRepresentable: UIViewControllerRepresentable {
     var filePath: URL
     var fileName: String
-    
+    var isOpenSideBar : Bool
     func makeCoordinator() -> Self.Coordinator { Coordinator() }
     
     class Coordinator {
@@ -32,16 +32,28 @@ struct DocumentVCRepresentable: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+        let controller = uiViewController as! DocumentViewController
+        controller.toggleAnimated()
     }
 }
 
 struct DocumentView: View {
     var filePath: URL
     var fileName: String
+    @State var isOpenSideBar: Bool = false
     var body: some View {
         VStack{
             
-            DocumentVCRepresentable(filePath: filePath, fileName: fileName)
+            DocumentVCRepresentable(filePath: filePath, fileName: fileName, isOpenSideBar: isOpenSideBar)
+        }.toolbar {
+            ToolbarItem(placement:ToolbarItemPlacement.navigationBarTrailing){
+                Button(action: {
+                    isOpenSideBar.toggle()
+                }, label: {
+                    Image(systemName: "sidebar.trailing")
+                })
+                
+            }
         }
     }
 }
