@@ -13,6 +13,7 @@ struct SideView: View {
     @State var isShowing: Bool = false
     @State var filePath: URL?
     @State var lastPath: String = ""
+    @State var file: File?
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: []) var files: FetchedResults<File>
     @State var isGotoDocumentview: Bool = false
@@ -26,7 +27,7 @@ struct SideView: View {
                 }
                 
                 if isGotoDocumentview {
-                    NavigationLink(destination: DocumentView(filePath: filePath!, fileName: fileName), isActive: $isGotoDocumentview) {
+                    NavigationLink(destination: DocumentView(filePath: filePath!, fileName: fileName, file: file!), isActive: $isGotoDocumentview) {
                     }.hidden()
                 }
                 
@@ -55,7 +56,7 @@ struct SideView: View {
                             }
                             
                             Button(action:  {
-                                addFileToCoreData()
+                                self.file = addFileToCoreData()
                                 self.isGotoDocumentview = true
                                 self.showPopover = false
                             }) {
@@ -105,10 +106,11 @@ struct SideView: View {
             DashboardView()
         }
     }
-    func addFileToCoreData(){
+    func addFileToCoreData() -> File {
         let newFile = File(context: viewContext)
+        let uuid = UUID()
         newFile.fileName = fileName
-        newFile.id = UUID()
+        newFile.id = uuid
         newFile.fileType = "pdf"
         newFile.createdDate = Date()
         newFile.fileTitle = lastPath
@@ -119,6 +121,7 @@ struct SideView: View {
         } catch{
             print(error.localizedDescription)
         }
+        return newFile
     }
 }
 

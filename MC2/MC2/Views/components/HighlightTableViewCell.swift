@@ -16,6 +16,8 @@ class HighlightTableViewCell: UITableViewCell {
     @IBOutlet weak var outerView: UIView!
     @IBOutlet weak var hLDetailStackView: UIStackView!
     @IBOutlet weak var hLStackView: UIStackView!
+    
+    @IBOutlet weak var translationText: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

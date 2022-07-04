@@ -10,6 +10,10 @@
 		0A35A1C628729A070001CFBD /* HighlightTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35A1C428729A070001CFBD /* HighlightTableViewCell.swift */; };
 		0A35A1C728729A070001CFBD /* HighlightTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A35A1C528729A070001CFBD /* HighlightTableViewCell.xib */; };
 		0A35A1CA2872DAE90001CFBD /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35A1C92872DAE90001CFBD /* UIViewExt.swift */; };
+		0A35A1CD287344A70001CFBD /* HighlightCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35A1CC287344A70001CFBD /* HighlightCoreDataManager.swift */; };
+		0A35A1CF2873466E0001CFBD /* SelectionLineCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35A1CE2873466E0001CFBD /* SelectionLineCoreDataManager.swift */; };
+		0A35A1D128734A8D0001CFBD /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35A1D028734A8D0001CFBD /* UIColorExt.swift */; };
+		0A35A1D32873633C0001CFBD /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35A1D22873633C0001CFBD /* Translation.swift */; };
 		0A8B3F1E286CAA9E003DE765 /* DocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8B3F1D286CAA9E003DE765 /* DocumentView.swift */; };
 		0A8B3F26286CB99E003DE765 /* Document.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A8B3F25286CB99E003DE765 /* Document.storyboard */; };
 		0A8B3F28286CB9B0003DE765 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8B3F27286CB9B0003DE765 /* DocumentViewController.swift */; };
@@ -34,6 +38,10 @@
 		0A35A1C428729A070001CFBD /* HighlightTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightTableViewCell.swift; sourceTree = "<group>"; };
 		0A35A1C528729A070001CFBD /* HighlightTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HighlightTableViewCell.xib; sourceTree = "<group>"; };
 		0A35A1C92872DAE90001CFBD /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
+		0A35A1CC287344A70001CFBD /* HighlightCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightCoreDataManager.swift; sourceTree = "<group>"; };
+		0A35A1CE2873466E0001CFBD /* SelectionLineCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionLineCoreDataManager.swift; sourceTree = "<group>"; };
+		0A35A1D028734A8D0001CFBD /* UIColorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
+		0A35A1D22873633C0001CFBD /* Translation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
 		0A8B3F1D286CAA9E003DE765 /* DocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentView.swift; sourceTree = "<group>"; };
 		0A8B3F25286CB99E003DE765 /* Document.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Document.storyboard; sourceTree = "<group>"; };
 		0A8B3F27286CB9B0003DE765 /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				0A35A1C92872DAE90001CFBD /* UIViewExt.swift */,
+				0A35A1D028734A8D0001CFBD /* UIColorExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -86,6 +95,9 @@
 		0A35A1CB28733C7F0001CFBD /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				0A35A1CC287344A70001CFBD /* HighlightCoreDataManager.swift */,
+				0A35A1CE2873466E0001CFBD /* SelectionLineCoreDataManager.swift */,
+				0A35A1D22873633C0001CFBD /* Translation.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -248,7 +260,11 @@
 				65EC7FE7286C4288007F47D4 /* SettingView.swift in Sources */,
 				65EC7FDA286C40BB007F47D4 /* MC2.xcdatamodeld in Sources */,
 				658D763A28721A1D00C60B5C /* RecentlyViewedDropdownView.swift in Sources */,
+				0A35A1CF2873466E0001CFBD /* SelectionLineCoreDataManager.swift in Sources */,
+				0A35A1D32873633C0001CFBD /* Translation.swift in Sources */,
 				0A8B3F1E286CAA9E003DE765 /* DocumentView.swift in Sources */,
+				0A35A1CD287344A70001CFBD /* HighlightCoreDataManager.swift in Sources */,
+				0A35A1D128734A8D0001CFBD /* UIColorExt.swift in Sources */,
 				658D76362871EA3100C60B5C /* SearchObservableObjectFile.swift in Sources */,
 				0A8B3F28286CB9B0003DE765 /* DocumentViewController.swift in Sources */,
 				0A35A1CA2872DAE90001CFBD /* UIViewExt.swift in Sources */,
@@ -383,7 +399,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MC2/Preview Content\"";
-				DEVELOPMENT_TEAM = W9BTV688UW;
+				DEVELOPMENT_TEAM = PSKBVM3X2F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -412,7 +428,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MC2/Preview Content\"";
-				DEVELOPMENT_TEAM = W9BTV688UW;
+				DEVELOPMENT_TEAM = PSKBVM3X2F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

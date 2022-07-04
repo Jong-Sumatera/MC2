@@ -17,14 +17,14 @@ struct FilesView: View {
         List {
             if(oo.searchFilesResults.isEmpty) {
                 ForEach(files, id: \.id) { file in
-                    NavigationLink(destination: DocumentView(filePath: URL(string: file.fileUrl!)!,fileName: file.fileName ?? ""), label: {
+                    NavigationLink(destination: DocumentView(filePath: URL(string: file.fileUrl!)!,fileName: file.fileName ?? "", file: file), label: {
                         Text("\(file.fileName ?? "")")
                     })
                 }
             } else {
                 ForEach(oo.searchFilesResults, id: \.id) {
                     file in
-                    NavigationLink(destination: DocumentView(filePath: URL(string: file.fileUrl!)!,fileName: file.fileName ?? ""), label: {
+                    NavigationLink(destination: DocumentView(filePath: URL(string: file.fileUrl!)!,fileName: file.fileName ?? "", file: file), label: {
                         Text("\(file.fileName ?? "")")
                     })
                 }

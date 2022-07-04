@@ -56,7 +56,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fdafsafsafsdafsafsafsadfsafdsafsadfsdafsdafasdfasdfdas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57i-yb-oiy">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fdafsafsafsdafsafsafsadfsafdsafsadfsdafsdafasdfasdfdas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" showsExpansionTextWhenTruncated="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57i-yb-oiy">
                                                 <rect key="frame" x="61" y="14" width="381" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -87,17 +87,17 @@
                                         <rect key="frame" x="0.0" y="50" width="478" height="489"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a0v-it-Ke6">
-                                                <rect key="frame" x="0.0" y="0.0" width="478" height="439"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="478" height="452.5"/>
                                                 <subviews>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gZb-ff-Q6e">
-                                                        <rect key="frame" x="8" y="8" width="320" height="25"/>
+                                                        <rect key="frame" x="8" y="8" width="305" height="25"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="QtV-eL-uDM"/>
                                                         </constraints>
                                                         <segments>
-                                                            <segment title="Notes"/>
                                                             <segment title="Translation"/>
-                                                            <segment title="Related Notes"/>
+                                                            <segment title="Notes"/>
+                                                            <segment title="Similar Notes"/>
                                                         </segments>
                                                     </segmentedControl>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dEP-46-ZHf">
@@ -121,13 +121,32 @@
                                                     <constraint firstItem="gZb-ff-Q6e" firstAttribute="top" secondItem="a0v-it-Ke6" secondAttribute="top" constant="8" id="zvp-S8-JKA"/>
                                                 </constraints>
                                             </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8uW-Gb-RmH">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XJ6-jA-wvQ">
                                                 <rect key="frame" x="0.0" y="439" width="478" height="50"/>
-                                            </stackView>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFd-vj-URI">
+                                                        <rect key="frame" x="8" y="8" width="462" height="34"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="KFd-vj-URI" secondAttribute="bottom" constant="8" id="0rP-2F-mXO"/>
+                                                    <constraint firstItem="KFd-vj-URI" firstAttribute="leading" secondItem="XJ6-jA-wvQ" secondAttribute="leading" constant="8" id="G4O-jM-c1u"/>
+                                                    <constraint firstItem="KFd-vj-URI" firstAttribute="top" secondItem="XJ6-jA-wvQ" secondAttribute="top" constant="8" id="IWC-AX-KLI"/>
+                                                    <constraint firstAttribute="trailing" secondItem="KFd-vj-URI" secondAttribute="trailing" constant="8" id="jvG-0Y-8To"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.76470589639999997" blue="0.72941178080000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
+                                            <constraint firstItem="XJ6-jA-wvQ" firstAttribute="top" secondItem="a0v-it-Ke6" secondAttribute="bottom" constant="20" id="74e-zO-jZ3"/>
+                                            <constraint firstAttribute="trailing" secondItem="XJ6-jA-wvQ" secondAttribute="trailing" id="Cft-Mp-y67"/>
+                                            <constraint firstItem="XJ6-jA-wvQ" firstAttribute="leading" secondItem="2uW-Xv-aAb" secondAttribute="leading" id="MxK-3G-URT"/>
                                             <constraint firstItem="a0v-it-Ke6" firstAttribute="leading" secondItem="2uW-Xv-aAb" secondAttribute="leading" id="Oes-h4-iOK"/>
+                                            <constraint firstAttribute="bottom" secondItem="XJ6-jA-wvQ" secondAttribute="bottom" id="hh0-bH-Yhr"/>
                                             <constraint firstAttribute="trailing" secondItem="a0v-it-Ke6" secondAttribute="trailing" id="sk6-ls-r6x"/>
                                         </constraints>
                                     </stackView>
@@ -161,6 +180,7 @@
                 <outlet property="hLText" destination="57i-yb-oiy" id="0N1-Qn-Kas"/>
                 <outlet property="hlArrow" destination="37L-vl-5Xf" id="5ZO-Cc-BOf"/>
                 <outlet property="outerView" destination="eV3-Bs-ioL" id="Gcr-Lc-f8j"/>
+                <outlet property="translationText" destination="KFd-vj-URI" id="MnG-Nr-ARx"/>
             </connections>
             <point key="canvasLocation" x="314.49275362318843" y="299.66517857142856"/>
         </tableViewCell>
