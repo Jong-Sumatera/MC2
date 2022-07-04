@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A35A1C628729A070001CFBD /* HighlightTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35A1C428729A070001CFBD /* HighlightTableViewCell.swift */; };
 		0A35A1C728729A070001CFBD /* HighlightTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A35A1C528729A070001CFBD /* HighlightTableViewCell.xib */; };
+		0A35A1CA2872DAE90001CFBD /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35A1C92872DAE90001CFBD /* UIViewExt.swift */; };
 		0A8B3F1E286CAA9E003DE765 /* DocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8B3F1D286CAA9E003DE765 /* DocumentView.swift */; };
 		0A8B3F26286CB99E003DE765 /* Document.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A8B3F25286CB99E003DE765 /* Document.storyboard */; };
 		0A8B3F28286CB9B0003DE765 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8B3F27286CB9B0003DE765 /* DocumentViewController.swift */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		0A35A1C428729A070001CFBD /* HighlightTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightTableViewCell.swift; sourceTree = "<group>"; };
 		0A35A1C528729A070001CFBD /* HighlightTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HighlightTableViewCell.xib; sourceTree = "<group>"; };
+		0A35A1C92872DAE90001CFBD /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
 		0A8B3F1D286CAA9E003DE765 /* DocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentView.swift; sourceTree = "<group>"; };
 		0A8B3F25286CB99E003DE765 /* Document.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Document.storyboard; sourceTree = "<group>"; };
 		0A8B3F27286CB9B0003DE765 /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +73,21 @@
 				0A35A1C528729A070001CFBD /* HighlightTableViewCell.xib */,
 			);
 			path = components;
+			sourceTree = "<group>";
+		};
+		0A35A1C82872DAD10001CFBD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0A35A1C92872DAE90001CFBD /* UIViewExt.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0A35A1CB28733C7F0001CFBD /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		650429F5286C4F98000DD875 /* Views */ = {
@@ -129,6 +146,8 @@
 		65EC7FCC286C40BA007F47D4 /* MC2 */ = {
 			isa = PBXGroup;
 			children = (
+				0A35A1CB28733C7F0001CFBD /* Helper */,
+				0A35A1C82872DAD10001CFBD /* Extensions */,
 				650429F8286C508A000DD875 /* Modal */,
 				650429F7286C5050000DD875 /* Controller */,
 				650429F5286C4F98000DD875 /* Views */,
@@ -232,6 +251,7 @@
 				0A8B3F1E286CAA9E003DE765 /* DocumentView.swift in Sources */,
 				658D76362871EA3100C60B5C /* SearchObservableObjectFile.swift in Sources */,
 				0A8B3F28286CB9B0003DE765 /* DocumentViewController.swift in Sources */,
+				0A35A1CA2872DAE90001CFBD /* UIViewExt.swift in Sources */,
 				65EC7FCE286C40BA007F47D4 /* MC2App.swift in Sources */,
 				658D76342871D31200C60B5C /* EmptyView.swift in Sources */,
 				65EC7FE1286C41BE007F47D4 /* ContentView.swift in Sources */,

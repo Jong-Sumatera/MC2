@@ -33,7 +33,7 @@ struct DocumentVCRepresentable: UIViewControllerRepresentable {
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
         let controller = uiViewController as! DocumentViewController
-        controller.toggleAnimated()
+        controller.toggleSideBar()
     }
 }
 
@@ -54,7 +54,7 @@ struct DocumentView: View {
                 })
                 
             }
-        }
+        }.edgesIgnoringSafeArea(.bottom)
     }
 }
 

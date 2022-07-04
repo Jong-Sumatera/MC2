@@ -11,20 +11,44 @@ import PDFKit
 class DocumentViewController: UIViewController {
     var fileName: String?
     var filePath: URL?
-    @IBOutlet weak var contentPdfView: UIView!
     var pdfView: PDFView!
+    var isHiddenSideView: Bool = true
+    var highLights: [Bool] = [true, false, false]
+    
+    @IBOutlet weak var contentPdfView: UIView!
     @IBOutlet weak var sideView: UIView!
-    var isHiddenSideView: Bool = true 
     @IBOutlet weak var contentStackView: UIStackView!
+    @IBOutlet weak var hLTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let menuItem = UIMenuItem(title: "Add Highlight", action: #selector(addHighlight))
-        UIMenuController.shared.menuItems = [menuItem]
-        self.setPdfView()
+        self.sideView.applyShadow(cornerRadius: 0)
+        self.setupPdfView()
+        self.setupTableViewCell()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.parent!.navigationItem.title = fileName ?? ""
+        self.parent!.navigationItem.largeTitleDisplayMode = .never
     }
     
-    func setPdfView() {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
+    
+    func setupTableViewCell() {
+        let nib = UINib(nibName: "HighlightTableViewCell", bundle: nil)
+        self.hLTableView.register(nib, forCellReuseIdentifier: "HighlightTableViewCell")
+        self.hLTableView.dataSource = self
+        self.hLTableView.delegate = self
+        self.hLTableView.estimatedRowHeight = 50
+        self.hLTableView.rowHeight = UITableView.automaticDimension
+        
+    }
+    
+    func setupPdfView() {
+        let menuItem = UIMenuItem(title: "Add Highlight", action: #selector(addHighlight))
+        UIMenuController.shared.menuItems = [menuItem]
         let _ = filePath!.startAccessingSecurityScopedResource()
         
         pdfView = PDFView(frame: self.contentPdfView.bounds)
@@ -36,25 +60,12 @@ class DocumentViewController: UIViewController {
         pdfView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        //        self.navigationController?.isNavigationBarHidden = true
-        let height: CGFloat = 50 //whatever height you want to add to the existing height
-        let bounds = self.navigationController!.navigationBar.bounds
-        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 20, width: bounds.width, height: bounds.height - height)
-        
-        self.parent!.navigationItem.title = fileName ?? ""
-        self.parent!.navigationItem.largeTitleDisplayMode = .never
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-    
     @objc func addHighlight() {
         //munculin sidebar kanan
+        self.toggleSideBar()
         //highlight di page dikasih warna default
         highlightSelection()
+        
         //highlight text simpan di core data
         //simpan posisi highlight dan selection line di core data
     }
@@ -78,29 +89,55 @@ class DocumentViewController: UIViewController {
         
     }
     
-    func toggleAnimated() {
+    func toggleSideBar() {
         self.isHiddenSideView = !self.isHiddenSideView
         
         UIView.animate(
-                    withDuration: 0.35,
-                    delay: 0,
-                    usingSpringWithDamping: 0.9,
-                    initialSpringVelocity: 1,
-                    options: [],
-                    animations: {
-                        self.sideView.isHidden = self.isHiddenSideView
-                        self.sideView.alpha = self.isHiddenSideView ? 0 : 1
-                    },
-                    completion: nil
-                )
-        
-//        UIView.animate(withDuration: 0.3, delay: 0) {
-//            self.sideView.isHidden = self.isHiddenSideView
-//            self.sideView.alpha = self.isHiddenSideView ? 0 : 1
-//            print(self.isHiddenSideView)
-//        }
-        
+            withDuration: 0.35,
+            delay: 0,
+            usingSpringWithDamping: 0.9,
+            initialSpringVelocity: 1,
+            options: [],
+            animations: {
+                self.sideView.isHidden = self.isHiddenSideView
+                self.sideView.alpha = self.isHiddenSideView ? 0 : 1
+            },
+            completion: nil
+        )
     }
     
 }
 
+extension DocumentViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.highLights.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("hello")
+        let setIsHidden = !highLights[indexPath.row]
+        self.highLights[indexPath.row] = setIsHidden
+        tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HighlightTableViewCell", for: indexPath) as! HighlightTableViewCell
+        cell.hLDetailStackView.isHidden = self.highLights[indexPath.row]
+//        cell.hlDetailView.alpha = self.highLights[indexPath.row] ? 0 : 1
+//        cell.hlDetailView.isHidden = true
+//        cell.contentView.frame.width = cell.contentView.frame.width - 50
+        return cell
+            
+            
+        }
+//    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 100
+//    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+
+        return 50
+    }
+        
+}

@@ -33,29 +33,19 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="InM-m6-n9J">
-                                                <rect key="frame" x="0.0" y="87" width="473" height="937"/>
+                                                <rect key="frame" x="20" y="87" width="433" height="937"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="wPH-lB-hjY">
-                                                        <rect key="frame" x="0.0" y="44.5" width="473" height="51.5"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wPH-lB-hjY" id="Yxj-Oe-xMq">
-                                                            <rect key="frame" x="0.0" y="0.0" width="473" height="51.5"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                        </tableViewCellContentView>
-                                                    </tableViewCell>
-                                                </prototypes>
                                             </tableView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="i9a-Nx-rmA" firstAttribute="leading" secondItem="5Ns-vQ-CgS" secondAttribute="leading" constant="35" id="59n-Aa-R93"/>
-                                            <constraint firstItem="InM-m6-n9J" firstAttribute="leading" secondItem="5Ns-vQ-CgS" secondAttribute="leading" id="JSq-QI-dyL"/>
+                                            <constraint firstItem="InM-m6-n9J" firstAttribute="leading" secondItem="5Ns-vQ-CgS" secondAttribute="leading" constant="20" id="JSq-QI-dyL"/>
                                             <constraint firstAttribute="bottom" secondItem="InM-m6-n9J" secondAttribute="bottom" id="OIi-lS-vA5"/>
                                             <constraint firstItem="i9a-Nx-rmA" firstAttribute="top" secondItem="5Ns-vQ-CgS" secondAttribute="top" constant="32" id="UU2-nU-OnZ"/>
                                             <constraint firstItem="InM-m6-n9J" firstAttribute="top" secondItem="i9a-Nx-rmA" secondAttribute="bottom" constant="26" id="VvX-oa-sVL"/>
                                             <constraint firstAttribute="width" constant="473" id="oRh-ZK-59g"/>
-                                            <constraint firstAttribute="trailing" secondItem="InM-m6-n9J" secondAttribute="trailing" id="rQv-Nf-tn3"/>
+                                            <constraint firstAttribute="trailing" secondItem="InM-m6-n9J" secondAttribute="trailing" constant="20" id="rQv-Nf-tn3"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -76,6 +66,7 @@
                     <connections>
                         <outlet property="contentPdfView" destination="KJ5-gL-vM0" id="FtW-HM-zKJ"/>
                         <outlet property="contentStackView" destination="M7z-lX-gus" id="byg-fh-WHU"/>
+                        <outlet property="hLTableView" destination="InM-m6-n9J" id="kVH-y6-fAn"/>
                         <outlet property="sideView" destination="5Ns-vQ-CgS" id="tAC-dY-cll"/>
                     </connections>
                 </viewController>
