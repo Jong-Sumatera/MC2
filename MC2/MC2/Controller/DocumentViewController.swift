@@ -88,7 +88,7 @@ class DocumentViewController: UIViewController {
         let highlight = addHighlightToCoreData(selections: selections)
         highlights.insert(highlight, at: 0)
         highLightsIsOpen.insert(true, at: 0)
-        self.hLTableView.reloadData()
+        
         
         //get translated text
         
@@ -100,7 +100,7 @@ class DocumentViewController: UIViewController {
         GTranslation.shared.translateText(q: q, targetLanguage: "id", callback: { text in
             self.highlightsTranslations.insert(text, at: 0)
             DispatchQueue.main.async {
-            self.hLTableView.reloadData()
+                self.hLTableView.reloadData()
             }
         })
         return res
@@ -182,7 +182,7 @@ extension DocumentViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HighlightTableViewCell", for: indexPath) as! HighlightTableViewCell
         cell.hLDetailStackView.isHidden = !self.highLightsIsOpen[indexPath.row]
         cell.hLText.text = highlights[indexPath.row].text
-        cell.translationText.text = highlightsTranslations[indexPath.row]
+        cell.translationText.text = highlightsTranslations[indexPath.row] ?? ""
 //        cell.hlDetailView.alpha = self.highLights[indexPath.row] ? 0 : 1
 //        cell.hlDetailView.isHidden = true
 //        cell.contentView.frame.width = cell.contentView.frame.width - 50
