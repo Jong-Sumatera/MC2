@@ -35,6 +35,7 @@ class DocumentViewController: UIViewController {
         self.setupPdfView()
         self.setupTableViewCell()
         do {
+            highlightListVM.delegate = self
             highlightListVM.getHighLightsfromFile(fileVM: file)
             self.highlights = highlightListVM.highlights
             self.highLightsIsOpen = Array(repeating: false, count: highlights.count)
@@ -44,12 +45,21 @@ class DocumentViewController: UIViewController {
         }
         addHighlightOnPage()
         
-        NotificationCenter.default.addObserver(forName: .PDFViewAnnotationHit, object: nil, queue: nil) { (notification) in
-              if let annotation = notification.userInfo?["PDFAnnotationHit"] as? PDFAnnotation {
-                  print(annotation.fieldName)
-                  annotation.color = UIColor.green
-              }
+        NotificationCenter.default.addObserver(forName: .PDFViewAnnotationHit, object: nil, queue: nil) { [self] (notification) in
+            if let annotation = notification.userInfo?["PDFAnnotationHit"] as? PDFAnnotation {
+                let selectedHighlightIndex: Int
+                for (index, highlight) in highlights.enumerated() {
+                    if highlight.highlightId?.uuidString == annotation.fieldName {
+                        selectedHighlightIndex = index
+                        print(selectedHighlightIndex)
+                        self.highLightsIsOpen[selectedHighlightIndex] = true
+                        self.hLTableView.reloadRows(at: [IndexPath(row: selectedHighlightIndex, section: 0)], with: .none)
+                        self.hLTableView.selectRow(at: IndexPath(row: selectedHighlightIndex, section: 0), animated: true, scrollPosition: .top)
+                        break;
+                    }
+                }
             }
+        }
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -94,23 +104,22 @@ class DocumentViewController: UIViewController {
         
         //simpan posisi highlight dan selection line di core data
         var highlight = addHighlightToCoreData(selections: selections)
-        
-        highLightsIsOpen.insert(true, at: 0)
+                highLightsIsOpen.insert(true, at: 0)
         
         
         //get translated text
         
-//        self.getTranslation(q: (selections?.string)!)
+        //        self.getTranslation(q: (selections?.string)!)
     }
     
     func getTranslation(q: String) -> String {
         var res = "loading"
         GTranslation.shared.translateText(q: q, targetLanguage: "id", callback: { text in
             res = text
-//            self.highlightsTranslations.insert(text, at: 0)
-//            DispatchQueue.main.async {
-//                self.hLTableView.reloadData()
-//            }
+            //            self.highlightsTranslations.insert(text, at: 0)
+            //            DispatchQueue.main.async {
+            //                self.hLTableView.reloadData()
+            //            }
         })
         return res
     }
@@ -121,12 +130,13 @@ class DocumentViewController: UIViewController {
             return nil
         }
         
+        let id: UUID = UUID()
         let text: String = selections?.string ?? ""
         
         var sLines : [SelectionLineViewModel] = [SelectionLineViewModel]()
         for selection in lines {
             let bounds = selection.bounds(for: selection.pages[0])
-            let selectionVM = SelectionLineViewModel(bounds: bounds, page: Int((pdfView.document?.index(for: selection.pages[0]))!))
+            let selectionVM = SelectionLineViewModel(id: id, bounds: bounds, page: Int((pdfView.document?.index(for: selection.pages[0]))!))
             sLines.append(selectionVM)
             highlightSelection(fieldName: selectionVM.selectionId, bounds: bounds, pdfPage: selection.pages[0], color: self.defaultColor)
         }
@@ -139,7 +149,7 @@ class DocumentViewController: UIViewController {
         let highlightVM = AddHighlightViewModel()
         highlightVM.text = text
         highlightVM.color = self.defaultColor
-        let res = highlightVM.addHighlight(fileVM: file, selectionsVM: sLines, translation: translation)
+        let res = highlightVM.addHighlight(id: id, fileVM: file, selectionsVM: sLines, translation: translation)
         return res
     }
     
@@ -177,42 +187,46 @@ class DocumentViewController: UIViewController {
             completion: nil
         )
     }
-    
-    
+}
+
+extension DocumentViewController: HighlightsListViewModelDelegate {
+    func didChangeContent(_ highlights: [HighlightViewModel]) {
+        self.highlights = highlights
+        DispatchQueue.main.async {
+            self.hLTableView.reloadData()
+        }
+    }
 }
 
 extension DocumentViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.highlights.count
+        print("table~!!!!")
+        return self.highlights.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("hello")
-        let setIsHidden = !highLightsIsOpen[indexPath.row]
-        self.highLightsIsOpen[indexPath.row] = setIsHidden
+        self.highLightsIsOpen[indexPath.row].toggle()
         tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print(indexPath.row)
         let cell = tableView.dequeueReusableCell(withIdentifier: "HighlightTableViewCell", for: indexPath) as! HighlightTableViewCell
         cell.hLDetailStackView.isHidden = !self.highLightsIsOpen[indexPath.row]
         cell.hLText.text = highlights[indexPath.row].text
-        cell.translationText.text = highlightsTranslations[indexPath.row] ?? ""
-//        cell.hlDetailView.alpha = self.highLights[indexPath.row] ? 0 : 1
-//        cell.hlDetailView.isHidden = true
-//        cell.contentView.frame.width = cell.contentView.frame.width - 50
+        //        cell.translationText.text = highlightsTranslations[indexPath.row] ?? ""
+        //        cell.hlDetailView.alpha = self.highLights[indexPath.row] ? 0 : 1
+        //        cell.hlDetailView.isHidden = true
+        //        cell.contentView.frame.width = cell.contentView.frame.width - 50
         return cell
-            
-            
-        }
-//    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 100
-//    }
+        
+        
+    }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-
+        
         return 50
     }
-        
+    
 }

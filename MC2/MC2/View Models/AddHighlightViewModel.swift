@@ -12,9 +12,9 @@ class AddHighlightViewModel {
     var text: String = ""
     var color: UIColor = UIColor.yellow
     
-    func addHighlight(fileVM: FileViewModel, selectionsVM: [SelectionLineViewModel], translation: TranslationViewModel?) -> HighlightViewModel? {
+    func addHighlight(id: UUID, fileVM: FileViewModel, selectionsVM: [SelectionLineViewModel], translation: TranslationViewModel?) -> HighlightViewModel? {
         let highlight = Highlight(context: Highlight.context)
-        highlight.id = UUID()
+        highlight.id = id
         highlight.createdDate = Date()
         highlight.text = text
         highlight.color = color

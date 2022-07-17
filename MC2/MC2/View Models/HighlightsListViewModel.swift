@@ -35,5 +35,7 @@ extension HighlightsListViewModel: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         try? controller.performFetch()
         self.highlights = (fetchController.fetchedObjects ?? []).map(HighlightViewModel.init)
+        print("highlights", highlights.count)
+        self.delegate?.didChangeContent(highlights)
     }
 }
