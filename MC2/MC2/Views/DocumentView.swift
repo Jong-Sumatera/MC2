@@ -6,11 +6,10 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct DocumentVCRepresentable: UIViewControllerRepresentable {
-    var filePath: URL
-    var fileName: String
-    var file: File
+    var file: FileViewModel
     var isOpenSideBar : Bool
     func makeCoordinator() -> Self.Coordinator { Coordinator() }
     
@@ -22,8 +21,7 @@ struct DocumentVCRepresentable: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> some UIViewController {
         let storyboard = UIStoryboard(name: "Document", bundle: Bundle.main)
         let controller = storyboard.instantiateViewController(identifier: "document") as! DocumentViewController
-        controller.filePath = filePath
-        controller.fileName = fileName
+        controller.file = file
         
         context.coordinator.parentObserver = controller.observe(\.parent, changeHandler: { vc, _ in
             
@@ -40,14 +38,12 @@ struct DocumentVCRepresentable: UIViewControllerRepresentable {
 }
 
 struct DocumentView: View {
-    var filePath: URL
-    var fileName: String
-    var file: File
+    var file: FileViewModel
     @State var isOpenSideBar: Bool = false
     var body: some View {
         VStack{
             
-            DocumentVCRepresentable(filePath: filePath, fileName: fileName, file: file, isOpenSideBar: isOpenSideBar)
+            DocumentVCRepresentable(file: file, isOpenSideBar: isOpenSideBar)
         }.toolbar {
             ToolbarItem(placement:ToolbarItemPlacement.navigationBarTrailing){
                 Button(action: {
@@ -58,6 +54,9 @@ struct DocumentView: View {
                 
             }
         }.edgesIgnoringSafeArea(.bottom)
+            .onAppear{
+                
+            }
     }
 }
 

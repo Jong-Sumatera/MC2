@@ -10,13 +10,13 @@ import PDFKit
 import CoreData
 
 class DocumentViewController: UIViewController {
-    var fileName: String?
-    var filePath: URL?
-    var file: File?
+    var file: FileViewModel!
+    
     var pdfView: PDFView!
     var isHiddenSideView: Bool = true
+    
     var highLightsIsOpen: [Bool] = []
-    var highlights: [Highlight] = []
+    var highlights: [HighlightViewModel] = []
     var highlightsTranslations: [String] = []
     
     var defaultColor: UIColor = UIColor.yellow
@@ -26,7 +26,8 @@ class DocumentViewController: UIViewController {
     @IBOutlet weak var contentStackView: UIStackView!
     @IBOutlet weak var hLTableView: UITableView!
     
-    let context : NSManagedObjectContext = PersistenceController.shared.container.viewContext
+    var highlightListVM = HighlightsListViewModel()
+    var translationVM = AddTranslationViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,17 +35,25 @@ class DocumentViewController: UIViewController {
         self.setupPdfView()
         self.setupTableViewCell()
         do {
-            self.highlights = try context.fetch(Highlight.fetchRequest())
+            highlightListVM.getHighLightsfromFile(fileVM: file)
+            self.highlights = highlightListVM.highlights
             self.highLightsIsOpen = Array(repeating: false, count: highlights.count)
             self.highlightsTranslations = Array(repeating: "", count: highlights.count)
         } catch {
-            print(error.localizedDescription
-            )
+            print(error.localizedDescription)
         }
+        addHighlightOnPage()
+        
+        NotificationCenter.default.addObserver(forName: .PDFViewAnnotationHit, object: nil, queue: nil) { (notification) in
+              if let annotation = notification.userInfo?["PDFAnnotationHit"] as? PDFAnnotation {
+                  print(annotation.fieldName)
+                  annotation.color = UIColor.green
+              }
+            }
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        self.parent!.navigationItem.title = fileName ?? ""
+        self.parent!.navigationItem.title = file?.fileTitle ?? ""
         self.parent!.navigationItem.largeTitleDisplayMode = .never
     }
     
@@ -66,13 +75,13 @@ class DocumentViewController: UIViewController {
     func setupPdfView() {
         let menuItem = UIMenuItem(title: "Add Highlight", action: #selector(addHighlight))
         UIMenuController.shared.menuItems = [menuItem]
-        let _ = filePath!.startAccessingSecurityScopedResource()
+        let _ = file?.fileUrl!.startAccessingSecurityScopedResource()
         
         pdfView = PDFView(frame: self.contentPdfView.bounds)
         self.contentPdfView.addSubview(pdfView)
-        pdfView!.document = PDFDocument(url: filePath!)
+        pdfView!.document = PDFDocument(url: file.fileUrl!)
         
-        filePath!.stopAccessingSecurityScopedResource()
+        file.fileUrl!.stopAccessingSecurityScopedResource()
         
         pdfView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
@@ -82,67 +91,73 @@ class DocumentViewController: UIViewController {
         let selections = pdfView!.currentSelection
         //munculin sidebar kanan
         self.toggleSideBar(isHide: false)
-        //highlight di page dikasih warna default
-        highlightSelection(selections: selections)
+        
         //simpan posisi highlight dan selection line di core data
-        let highlight = addHighlightToCoreData(selections: selections)
-        highlights.insert(highlight, at: 0)
+        var highlight = addHighlightToCoreData(selections: selections)
+        
         highLightsIsOpen.insert(true, at: 0)
         
         
         //get translated text
         
-        self.getTranslation(q: (selections?.string)!)
+//        self.getTranslation(q: (selections?.string)!)
     }
     
     func getTranslation(q: String) -> String {
         var res = "loading"
         GTranslation.shared.translateText(q: q, targetLanguage: "id", callback: { text in
-            self.highlightsTranslations.insert(text, at: 0)
-            DispatchQueue.main.async {
-                self.hLTableView.reloadData()
-            }
+            res = text
+//            self.highlightsTranslations.insert(text, at: 0)
+//            DispatchQueue.main.async {
+//                self.hLTableView.reloadData()
+//            }
         })
         return res
     }
     
-    func addHighlightToCoreData(selections: PDFSelection?) -> Highlight {
-        //highlight text simpan di core data
-        let hl = Highlight(context: context)
-        hl.color = defaultColor.encode()
-        hl.file = file
-        hl.id = UUID()
-        hl.text = selections?.string
-        print(hl.text)
-        hl.fileName = fileName
-        hl.createdDate = Date()
+    func addHighlightToCoreData(selections: PDFSelection?) -> HighlightViewModel? {
         
-        do {
-            try context.save()
-        } catch {
-            print(error.localizedDescription)
+        guard let lines = selections?.selectionsByLine() else {
+            return nil
         }
-        return hl
+        
+        let text: String = selections?.string ?? ""
+        
+        var sLines : [SelectionLineViewModel] = [SelectionLineViewModel]()
+        for selection in lines {
+            let bounds = selection.bounds(for: selection.pages[0])
+            let selectionVM = SelectionLineViewModel(bounds: bounds, page: Int((pdfView.document?.index(for: selection.pages[0]))!))
+            sLines.append(selectionVM)
+            highlightSelection(fieldName: selectionVM.selectionId, bounds: bounds, pdfPage: selection.pages[0], color: self.defaultColor)
+        }
+        
+        
+        translationVM.text = text
+        translationVM.translationText = getTranslation(q: text)
+        let translation = translationVM.addTranslation()
+        
+        let highlightVM = AddHighlightViewModel()
+        highlightVM.text = text
+        highlightVM.color = self.defaultColor
+        let res = highlightVM.addHighlight(fileVM: file, selectionsVM: sLines, translation: translation)
+        return res
     }
     
-    //:") baru segini aj lama hmmmmmfafafafafsad
-    
-    func highlightSelection(selections: PDFSelection?) {
-        
-        //        print(selections?.string)
-        //        let lines = selections?.selectionsByLine()
-        //        print(lines?.count)
-        
-        let lines = selections?.selectionsByLine()
-        print(lines?.count ?? selections as Any)
-        
-        for selection in lines! {
-            print (selection.pages)
-            let highlight = PDFAnnotation(bounds: selection.bounds(for: selection.pages[0]), forType: .highlight, withProperties: nil)
-            
-            highlight.color = UIColor.yellow
-            selection.pages[0].addAnnotation(highlight)
+    func addHighlightOnPage() {
+        for highlight in self.highlights {
+            for selection in highlight.selections {
+                print(selection.page)
+                highlightSelection(fieldName: selection.selectionId, bounds: selection.bounds, pdfPage: (pdfView.document?.page(at: selection.page))!, color: highlight.color)
+            }
         }
+    }
+    
+    func highlightSelection(fieldName: String, bounds: CGRect, pdfPage: PDFPage, color: UIColor) {
+        
+        let highlight = PDFAnnotation(bounds: bounds, forType: .highlight, withProperties: nil)
+        highlight.color = color
+        highlight.fieldName = fieldName
+        pdfPage.addAnnotation(highlight)
         
     }
     

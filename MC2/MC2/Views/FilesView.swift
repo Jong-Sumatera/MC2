@@ -8,28 +8,21 @@
 import SwiftUI
 
 struct FilesView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.createdDate, order: .reverse)]) var files: FetchedResults<File>
-    @EnvironmentObject var oo: SearchObservableObject
+//    @FetchRequest(sortDescriptors: [SortDescriptor(\.createdDate, order: .reverse)]) var files: FetchedResults<File>
+//    @EnvironmentObject var oo: SearchObservableObject
     
+    @ObservedObject var vm: FilesListViewModel
     var body: some View {
         
         List {
-            if(oo.searchFilesResults.isEmpty) {
-                ForEach(files, id: \.id) { file in
-                    NavigationLink(destination: DocumentView(filePath: URL(string: file.fileUrl!)!,fileName: file.fileName ?? "", file: file), label: {
-                        Text("\(file.fileName ?? "")")
-                    })
-                }
-            } else {
-                ForEach(oo.searchFilesResults, id: \.id) {
-                    file in
-                    NavigationLink(destination: DocumentView(filePath: URL(string: file.fileUrl!)!,fileName: file.fileName ?? "", file: file), label: {
-                        Text("\(file.fileName ?? "")")
-                    })
-                }
+            ForEach(vm.files, id: \.id) { file in
+                NavigationLink(destination: DocumentView(file: file), label: {
+                    Text(file.fileTitle)
+                })
             }
             
+        }.onAppear{
+            vm.getFiles()
         }
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        SideView()
+        SideView(selection: 0)
     }
 }
 

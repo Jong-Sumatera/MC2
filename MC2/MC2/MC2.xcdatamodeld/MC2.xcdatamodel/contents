@@ -9,60 +9,58 @@
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="comments" inverseEntity="Tag"/>
     </entity>
     <entity name="File" representedClassName="File" syncable="YES" codeGenerationType="class">
-        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="fileName" optional="YES" attributeType="String"/>
-        <attribute name="fileTitle" optional="YES" attributeType="String"/>
-        <attribute name="fileType" optional="YES" attributeType="String"/>
-        <attribute name="fileUrl" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="modifiedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="createdDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="fileExt" attributeType="String"/>
+        <attribute name="fileTitle" attributeType="String"/>
+        <attribute name="fileUrl" attributeType="URI"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="modifiedDate" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="highlights" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Highlight" inverseName="file" inverseEntity="Highlight"/>
     </entity>
-    <entity name="Highlight" representedClassName="Highlight" syncable="YES" codeGenerationType="class">
-        <attribute name="color" optional="YES" attributeType="Binary"/>
-        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="fileName" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="text" optional="YES" attributeType="String"/>
+    <entity name="Highlight" representedClassName="Highlight" syncable="YES">
+        <attribute name="color" attributeType="Transformable" valueTransformerName="UIColorTransformer" customClassName="UIColor"/>
+        <attribute name="createdDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="fileName" attributeType="String"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="text" attributeType="String"/>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Comment" inverseName="highlight" inverseEntity="Comment"/>
         <relationship name="file" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="File" inverseName="highlights" inverseEntity="File"/>
         <relationship name="selectionLines" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SelectionLine" inverseName="highlight" inverseEntity="SelectionLine"/>
-        <relationship name="translation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Translation"/>
+        <relationship name="translation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Translation" inverseName="highlights" inverseEntity="Translation"/>
     </entity>
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <entity name="SelectionLine" representedClassName="SelectionLine" syncable="YES" codeGenerationType="class">
-        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="endY" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="height" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="index" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="page" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="startX" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="width" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="createdDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="height" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="page" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="width" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="x" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="y" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="highlight" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Highlight" inverseName="selectionLines" inverseEntity="Highlight"/>
     </entity>
     <entity name="Tag" representedClassName="Tag" syncable="YES" codeGenerationType="class">
-        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="createdDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="title" attributeType="String"/>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Comment" inverseName="tags" inverseEntity="Comment"/>
     </entity>
     <entity name="Translation" representedClassName="Translation" syncable="YES" codeGenerationType="class">
-        <attribute name="by" optional="YES" attributeType="String"/>
-        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="text" optional="YES" attributeType="String"/>
-        <attribute name="translationText" optional="YES" attributeType="String"/>
+        <attribute name="createdDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="text" optional="YES" attributeType="String" defaultValueString=""/>
+        <attribute name="translationText" optional="YES" attributeType="String" defaultValueString=""/>
+        <relationship name="highlights" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Highlight" inverseName="translation" inverseEntity="Highlight"/>
     </entity>
     <elements>
         <element name="Comment" positionX="236.0078125" positionY="383.81640625" width="128" height="133"/>
-        <element name="File" positionX="1.3515625" positionY="62.2421875" width="128" height="163"/>
-        <element name="Highlight" positionX="277.3046875" positionY="38.66796875" width="128" height="164"/>
+        <element name="File" positionX="1.3515625" positionY="62.2421875" width="128" height="148"/>
+        <element name="Highlight" positionX="277.3046875" positionY="38.66796875" width="128" height="178"/>
         <element name="Item" positionX="-209.26953125" positionY="217.67578125" width="128" height="58"/>
-        <element name="SelectionLine" positionX="478.828125" positionY="19.86328125" width="128" height="178"/>
+        <element name="SelectionLine" positionX="478.828125" positionY="19.86328125" width="128" height="163"/>
         <element name="Tag" positionX="189.71484375" positionY="564.48046875" width="128" height="103"/>
-        <element name="Translation" positionX="-11.23046875" positionY="362.2109375" width="128" height="104"/>
+        <element name="Translation" positionX="-11.23046875" positionY="362.2109375" width="128" height="118"/>
     </elements>
 </model>

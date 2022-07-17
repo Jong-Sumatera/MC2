@@ -12,19 +12,15 @@ struct DashboardView: View {
     @State private var searchText = ""
     @EnvironmentObject var oo: SearchObservableObject
     
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.createdDate, order: .reverse)]) var files: FetchedResults<File>
-    
+    @StateObject var fileListVM = FilesListViewModel()
+
     @FetchRequest(sortDescriptors: [SortDescriptor(\.createdDate, order: .reverse)]) var tags: FetchedResults<Tag>
     
     var body: some View {
         VStack{
-            if (selectedIndex == 0 && files.count == 0) {
-                EmptyView()
-            } else if (selectedIndex == 1 && tags.count == 0) {
-                EmptyView()
-            } else if (selectedIndex == 0 && files.count > 0) {
-                FilesView()
-            } else if (selectedIndex == 1 && tags.count > 0) {
+            if (selectedIndex == 0) {
+                FilesView(vm: fileListVM)
+            } else if (selectedIndex == 1) {
                 TagsView()
             }
             
@@ -40,49 +36,28 @@ struct DashboardView: View {
                     .pickerStyle(SegmentedPickerStyle())
                 }
                 ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing){
-                    List {
-                        // LOOPING HASIL PENCARIAN
-                        ForEach(oo.searchFilesResults) { result in
-                            // lihat kalian mau ngapain di sini
-                            Text(result.fileName!)
-                        }
+                    List {}
+                    .searchable(text: selectedIndex == 0 ? $fileListVM.search : $searchText){
                     }
-                    // SEARCH FIELD OTOMATIS BUAT KITA
-                    .searchable(text: $searchText){
-                    }
-                    
-                    // KETIKA SEARCHTEXT BERUBAH, MAKA FUNCTION DI BAWAHNYA BERJALAN
-                    .onChange(of: searchText) { _ in
+                    .onChange(of: selectedIndex == 0 ? fileListVM.search : searchText) { _ in
                         if (selectedIndex == 0) {
-                            // BUAT VARIABEL SEMENTARA UNTUK MENAMPUNG HASIL PENCARIAN
-                            var tempFilteredFile: [File] = []
-                            
-                            // UNTUK SETIAP DATA DI "FILES" < core data
-                            for file in files {
-                                // JIKA FILE YANG ADA DI FILES = SEARCH TEXT,
-                                // MAKA MASUKIN HASIL PENCARIAN KE VARIABEL DI ATAS
-                                if (file.fileName!.localizedCaseInsensitiveContains(searchText)) {
-                                    tempFilteredFile.append(file)
-                                }
-                            }
-                            
-                            // MASUKIN VARIABEL TADI KE SEARCH RESULTS (OBSERVABLE OBJECT)
-                            oo.searchFilesResults = tempFilteredFile
+                            print("from search")
+                            fileListVM.getFiles()
                         } else {
-                            // BUAT VARIABEL SEMENTARA UNTUK MENAMPUNG HASIL PENCARIAN
-                            var tempFilteredTags: [Tag] = []
-                            
-                            // UNTUK SETIAP DATA DI "FILES" < core data
-                            for tag in tags {
-                                // JIKA FILE YANG ADA DI FILES = SEARCH TEXT,
-                                // MAKA MASUKIN HASIL PENCARIAN KE VARIABEL DI ATAS
-                                if (tag.title!.localizedCaseInsensitiveContains(searchText)) {
-                                    tempFilteredTags.append(tag)
-                                }
-                            }
-                            
-                            // MASUKIN VARIABEL TADI KE SEARCH RESULTS (OBSERVABLE OBJECT)
-                            oo.searchTagsResults = tempFilteredTags
+//                            // BUAT VARIABEL SEMENTARA UNTUK MENAMPUNG HASIL PENCARIAN
+//                            var tempFilteredTags: [Tag] = []
+//
+//                            // UNTUK SETIAP DATA DI "FILES" < core data
+//                            for tag in tags {
+//                                // JIKA FILE YANG ADA DI FILES = SEARCH TEXT,
+//                                // MAKA MASUKIN HASIL PENCARIAN KE VARIABEL DI ATAS
+//                                if (tag.title!.localizedCaseInsensitiveContains(searchText)) {
+//                                    tempFilteredTags.append(tag)
+//                                }
+//                            }
+//
+//                            // MASUKIN VARIABEL TADI KE SEARCH RESULTS (OBSERVABLE OBJECT)
+//                            oo.searchTagsResults = tempFilteredTags
                         }
                     }
                 }

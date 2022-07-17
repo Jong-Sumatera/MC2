@@ -11,6 +11,8 @@ class GTranslation {
     static var shared : GTranslation = GTranslation()
     var pKey: String = "AIzaSyBDO-Fwf-vsPR-2Re3_N6n_GgltoUMRoG4"
     
+
+    
     func translateText(q: String, targetLanguage: String, callback:@escaping (_ translatedText:String) -> ()) {
 
         guard pKey != "" else {
