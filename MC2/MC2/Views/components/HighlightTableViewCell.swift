@@ -14,10 +14,13 @@ class HighlightTableViewCell: UITableViewCell {
     @IBOutlet weak var hLText: UILabel!
     
     @IBOutlet weak var outerView: UIView!
-    @IBOutlet weak var hLDetailStackView: UIStackView!
+    @IBOutlet weak var hLDetailView: UIStackView!
     @IBOutlet weak var hLStackView: UIStackView!
     
-    @IBOutlet weak var translationText: UILabel!
+//    @IBOutlet weak var translationText: UILabel!
+//    @IBOutlet weak var segmentedControl: UISegmentedControl!
+//    @IBOutlet weak var segmentView: UIView!
+//    @IBOutlet weak var translationView: TranslationView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -32,6 +35,12 @@ class HighlightTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    
+    @IBAction func valueChanged(_ sender: Any) {
+        print("value changed")
+//        self.segmentView.addSubview(TranslationView())
+        
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()

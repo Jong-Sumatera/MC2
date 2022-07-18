@@ -17,5 +17,12 @@ extension UIView{
         layer.shadowColor = UIColor.gray.cgColor
         layer.shadowOffset = CGSize (width: 0, height: 5)
     }
+    
+    func loadViewFromNib(nibName:String) -> UIView? {
+        let bundle = Bundle(for: type(of: self))
+        let nib = UINib(nibName: nibName, bundle: bundle)
+        guard let view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { fatalError("unable to convert nib \(nibName)")}
+        return view
+    }
 }
 

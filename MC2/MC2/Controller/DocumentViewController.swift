@@ -51,7 +51,6 @@ class DocumentViewController: UIViewController {
                 for (index, highlight) in highlights.enumerated() {
                     if highlight.highlightId?.uuidString == annotation.fieldName {
                         selectedHighlightIndex = index
-                        print(selectedHighlightIndex)
                         self.highLightsIsOpen[selectedHighlightIndex] = true
                         self.hLTableView.reloadRows(at: [IndexPath(row: selectedHighlightIndex, section: 0)], with: .none)
                         self.hLTableView.selectRow(at: IndexPath(row: selectedHighlightIndex, section: 0), animated: true, scrollPosition: .top)
@@ -213,7 +212,7 @@ extension DocumentViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print(indexPath.row)
         let cell = tableView.dequeueReusableCell(withIdentifier: "HighlightTableViewCell", for: indexPath) as! HighlightTableViewCell
-        cell.hLDetailStackView.isHidden = !self.highLightsIsOpen[indexPath.row]
+        cell.hLDetailView.isHidden = !self.highLightsIsOpen[indexPath.row]
         cell.hLText.text = highlights[indexPath.row].text
         //        cell.translationText.text = highlightsTranslations[indexPath.row] ?? ""
         //        cell.hlDetailView.alpha = self.highLights[indexPath.row] ? 0 : 1

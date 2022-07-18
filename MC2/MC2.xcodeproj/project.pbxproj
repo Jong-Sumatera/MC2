@@ -33,6 +33,8 @@
 		0A35A1CF2873466E0001CFBD /* SelectionLineCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35A1CE2873466E0001CFBD /* SelectionLineCoreDataManager.swift */; };
 		0A35A1D128734A8D0001CFBD /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35A1D028734A8D0001CFBD /* UIColorExt.swift */; };
 		0A35A1D32873633C0001CFBD /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35A1D22873633C0001CFBD /* Translation.swift */; };
+		0A37B23128848D57002107F6 /* TranslationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37B23028848D57002107F6 /* TranslationView.swift */; };
+		0A37B23528848DC4002107F6 /* TranslationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A37B23428848DC4002107F6 /* TranslationView.xib */; };
 		0A8B3F1E286CAA9E003DE765 /* DocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8B3F1D286CAA9E003DE765 /* DocumentView.swift */; };
 		0A8B3F26286CB99E003DE765 /* Document.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A8B3F25286CB99E003DE765 /* Document.storyboard */; };
 		0A8B3F28286CB9B0003DE765 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8B3F27286CB9B0003DE765 /* DocumentViewController.swift */; };
@@ -80,6 +82,8 @@
 		0A35A1CE2873466E0001CFBD /* SelectionLineCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionLineCoreDataManager.swift; sourceTree = "<group>"; };
 		0A35A1D028734A8D0001CFBD /* UIColorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
 		0A35A1D22873633C0001CFBD /* Translation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
+		0A37B23028848D57002107F6 /* TranslationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationView.swift; sourceTree = "<group>"; };
+		0A37B23428848DC4002107F6 /* TranslationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TranslationView.xib; sourceTree = "<group>"; };
 		0A8B3F1D286CAA9E003DE765 /* DocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentView.swift; sourceTree = "<group>"; };
 		0A8B3F25286CB99E003DE765 /* Document.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Document.storyboard; sourceTree = "<group>"; };
 		0A8B3F27286CB9B0003DE765 /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +146,8 @@
 			children = (
 				0A35A1C428729A070001CFBD /* HighlightTableViewCell.swift */,
 				0A35A1C528729A070001CFBD /* HighlightTableViewCell.xib */,
+				0A37B23028848D57002107F6 /* TranslationView.swift */,
+				0A37B23428848DC4002107F6 /* TranslationView.xib */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -311,6 +317,7 @@
 			files = (
 				65EC7FD5286C40BB007F47D4 /* Preview Assets.xcassets in Resources */,
 				0A8B3F26286CB99E003DE765 /* Document.storyboard in Resources */,
+				0A37B23528848DC4002107F6 /* TranslationView.xib in Resources */,
 				0A35A1C728729A070001CFBD /* HighlightTableViewCell.xib in Resources */,
 				65EC7FD2286C40BB007F47D4 /* Assets.xcassets in Resources */,
 			);
@@ -327,6 +334,7 @@
 				0A1306162884551D0025F183 /* Translation+Extensions.swift in Sources */,
 				65EC7FD7286C40BB007F47D4 /* Persistence.swift in Sources */,
 				0A1305EF28819F500025F183 /* File+Extensions.swift in Sources */,
+				0A37B23128848D57002107F6 /* TranslationView.swift in Sources */,
 				0A1306082883C7B10025F183 /* UIColorTransformer.swift in Sources */,
 				658D76322871CD7E00C60B5C /* TagsView.swift in Sources */,
 				0A35A1C628729A070001CFBD /* HighlightTableViewCell.swift in Sources */,
