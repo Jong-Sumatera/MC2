@@ -20,38 +20,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KJ5-gL-vM0">
-                                        <rect key="frame" x="0.0" y="0.0" width="893" height="1024"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                                         <color key="backgroundColor" systemColor="systemCyanColor"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Ns-vQ-CgS">
-                                        <rect key="frame" x="893" y="0.0" width="473" height="1024"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Highlights" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i9a-Nx-rmA">
-                                                <rect key="frame" x="35" y="32" width="115.5" height="29"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="InM-m6-n9J">
-                                                <rect key="frame" x="20" y="87" width="433" height="937"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            </tableView>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="i9a-Nx-rmA" firstAttribute="leading" secondItem="5Ns-vQ-CgS" secondAttribute="leading" constant="35" id="59n-Aa-R93"/>
-                                            <constraint firstItem="InM-m6-n9J" firstAttribute="leading" secondItem="5Ns-vQ-CgS" secondAttribute="leading" constant="20" id="JSq-QI-dyL"/>
-                                            <constraint firstAttribute="bottom" secondItem="InM-m6-n9J" secondAttribute="bottom" id="OIi-lS-vA5"/>
-                                            <constraint firstItem="i9a-Nx-rmA" firstAttribute="top" secondItem="5Ns-vQ-CgS" secondAttribute="top" constant="32" id="UU2-nU-OnZ"/>
-                                            <constraint firstItem="InM-m6-n9J" firstAttribute="top" secondItem="i9a-Nx-rmA" secondAttribute="bottom" constant="26" id="VvX-oa-sVL"/>
-                                            <constraint firstAttribute="width" constant="473" id="oRh-ZK-59g"/>
-                                            <constraint firstAttribute="trailing" secondItem="InM-m6-n9J" secondAttribute="trailing" constant="20" id="rQv-Nf-tn3"/>
-                                        </constraints>
-                                    </view>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="5Ns-vQ-CgS" secondAttribute="trailing" id="wWj-FJ-5Fl"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -66,8 +38,6 @@
                     <connections>
                         <outlet property="contentPdfView" destination="KJ5-gL-vM0" id="FtW-HM-zKJ"/>
                         <outlet property="contentStackView" destination="M7z-lX-gus" id="byg-fh-WHU"/>
-                        <outlet property="hLTableView" destination="InM-m6-n9J" id="kVH-y6-fAn"/>
-                        <outlet property="sideView" destination="5Ns-vQ-CgS" id="tAC-dY-cll"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

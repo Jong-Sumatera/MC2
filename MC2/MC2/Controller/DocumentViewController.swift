@@ -11,34 +11,36 @@ import CoreData
 
 class DocumentViewController: UIViewController {
     var file: FileViewModel!
-    
+    var highlightListVM : HighlightsListViewModel!
+    var openSideBar: (()->())? = nil
     var pdfView: PDFView!
     var isHiddenSideView: Bool = true
     
-    var highLightsIsOpen: [Bool] = []
     var highlights: [HighlightViewModel] = []
     var highlightsTranslations: [String] = []
     
     var defaultColor: UIColor = UIColor.yellow
     
     @IBOutlet weak var contentPdfView: UIView!
-    @IBOutlet weak var sideView: UIView!
+//    @IBOutlet weak var sideView: UIView!
     @IBOutlet weak var contentStackView: UIStackView!
-    @IBOutlet weak var hLTableView: UITableView!
+//    @IBOutlet weak var hLTableView: UITableView!
     
-    var highlightListVM = HighlightsListViewModel()
+
     var translationVM = AddTranslationViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.sideView.applyShadow(cornerRadius: 0)
+//        self.sideView.applyShadow(cornerRadius: 0)
         self.setupPdfView()
-        self.setupTableViewCell()
+        
+        
         do {
             highlightListVM.delegate = self
             highlightListVM.getHighLightsfromFile(fileVM: file)
             self.highlights = highlightListVM.highlights
-            self.highLightsIsOpen = Array(repeating: false, count: highlights.count)
+            print("view did load", highlights.count)
+            
             self.highlightsTranslations = Array(repeating: "", count: highlights.count)
         } catch {
             print(error.localizedDescription)
@@ -46,17 +48,14 @@ class DocumentViewController: UIViewController {
         addHighlightOnPage()
         
         NotificationCenter.default.addObserver(forName: .PDFViewAnnotationHit, object: nil, queue: nil) { [self] (notification) in
+            
             if let annotation = notification.userInfo?["PDFAnnotationHit"] as? PDFAnnotation {
-                let selectedHighlightIndex: Int
-                for (index, highlight) in highlights.enumerated() {
-                    if highlight.highlightId?.uuidString == annotation.fieldName {
-                        selectedHighlightIndex = index
-                        self.highLightsIsOpen[selectedHighlightIndex] = true
-                        self.hLTableView.reloadRows(at: [IndexPath(row: selectedHighlightIndex, section: 0)], with: .none)
-                        self.hLTableView.selectRow(at: IndexPath(row: selectedHighlightIndex, section: 0), animated: true, scrollPosition: .top)
-                        break;
-                    }
-                }
+                print(annotation.fieldName)
+                highlightListVM.selectedHighlightId = annotation.fieldName
+                self.openSideBar!()
+                
+                
+                
             }
         }
         
@@ -68,16 +67,6 @@ class DocumentViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-    }
-    
-    func setupTableViewCell() {
-        let nib = UINib(nibName: "HighlightTableViewCell", bundle: nil)
-        self.hLTableView.register(nib, forCellReuseIdentifier: "HighlightTableViewCell")
-        self.hLTableView.dataSource = self
-        self.hLTableView.delegate = self
-        self.hLTableView.estimatedRowHeight = 50
-        self.hLTableView.rowHeight = UITableView.automaticDimension
         
     }
     
@@ -99,12 +88,9 @@ class DocumentViewController: UIViewController {
         
         let selections = pdfView!.currentSelection
         //munculin sidebar kanan
-        self.toggleSideBar(isHide: false)
         
         //simpan posisi highlight dan selection line di core data
         var highlight = addHighlightToCoreData(selections: selections)
-                highLightsIsOpen.insert(true, at: 0)
-        
         
         //get translated text
         
@@ -152,10 +138,23 @@ class DocumentViewController: UIViewController {
         return res
     }
     
+    func removeAllAnnotations() {
+        guard let document = pdfView.document else { return }
+
+        for i in 0..<document.pageCount {
+            if let page = document.page(at: i) {
+                let annotations = page.annotations
+                for annotation in annotations {
+                    page.removeAnnotation(annotation)
+                }
+            }
+        }
+    }
+    
     func addHighlightOnPage() {
         for highlight in self.highlights {
+            print(highlight)
             for selection in highlight.selections {
-                print(selection.page)
                 highlightSelection(fieldName: selection.selectionId, bounds: selection.bounds, pdfPage: (pdfView.document?.page(at: selection.page))!, color: highlight.color)
             }
         }
@@ -169,63 +168,16 @@ class DocumentViewController: UIViewController {
         pdfPage.addAnnotation(highlight)
         
     }
-    
-    func toggleSideBar(isHide: Bool) {
-        self.isHiddenSideView = isHide
-        
-        UIView.animate(
-            withDuration: 0.35,
-            delay: 0,
-            usingSpringWithDamping: 0.9,
-            initialSpringVelocity: 1,
-            options: [],
-            animations: {
-                self.sideView.isHidden = self.isHiddenSideView
-                self.sideView.alpha = self.isHiddenSideView ? 0 : 1
-            },
-            completion: nil
-        )
-    }
 }
 
 extension DocumentViewController: HighlightsListViewModelDelegate {
     func didChangeContent(_ highlights: [HighlightViewModel]) {
+        print("did change")
         self.highlights = highlights
+        removeAllAnnotations()
+        addHighlightOnPage()
         DispatchQueue.main.async {
-            self.hLTableView.reloadData()
+//            self.hLTableView.reloadData()
         }
     }
-}
-
-extension DocumentViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("table~!!!!")
-        return self.highlights.count
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("hello")
-        self.highLightsIsOpen[indexPath.row].toggle()
-        tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(indexPath.row)
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HighlightTableViewCell", for: indexPath) as! HighlightTableViewCell
-        cell.hLDetailView.isHidden = !self.highLightsIsOpen[indexPath.row]
-        cell.hLText.text = highlights[indexPath.row].text
-        //        cell.translationText.text = highlightsTranslations[indexPath.row] ?? ""
-        //        cell.hlDetailView.alpha = self.highLights[indexPath.row] ? 0 : 1
-        //        cell.hlDetailView.isHidden = true
-        //        cell.contentView.frame.width = cell.contentView.frame.width - 50
-        return cell
-        
-        
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        return 50
-    }
-    
 }

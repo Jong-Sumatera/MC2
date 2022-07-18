@@ -36,7 +36,6 @@ class AddFileViewModel: ObservableObject {
         newFile.fileUrl = fileUrl
         newFile.fileExt = fileUrl?.pathExtension
         newFile.fileTitle = fileTitle
-        print(newFile)
         let res = newFile.save()
         
         if res {

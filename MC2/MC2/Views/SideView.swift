@@ -19,39 +19,42 @@ struct SideView: View {
     
     var body: some View {
         NavigationView {
+            VStack{
+                List {
+                    NavigationLink(destination:DashboardView(), tag: 0, selection: $selection) {
+                        Label("Home",systemImage: "house")
+                            .foregroundColor(Color.primaryColor)
+                    }
+                    
+                    if file != nil {
+                        NavigationLink(destination: DocumentView(file: file!), tag: 1, selection: $selection) {
+                        }.hidden()
+                    }
+                    
+                }.navigationBarItems(trailing: HStack {
+                    
+                    Button(action: {
+                        print("Reload button pressed...")
+                    }) {
+                        Image(systemName: "gear")
+                    }
+                    
+                    Button(action: {
+                        self.showPopover = true
+                    }) {
+                        Image(systemName: "plus")
+                    }
+                    .popover(isPresented: self.$showPopover,
+                             attachmentAnchor: .point(.topLeading), arrowEdge: .trailing) {
+                        AddFileView(addFileVM: addFileVM, onPressAdd: { file in
+                            self.file = file
+                            self.selection = 1
+                            
+                        })
+                    }
+                })
+            }
             
-            List {
-                NavigationLink(destination:DashboardView(), tag: 0, selection: $selection) {
-                    Label("Home",systemImage: "house")
-                }
-                
-                if file != nil {
-                    NavigationLink(destination: DocumentView(file: file!), tag: 1, selection: $selection) {
-                    }.hidden()
-                }
-                
-            }.navigationBarItems(trailing: HStack {
-                
-                Button(action: {
-                    print("Reload button pressed...")
-                }) {
-                    Image(systemName: "gear")
-                }
-                
-                Button(action: {
-                    self.showPopover = true
-                }) {
-                    Image(systemName: "plus")
-                }
-                .popover(isPresented: self.$showPopover,
-                         attachmentAnchor: .point(.topLeading), arrowEdge: .trailing) {
-                    AddFileView(addFileVM: addFileVM, onPressAdd: { file in
-                        self.file = file
-                        self.selection = 1
-                        
-                    })
-                }
-            })
         }
     }
 }

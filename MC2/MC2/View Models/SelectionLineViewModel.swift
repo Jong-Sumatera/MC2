@@ -13,7 +13,6 @@ struct SelectionLineViewModel {
     var selection: SelectionLine
     
     init(id: UUID, bounds: CGRect, page: Int) {
-        print(page)
         self.selection = SelectionLine(context: SelectionLine.context)
         self.selection.id = id
         self.selection.x = Double(bounds.origin.x)

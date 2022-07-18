@@ -41,7 +41,6 @@ struct DashboardView: View {
                     }
                     .onChange(of: selectedIndex == 0 ? fileListVM.search : searchText) { _ in
                         if (selectedIndex == 0) {
-                            print("from search")
                             fileListVM.getFiles()
                         } else {
 //                            // BUAT VARIABEL SEMENTARA UNTUK MENAMPUNG HASIL PENCARIAN

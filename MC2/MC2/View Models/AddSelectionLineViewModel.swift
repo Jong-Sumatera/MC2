@@ -13,7 +13,6 @@ class AddSelectionLineViewModel {
     var page: Int?
     
     func addSelectionLine() -> SelectionLineViewModel? {
-        print("page", page)
         let selection = SelectionLine(context: SelectionLine.context)
         selection.createdDate = Date()
         selection.id = UUID()

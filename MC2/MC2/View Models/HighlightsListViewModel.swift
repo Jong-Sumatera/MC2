@@ -13,11 +13,13 @@ protocol HighlightsListViewModelDelegate: NSObject {
 }
 
 class HighlightsListViewModel: NSObject, ObservableObject {
-    var highlights: [HighlightViewModel] = [HighlightViewModel]()
+    @Published var highlights: [HighlightViewModel] = [HighlightViewModel]()
+    @Published var selectedHighlightId: String?
     var fetchController: NSFetchedResultsController<Highlight>!
     var delegate: HighlightsListViewModelDelegate?
 
     func getHighLightsfromFile(fileVM: FileViewModel) {
+        print("fileId", fileVM.id)
         let fetchRequest : NSFetchRequest<Highlight> = Highlight.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdDate", ascending: false)]
         fetchRequest.predicate = NSPredicate(format: "file == %@", fileVM.id)
@@ -33,9 +35,10 @@ class HighlightsListViewModel: NSObject, ObservableObject {
 
 extension HighlightsListViewModel: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        print("update")
         try? controller.performFetch()
+        self.highlights = []
         self.highlights = (fetchController.fetchedObjects ?? []).map(HighlightViewModel.init)
-        print("highlights", highlights.count)
         self.delegate?.didChangeContent(highlights)
     }
 }

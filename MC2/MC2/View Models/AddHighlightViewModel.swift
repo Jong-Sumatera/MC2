@@ -27,7 +27,6 @@ class AddHighlightViewModel {
             highlight.translation = translation.translation
         }
         
-        print(highlight)
         let res = highlight.save()
         
         if res {

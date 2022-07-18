@@ -10,7 +10,9 @@ import UIKit
 
 struct DocumentVCRepresentable: UIViewControllerRepresentable {
     var file: FileViewModel
-    var isOpenSideBar : Bool
+    @Binding var isOpenSideBar : Bool
+    var highlightsListVM: HighlightsListViewModel
+    
     func makeCoordinator() -> Self.Coordinator { Coordinator() }
     
     class Coordinator {
@@ -22,9 +24,11 @@ struct DocumentVCRepresentable: UIViewControllerRepresentable {
         let storyboard = UIStoryboard(name: "Document", bundle: Bundle.main)
         let controller = storyboard.instantiateViewController(identifier: "document") as! DocumentViewController
         controller.file = file
+        controller.highlightListVM = highlightsListVM
+        controller.openSideBar = openSideBar
         
         context.coordinator.parentObserver = controller.observe(\.parent, changeHandler: { vc, _ in
-            
+            print("parent")
         })
         
         return controller
@@ -33,21 +37,47 @@ struct DocumentVCRepresentable: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
         let controller = uiViewController as! DocumentViewController
         
-        controller.toggleSideBar(isHide: !isOpenSideBar)
+        //        controller.toggleSideBar(isHide: !isOpenSideBar)
+    }
+    
+    func openSideBar() {
+        withAnimation{
+            self.isOpenSideBar = true
+        }
+        
     }
 }
 
 struct DocumentView: View {
     var file: FileViewModel
     @State var isOpenSideBar: Bool = false
+    
+    @ObservedObject var highlightsListVM = HighlightsListViewModel()
     var body: some View {
-        VStack{
+        HStack{
             
-            DocumentVCRepresentable(file: file, isOpenSideBar: isOpenSideBar)
+            DocumentVCRepresentable(
+                file: file,
+                isOpenSideBar: $isOpenSideBar,
+                highlightsListVM: highlightsListVM
+            )
+            
+            if isOpenSideBar {
+                DocumentSideView(
+                    isOpenSideBar: isOpenSideBar,
+                    highlightsListVM: highlightsListVM
+                )
+            }
+            
+            
+                
         }.toolbar {
             ToolbarItem(placement:ToolbarItemPlacement.navigationBarTrailing){
                 Button(action: {
-                    isOpenSideBar.toggle()
+                    withAnimation{
+                        isOpenSideBar.toggle()
+                    }
+                    
                 }, label: {
                     Image(systemName: "sidebar.trailing")
                 })
