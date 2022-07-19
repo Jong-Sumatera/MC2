@@ -17,14 +17,16 @@ struct SideView: View {
     @FetchRequest(sortDescriptors: []) var files: FetchedResults<File>
     @State var selection: Int?
     
+    
+    
     var body: some View {
         NavigationView {
-            VStack{
                 List {
                     NavigationLink(destination:DashboardView(), tag: 0, selection: $selection) {
                         Label("Home",systemImage: "house")
                             .foregroundColor(Color.primaryColor)
-                    }
+                            
+                    }.listRowBackground(Color.white)
                     
                     if file != nil {
                         NavigationLink(destination: DocumentView(file: file!), tag: 1, selection: $selection) {
@@ -53,7 +55,8 @@ struct SideView: View {
                         })
                     }
                 })
-            }
+                .background(Color.primaryColor)
+                
             
         }
     }
@@ -63,6 +66,6 @@ struct SideView: View {
 struct SideView_Previews: PreviewProvider {
     static var previews: some View {
         SideView()
-            .previewInterfaceOrientation(.portraitUpsideDown)
+            .previewInterfaceOrientation(.landscapeLeft)
     }
 }

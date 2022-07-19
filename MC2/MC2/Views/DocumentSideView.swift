@@ -10,7 +10,7 @@ import SwiftUI
 struct DocumentSideView: View {
     var isOpenSideBar: Bool
     
-    @ObservedObject var highlightsListVM: HighlightsListViewModel
+    @StateObject var highlightsListVM: HighlightsListViewModel
     
     @State var selectedId: UUID?
     

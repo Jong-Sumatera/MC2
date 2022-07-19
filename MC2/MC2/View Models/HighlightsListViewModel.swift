@@ -28,17 +28,20 @@ class HighlightsListViewModel: NSObject, ObservableObject {
         fetchController.delegate = self
 
         try? fetchController.performFetch()
-        self.highlights = (fetchController.fetchedObjects ?? []).map(HighlightViewModel.init)
+        self.highlights = (self.fetchController.fetchedObjects ?? []).map(HighlightViewModel.init)
 
     }
 }
 
 extension HighlightsListViewModel: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        print("update")
+        
         try? controller.performFetch()
-        self.highlights = []
-        self.highlights = (fetchController.fetchedObjects ?? []).map(HighlightViewModel.init)
+        DispatchQueue.main.async { [self] in
+            self.highlights = (self.fetchController.fetchedObjects ?? []).map(HighlightViewModel.init)
+        }
+        
+        print("update", highlights.count)
         self.delegate?.didChangeContent(highlights)
     }
 }

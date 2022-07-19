@@ -2,13 +2,14 @@
 //  Highlight+CoreDataProperties.swift
 //  MC2
 //
-//  Created by Widya Limarto on 19/07/22.
+//  Created by Widya Limarto on 20/07/22.
 //
 //
 
 import Foundation
 import CoreData
 import UIKit
+
 
 extension Highlight {
 
@@ -21,8 +22,10 @@ extension Highlight {
     @NSManaged public var fileName: String?
     @NSManaged public var id: UUID?
     @NSManaged public var text: String?
-    @NSManaged public var notes: NSSet?
+    @NSManaged public var isShowOnWatch: Bool
+    @NSManaged public var isPinned: Bool
     @NSManaged public var file: File?
+    @NSManaged public var notes: NSSet?
     @NSManaged public var selectionLines: NSSet?
     @NSManaged public var translation: Translation?
 

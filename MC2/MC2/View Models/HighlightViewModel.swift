@@ -41,12 +41,21 @@ struct HighlightViewModel: Hashable {
         return highlight.createdDate ?? Date()
     }
     
+    var isShowOnWatch: Bool {
+        return highlight.isShowOnWatch
+    }
+    
     var selections: [SelectionLineViewModel] {
         return (highlight.selectionLines?.allObjects as? [SelectionLine] ?? []).map(SelectionLineViewModel.init)
     }
     
     func updateColor(color: Color) {
         highlight.color = UIColor(color)
+        highlight.save()
+    }
+    
+    func toggleIsShowOnWatch() {
+        highlight.isShowOnWatch.toggle()
         highlight.save()
     }
     

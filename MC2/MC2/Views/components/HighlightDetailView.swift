@@ -17,9 +17,11 @@ struct HighlightDetailView: View {
     
     @State var text: String = ""
     @State var translation: String = ""
+    @State var isShowOnWatch: Bool = false
     
     @StateObject var addNotesVM = AddNoteViewModel()
     @StateObject var notesListVM = NotesListViewModel()
+    
     var body: some View {
         VStack {
             HStack{
@@ -66,10 +68,12 @@ struct HighlightDetailView: View {
             VStack{
                 switch selected {
                 case 0:
-                    VStack{
+                    VStack(alignment: .leading){
                         Text(translation)
                             .multilineTextAlignment(.leading)
                         
+                        
+                        Divider().padding(.vertical, 10)
                     }
                     .padding(.top, 25)
                     .padding(.horizontal, 5)
@@ -96,25 +100,38 @@ struct HighlightDetailView: View {
                                 
                             })
                         }
-                        HStack {
-                            ColorPicker("", selection: $color)
-                                .labelsHidden()
-                                .onChange(of: color, perform: {newValue in
-                                    highlightVM.updateColor(color: newValue)
-                                })
-                            Spacer()
-                        }
+                        
                     }
                     .padding(.top, 15)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .onAppear{
                         notesListVM.getNotesFromHighlight(highlightVM: highlightVM)
                     }
-                    
+                case 2:
+                    VStack{
+                        Divider().padding(.vertical, 10)
+                    }
                 default:
                     VStack{}
                 }
                 
+                HStack {
+                    ColorPicker("", selection: $color)
+                        .labelsHidden()
+                        .onChange(of: color, perform: {newValue in
+                            highlightVM.updateColor(color: newValue)
+                        })
+                    Spacer()
+                    HStack{
+                        Toggle("Show on watch", isOn: $isShowOnWatch)
+                            .frame(width: 180)
+                    }.onAppear{
+                        self.isShowOnWatch = highlightVM.isShowOnWatch
+                    }.onChange(of: isShowOnWatch, perform: { _ in
+                        highlightVM.toggleIsShowOnWatch()
+                    })
+                }
+                .padding(.horizontal, 5)
                 
             }
             .animation(.linear, value: selected)
