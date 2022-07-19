@@ -11,14 +11,15 @@ struct HighlightDetailView: View {
     @State var highlightVM: HighlightViewModel
     @State var color: Color
     
-    @State var selected: Int = 1
+    @State var selected: Int = 0
     @State var isAddingNote: Bool = false
     @State var isShowNotesOptions: Bool = false
     
     @State var text: String = ""
-    @State var translation: String = "fsfdsfas"
+    @State var translation: String = ""
     
-    @State var notes: [Comment] = []
+    @StateObject var addNotesVM = AddNoteViewModel()
+    @StateObject var notesListVM = NotesListViewModel()
     var body: some View {
         VStack {
             HStack{
@@ -32,7 +33,8 @@ struct HighlightDetailView: View {
                 Spacer()
                 if(isAddingNote) {
                     Button(action: {
-                        
+                        let res = addNotesVM.addNoteToHighlight(highlightVM: highlightVM)
+                        self.isAddingNote = false
                     }, label: {
                         Image(systemName: "checkmark")
                     })
@@ -50,12 +52,10 @@ struct HighlightDetailView: View {
                     .foregroundColor(Color.blue)
                     .actionSheet(isPresented: $isShowNotesOptions) {
                         ActionSheet(
-                            title: Text(""
-                                       ), buttons: [
-                                        .default(Text("Delete")) {
-                                            
-                                        }
-                                       ]
+                            title: Text(""),
+                            buttons: [.default(Text("Delete")) {
+                                highlightVM.highlight.delete()
+                            }]
                         )
                     }
                 }
@@ -74,15 +74,27 @@ struct HighlightDetailView: View {
                     .padding(.top, 25)
                     .padding(.horizontal, 5)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    
+                    .task {
+                        await self.getTranslation(q: self.highlightVM.text)
+                    }
                     
                 case 1:
                     VStack{
-                        NoteInputView(isAddingNote: $isAddingNote)
+                        NoteInputView(addNotesVM: addNotesVM, isAddingNote: $isAddingNote)
                         VStack{
-                            ForEach(notes, id: \.id) { note in
+                            ForEach(notesListVM.notes, id: \.noteId) { note in
+                                VStack(alignment: .leading){
+                                    Text(note.text)
+                                        .padding(.horizontal, 10)
+                                    Text(note.modifiedDate.formattedDate)
+                                        .font(.system(size: 10))
+                                        .frame(maxWidth: .infinity, alignment: .center)
+                                    Divider().padding(10)
+                                }
                                 
-                            }
+                            }.onDelete(perform: { i in
+                                
+                            })
                         }
                         HStack {
                             ColorPicker("", selection: $color)
@@ -95,6 +107,9 @@ struct HighlightDetailView: View {
                     }
                     .padding(.top, 15)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .onAppear{
+                        notesListVM.getNotesFromHighlight(highlightVM: highlightVM)
+                    }
                     
                 default:
                     VStack{}
@@ -104,6 +119,17 @@ struct HighlightDetailView: View {
             }
             .animation(.linear, value: selected)
         }.padding(.bottom, 10)
+    }
+    
+    func getTranslation(q: String) async {
+        var res = "loading"
+        
+        await GTranslation.shared.translateText(q: q, targetLanguage: "id", callback: { text in
+            res = text
+            self.translation = res
+        })
+
+        
     }
 }
 

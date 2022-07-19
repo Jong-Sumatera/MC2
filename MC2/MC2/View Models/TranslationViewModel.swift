@@ -30,4 +30,5 @@ struct TranslationViewModel {
     var translationText: String {
         return translation.translationText ?? ""
     }
+    
 }

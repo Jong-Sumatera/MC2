@@ -97,17 +97,17 @@ class DocumentViewController: UIViewController {
         //        self.getTranslation(q: (selections?.string)!)
     }
     
-    func getTranslation(q: String) -> String {
-        var res = "loading"
-        GTranslation.shared.translateText(q: q, targetLanguage: "id", callback: { text in
-            res = text
-            //            self.highlightsTranslations.insert(text, at: 0)
-            //            DispatchQueue.main.async {
-            //                self.hLTableView.reloadData()
-            //            }
-        })
-        return res
-    }
+//    func getTranslation(q: String) -> String {
+//        var res = "loading"
+//        GTranslation.shared.translateText(q: q, targetLanguage: "id", callback: { text in
+//            res = text
+//            //cara supaya block ini di execute dulu sebelum return gmn
+//
+//
+//        })
+//
+//        return res
+//    }
     
     func addHighlightToCoreData(selections: PDFSelection?) -> HighlightViewModel? {
         
@@ -127,14 +127,14 @@ class DocumentViewController: UIViewController {
         }
         
         
-        translationVM.text = text
-        translationVM.translationText = getTranslation(q: text)
-        let translation = translationVM.addTranslation()
+//        translationVM.text = text
+//        translationVM.translationText = getTranslation(q: text)
+//        let translation = translationVM.addTranslation()
         
         let highlightVM = AddHighlightViewModel()
         highlightVM.text = text
         highlightVM.color = self.defaultColor
-        let res = highlightVM.addHighlight(id: id, fileVM: file, selectionsVM: sLines, translation: translation)
+        let res = highlightVM.addHighlight(id: id, fileVM: file, selectionsVM: sLines, translation: nil)
         return res
     }
     

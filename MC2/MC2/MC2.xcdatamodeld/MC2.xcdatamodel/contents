@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E230" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Comment" representedClassName="Comment" syncable="YES" codeGenerationType="class">
-        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="modifiedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="text" optional="YES" attributeType="String"/>
-        <relationship name="highlight" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Highlight" inverseName="comments" inverseEntity="Highlight"/>
-        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="comments" inverseEntity="Tag"/>
-    </entity>
     <entity name="File" representedClassName="File" syncable="YES" codeGenerationType="class">
         <attribute name="createdDate" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="fileExt" attributeType="String"/>
@@ -23,13 +15,21 @@
         <attribute name="fileName" attributeType="String"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="text" attributeType="String"/>
-        <relationship name="comments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Comment" inverseName="highlight" inverseEntity="Comment"/>
         <relationship name="file" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="File" inverseName="highlights" inverseEntity="File"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Note" inverseName="highlight" inverseEntity="Note"/>
         <relationship name="selectionLines" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SelectionLine" inverseName="highlight" inverseEntity="SelectionLine"/>
         <relationship name="translation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Translation" inverseName="highlights" inverseEntity="Translation"/>
     </entity>
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="Note" representedClassName="Note" syncable="YES" codeGenerationType="class">
+        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="modifiedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="text" optional="YES" attributeType="String"/>
+        <relationship name="highlight" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Highlight" inverseName="notes" inverseEntity="Highlight"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="notes" inverseEntity="Tag"/>
     </entity>
     <entity name="SelectionLine" representedClassName="SelectionLine" syncable="YES" codeGenerationType="class">
         <attribute name="createdDate" attributeType="Date" usesScalarValueType="NO"/>
@@ -45,7 +45,7 @@
         <attribute name="createdDate" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="title" attributeType="String"/>
-        <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Comment" inverseName="tags" inverseEntity="Comment"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="tags" inverseEntity="Note"/>
     </entity>
     <entity name="Translation" representedClassName="Translation" syncable="YES" codeGenerationType="class">
         <attribute name="createdDate" attributeType="Date" usesScalarValueType="NO"/>
@@ -55,12 +55,12 @@
         <relationship name="highlights" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Highlight" inverseName="translation" inverseEntity="Highlight"/>
     </entity>
     <elements>
-        <element name="Comment" positionX="236.0078125" positionY="383.81640625" width="128" height="133"/>
+        <element name="Note" positionX="236.0078125" positionY="383.81640625" width="128" height="119"/>
         <element name="File" positionX="1.3515625" positionY="62.2421875" width="128" height="148"/>
-        <element name="Highlight" positionX="277.3046875" positionY="38.66796875" width="128" height="178"/>
+        <element name="Highlight" positionX="277.3046875" positionY="38.66796875" width="128" height="164"/>
         <element name="Item" positionX="-209.26953125" positionY="217.67578125" width="128" height="58"/>
         <element name="SelectionLine" positionX="478.828125" positionY="19.86328125" width="128" height="163"/>
-        <element name="Tag" positionX="189.71484375" positionY="564.48046875" width="128" height="103"/>
+        <element name="Tag" positionX="189.71484375" positionY="564.48046875" width="128" height="89"/>
         <element name="Translation" positionX="-11.23046875" positionY="362.2109375" width="128" height="118"/>
     </elements>
 </model>

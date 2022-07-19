@@ -2,7 +2,7 @@
 //  Highlight+CoreDataProperties.swift
 //  MC2
 //
-//  Created by Widya Limarto on 17/07/22.
+//  Created by Widya Limarto on 19/07/22.
 //
 //
 
@@ -21,27 +21,27 @@ extension Highlight {
     @NSManaged public var fileName: String?
     @NSManaged public var id: UUID?
     @NSManaged public var text: String?
-    @NSManaged public var comments: NSSet?
+    @NSManaged public var notes: NSSet?
     @NSManaged public var file: File?
     @NSManaged public var selectionLines: NSSet?
     @NSManaged public var translation: Translation?
 
 }
 
-// MARK: Generated accessors for comments
+// MARK: Generated accessors for notes
 extension Highlight {
 
-    @objc(addCommentsObject:)
-    @NSManaged public func addToComments(_ value: Comment)
+    @objc(addNotesObject:)
+    @NSManaged public func addToNotes(_ value: Note)
 
-    @objc(removeCommentsObject:)
-    @NSManaged public func removeFromComments(_ value: Comment)
+    @objc(removeNotesObject:)
+    @NSManaged public func removeFromNotes(_ value: Note)
 
-    @objc(addComments:)
-    @NSManaged public func addToComments(_ values: NSSet)
+    @objc(addNotes:)
+    @NSManaged public func addToNotes(_ values: NSSet)
 
-    @objc(removeComments:)
-    @NSManaged public func removeFromComments(_ values: NSSet)
+    @objc(removeNotes:)
+    @NSManaged public func removeFromNotes(_ values: NSSet)
 
 }
 

@@ -13,7 +13,7 @@ class GTranslation {
     
 
     
-    func translateText(q: String, targetLanguage: String, callback:@escaping (_ translatedText:String) -> ()) {
+    func translateText(q: String, targetLanguage: String, callback:@escaping (_ translatedText:String) -> ()) async {
 
         guard pKey != "" else {
             return

@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct NoteInputView: View {
+    @ObservedObject var addNotesVM : AddNoteViewModel
     @Binding var isAddingNote: Bool
     
-    @State var noteText: String = ""
     @State var tags: String = ""
     
     @State var notePlaceholderText: String = "add note"
@@ -18,10 +18,12 @@ struct NoteInputView: View {
     @FocusState private var isFocusedNote: Bool
     @FocusState private var isFocusedTags: Bool
     
+
+    
     var body: some View {
         VStack{
             ZStack{
-                if noteText.isEmpty && !isFocusedNote {
+                if addNotesVM.text.isEmpty && !isFocusedNote {
                     TextEditor(text: $notePlaceholderText)
                         .frame(minHeight: 38, alignment: .leading)
                         .padding(.vertical, 5)
@@ -30,14 +32,14 @@ struct NoteInputView: View {
                         .opacity(0.5)
                 }
                 
-                TextEditor(text: $noteText)
+                TextEditor(text: $addNotesVM.text)
                     .focused($isFocusedNote)
                     .frame(minHeight: 38, alignment: .leading)
                     .fixedSize(horizontal: false, vertical: true)
                     .padding(.vertical, 5)
                     .padding(.horizontal, 5)
-                    .opacity(noteText.isEmpty ? 0.3 : 1)
-                    .onChange(of: noteText, perform: { newValue in
+                    .opacity(addNotesVM.text.isEmpty ? 0.3 : 1)
+                    .onChange(of: addNotesVM.text, perform: { newValue in
                         self.isAddingNote = !newValue.isEmpty || !self.tags.isEmpty
                     })
                 //                    .overlay(
@@ -66,7 +68,7 @@ struct NoteInputView: View {
                         .padding(.horizontal, 5)
                         .opacity(tags.isEmpty ? 0.3 : 1)
                         .onChange(of: tags, perform: { newValue in
-                            self.isAddingNote = !newValue.isEmpty || !self.noteText.isEmpty
+                            self.isAddingNote = !newValue.isEmpty || !self.addNotesVM.text.isEmpty
                         })
                     //                    .overlay(
                     //                             RoundedRectangle(cornerRadius: 8)
@@ -74,6 +76,13 @@ struct NoteInputView: View {
                     //                             )
                 }
             }
+            .onChange(of: isAddingNote, perform: { i in
+                if !isAddingNote {
+                    self.isFocusedTags = false
+                    self.isFocusedNote = false
+                }
+                
+            })
             
             Divider().padding(10)
         }
@@ -82,6 +91,6 @@ struct NoteInputView: View {
 
 struct NoteInputView_Previews: PreviewProvider {
     static var previews: some View {
-        NoteInputView(isAddingNote: .constant(false))
+        NoteInputView(addNotesVM: AddNoteViewModel(), isAddingNote: .constant(false))
     }
 }
