@@ -145,14 +145,17 @@ struct HighlightDetailView: View {
         
         if trans != nil {
             self.translation = trans?.translationText ?? ""
+            return
+        } else {
+            await GTranslation.shared.translateText(q: q, targetLanguage: "id", callback: { text in
+                res = text
+                self.translation = res
+                addTranslationVM.text = q
+                addTranslationVM.translationText = res
+                addTranslationVM.addTranslation()
+            })
         }
-        await GTranslation.shared.translateText(q: q, targetLanguage: "id", callback: { text in
-            res = text
-            self.translation = res
-            addTranslationVM.text = q
-            addTranslationVM.translationText = res
-            addTranslationVM.addTranslation()
-        })
+        
     }
     
     

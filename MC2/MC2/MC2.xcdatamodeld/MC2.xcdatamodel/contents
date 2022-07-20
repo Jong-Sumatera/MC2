@@ -46,7 +46,7 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="tags" inverseEntity="Note"/>
     </entity>
-    <entity name="Translation" representedClassName=".Translation" syncable="YES">
+    <entity name="Translation" representedClassName=".Translation" syncable="YES" codeGenerationType="class">
         <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="text" optional="YES" attributeType="String" defaultValueString=""/>
@@ -59,6 +59,6 @@
         <element name="Note" positionX="-52286.3359375" positionY="-323.703125" width="128" height="119"/>
         <element name="SelectionLine" positionX="-52043.515625" positionY="-687.65625" width="128" height="149"/>
         <element name="Tag" positionX="-52332.62890625" positionY="-143.0390625" width="128" height="89"/>
-        <element name="Translation" positionX="-52533.57421875" positionY="-345.30859375" width="128" height="118"/>
+        <element name="Translation" positionX="-52533.57421875" positionY="-345.30859375" width="128" height="104"/>
     </elements>
 </model>

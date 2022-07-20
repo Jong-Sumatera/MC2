@@ -39,9 +39,8 @@ extension HighlightsListViewModel: NSFetchedResultsControllerDelegate {
         try? controller.performFetch()
         DispatchQueue.main.async { [self] in
             self.highlights = (self.fetchController.fetchedObjects ?? []).map(HighlightViewModel.init)
+            self.delegate?.didChangeContent(highlights)
         }
         
-        print("update", highlights.count)
-        self.delegate?.didChangeContent(highlights)
     }
 }

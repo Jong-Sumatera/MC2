@@ -29,7 +29,7 @@
 		0A35A1CD287344A70001CFBD /* HighlightCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35A1CC287344A70001CFBD /* HighlightCoreDataManager.swift */; };
 		0A35A1CF2873466E0001CFBD /* SelectionLineCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35A1CE2873466E0001CFBD /* SelectionLineCoreDataManager.swift */; };
 		0A35A1D128734A8D0001CFBD /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35A1D028734A8D0001CFBD /* UIColorExt.swift */; };
-		0A35A1D32873633C0001CFBD /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35A1D22873633C0001CFBD /* Translation.swift */; };
+		0A35A1D32873633C0001CFBD /* GTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35A1D22873633C0001CFBD /* GTranslation.swift */; };
 		0A37B23128848D57002107F6 /* TranslationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37B23028848D57002107F6 /* TranslationView.swift */; };
 		0A37B23528848DC4002107F6 /* TranslationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A37B23428848DC4002107F6 /* TranslationView.xib */; };
 		0A37B23B28855100002107F6 /* HighlightCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37B23A28855100002107F6 /* HighlightCellView.swift */; };
@@ -37,8 +37,6 @@
 		0A37B23F28855EF8002107F6 /* NoteInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37B23E28855EF8002107F6 /* NoteInputView.swift */; };
 		0A37B241288583FB002107F6 /* DocumentSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37B240288583FB002107F6 /* DocumentSideView.swift */; };
 		0A4DB0F52887F413009DC3B0 /* HighlightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DB0F42887F413009DC3B0 /* HighlightViewModel.swift */; };
-		0A4DB0FA28881B99009DC3B0 /* Translation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DB0F828881B99009DC3B0 /* Translation+CoreDataClass.swift */; };
-		0A4DB0FB28881B99009DC3B0 /* Translation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DB0F928881B99009DC3B0 /* Translation+CoreDataProperties.swift */; };
 		0A680C3C288731C900C9C4D4 /* Highlight+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A680C3A288731C900C9C4D4 /* Highlight+CoreDataClass.swift */; };
 		0A680C3D288731C900C9C4D4 /* Highlight+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A680C3B288731C900C9C4D4 /* Highlight+CoreDataProperties.swift */; };
 		0A8B3F1E286CAA9E003DE765 /* DocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8B3F1D286CAA9E003DE765 /* DocumentView.swift */; };
@@ -91,7 +89,7 @@
 		0A35A1CC287344A70001CFBD /* HighlightCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightCoreDataManager.swift; sourceTree = "<group>"; };
 		0A35A1CE2873466E0001CFBD /* SelectionLineCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionLineCoreDataManager.swift; sourceTree = "<group>"; };
 		0A35A1D028734A8D0001CFBD /* UIColorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
-		0A35A1D22873633C0001CFBD /* Translation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
+		0A35A1D22873633C0001CFBD /* GTranslation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTranslation.swift; sourceTree = "<group>"; };
 		0A37B23028848D57002107F6 /* TranslationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationView.swift; sourceTree = "<group>"; };
 		0A37B23428848DC4002107F6 /* TranslationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TranslationView.xib; sourceTree = "<group>"; };
 		0A37B23A28855100002107F6 /* HighlightCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightCellView.swift; sourceTree = "<group>"; };
@@ -99,8 +97,6 @@
 		0A37B23E28855EF8002107F6 /* NoteInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteInputView.swift; sourceTree = "<group>"; };
 		0A37B240288583FB002107F6 /* DocumentSideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentSideView.swift; sourceTree = "<group>"; };
 		0A4DB0F42887F413009DC3B0 /* HighlightViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlightViewModel.swift; sourceTree = "<group>"; };
-		0A4DB0F828881B99009DC3B0 /* Translation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Translation+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		0A4DB0F928881B99009DC3B0 /* Translation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Translation+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		0A680C352887212400C9C4D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0A680C3A288731C900C9C4D4 /* Highlight+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Highlight+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		0A680C3B288731C900C9C4D4 /* Highlight+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Highlight+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
@@ -204,7 +200,7 @@
 			children = (
 				0A35A1CC287344A70001CFBD /* HighlightCoreDataManager.swift */,
 				0A35A1CE2873466E0001CFBD /* SelectionLineCoreDataManager.swift */,
-				0A35A1D22873633C0001CFBD /* Translation.swift */,
+				0A35A1D22873633C0001CFBD /* GTranslation.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -251,8 +247,6 @@
 		650429F8286C508A000DD875 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0A4DB0F828881B99009DC3B0 /* Translation+CoreDataClass.swift */,
-				0A4DB0F928881B99009DC3B0 /* Translation+CoreDataProperties.swift */,
 				0A680C3A288731C900C9C4D4 /* Highlight+CoreDataClass.swift */,
 				0A680C3B288731C900C9C4D4 /* Highlight+CoreDataProperties.swift */,
 				0A1305E8288196750025F183 /* Highlight+Extensions.swift */,
@@ -408,10 +402,9 @@
 				0A13060C2883CF840025F183 /* SelectionLineViewModel.swift in Sources */,
 				0A1305F1288272D80025F183 /* FileViewModel.swift in Sources */,
 				0A35A1CF2873466E0001CFBD /* SelectionLineCoreDataManager.swift in Sources */,
-				0A35A1D32873633C0001CFBD /* Translation.swift in Sources */,
+				0A35A1D32873633C0001CFBD /* GTranslation.swift in Sources */,
 				0A1305F328828B6A0025F183 /* AddFileView.swift in Sources */,
 				0A1306102883D7DE0025F183 /* AddSelectionLineViewModel.swift in Sources */,
-				0A4DB0FA28881B99009DC3B0 /* Translation+CoreDataClass.swift in Sources */,
 				0A8B3F1E286CAA9E003DE765 /* DocumentView.swift in Sources */,
 				0A37B23D2885559F002107F6 /* HighlightDetailView.swift in Sources */,
 				0AD62B5A2885CFCE00D70A35 /* NoteViewModel.swift in Sources */,
@@ -425,7 +418,6 @@
 				0A1305E9288196750025F183 /* Highlight+Extensions.swift in Sources */,
 				0A680C3C288731C900C9C4D4 /* Highlight+CoreDataClass.swift in Sources */,
 				0A4DB0F52887F413009DC3B0 /* HighlightViewModel.swift in Sources */,
-				0A4DB0FB28881B99009DC3B0 /* Translation+CoreDataProperties.swift in Sources */,
 				0A1305F72883B7B10025F183 /* HighlightsListViewModel.swift in Sources */,
 				0AD62B602885D11700D70A35 /* Note+Extensions.swift in Sources */,
 				65EC7FCE286C40BA007F47D4 /* MC2App.swift in Sources */,

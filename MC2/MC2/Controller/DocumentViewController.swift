@@ -13,6 +13,7 @@ class DocumentViewController: UIViewController {
     var file: FileViewModel!
     var highlightListVM : HighlightsListViewModel!
     var openSideBar: (()->())? = nil
+    var setSelectedId: ((_ id: UUID?)->())? = nil
     var pdfView: PDFView!
     var isHiddenSideView: Bool = true
     
@@ -88,13 +89,11 @@ class DocumentViewController: UIViewController {
         
         let selections = pdfView!.currentSelection
         //munculin sidebar kanan
-        
+        self.openSideBar!()
         //simpan posisi highlight dan selection line di core data
         var highlight = addHighlightToCoreData(selections: selections)
         
-        //get translated text
-        
-        //        self.getTranslation(q: (selections?.string)!)
+        setSelectedId!(highlight?.highlightId)
     }
     
 //    func getTranslation(q: String) -> String {
@@ -172,10 +171,10 @@ class DocumentViewController: UIViewController {
 
 extension DocumentViewController: HighlightsListViewModelDelegate {
     func didChangeContent(_ highlights: [HighlightViewModel]) {
-        print("did change")
+        print("did change", highlights.count)
         self.highlights = highlights
-//        removeAllAnnotations()
-//        addHighlightOnPage()
+        removeAllAnnotations()
+        addHighlightOnPage()
         DispatchQueue.main.async {
 //            self.hLTableView.reloadData()
         }

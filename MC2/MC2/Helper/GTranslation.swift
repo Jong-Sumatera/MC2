@@ -1,5 +1,5 @@
 //
-//  Translation.swift
+//  GTranslation.swift
 //  MC2
 //
 //  Created by Widya Limarto on 05/07/22.
@@ -14,7 +14,7 @@ class GTranslation {
 
     
     func translateText(q: String, targetLanguage: String, callback:@escaping (_ translatedText:String) -> ()) async {
-
+        print("translate")
         guard pKey != "" else {
             return
         }

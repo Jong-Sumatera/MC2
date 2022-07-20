@@ -11,6 +11,7 @@ import UIKit
 struct DocumentVCRepresentable: UIViewControllerRepresentable {
     var file: FileViewModel
     @Binding var isOpenSideBar : Bool
+    @Binding var selectedId: UUID?
     var highlightsListVM: HighlightsListViewModel
     
     func makeCoordinator() -> Self.Coordinator { Coordinator() }
@@ -26,6 +27,7 @@ struct DocumentVCRepresentable: UIViewControllerRepresentable {
         controller.file = file
         controller.highlightListVM = highlightsListVM
         controller.openSideBar = openSideBar
+        controller.setSelectedId = setSelectedId
         
         context.coordinator.parentObserver = controller.observe(\.parent, changeHandler: { vc, _ in
             print("parent")
@@ -46,26 +48,35 @@ struct DocumentVCRepresentable: UIViewControllerRepresentable {
         }
         
     }
+    
+    func setSelectedId(_ id: UUID?) {
+        withAnimation{
+            self.selectedId = id
+        }
+    }
 }
 
 struct DocumentView: View {
     var file: FileViewModel
     @State var isOpenSideBar: Bool = false
+    @State var selectedId: UUID?
     
-    @ObservedObject var highlightsListVM = HighlightsListViewModel()
+    @StateObject var highlightsListVM = HighlightsListViewModel()
     var body: some View {
         HStack{
             
             DocumentVCRepresentable(
                 file: file,
                 isOpenSideBar: $isOpenSideBar,
+                selectedId: $selectedId,
                 highlightsListVM: highlightsListVM
             )
             
             if isOpenSideBar {
                 DocumentSideView(
                     isOpenSideBar: isOpenSideBar,
-                    highlightsListVM: highlightsListVM
+                    highlightsListVM: highlightsListVM,
+                    selectedId: $selectedId
                 )
             }
             

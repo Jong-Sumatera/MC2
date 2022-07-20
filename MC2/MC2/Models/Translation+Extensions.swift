@@ -6,15 +6,23 @@
 //
 
 import Foundation
+import CoreData
 
 extension Translation: BaseModel {
     static func findByText(text: String) -> Translation? {
-        let res = self.findBy(format: "text == %@", text)
-        print(res)
-        if res.count > 0 {
-            return res[0] as? Translation
-        } else {
+        let fr : NSFetchRequest<Translation> = NSFetchRequest(entityName: String(describing: Translation.self))
+        fr.predicate = NSPredicate(format: "text == %@", text)
+        do{
+           let res = try Translation.context.fetch(fr)
+            if res.count > 0 {
+                        return res[0] as? Translation
+                    } else {
+                        return nil
+                    }
+        }catch {
+            print(error)
             return nil
         }
+        return nil
     }
 }

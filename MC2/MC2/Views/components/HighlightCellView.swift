@@ -56,13 +56,21 @@ struct HighlightCellView: View {
         .compositingGroup()
         .shadow(color: Color.gray, radius: 3, x: 2, y: 2)
         .onChange(of: selectedId, perform: { i in
-            if(selectedId == highlightVM.highlightId){
+            if(i == highlightVM.highlightId){
                 withAnimation{
                     self.isShowDetail = true
                 }
                 selectedId = nil
             }
         })
+        .onAppear{
+            if (selectedId == highlightVM.highlightId){
+                withAnimation{
+                    self.isShowDetail = true
+                }
+                selectedId = nil
+            }
+        }
         
         
         

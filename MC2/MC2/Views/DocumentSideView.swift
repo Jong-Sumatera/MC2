@@ -10,9 +10,9 @@ import SwiftUI
 struct DocumentSideView: View {
     var isOpenSideBar: Bool
     
-    @StateObject var highlightsListVM: HighlightsListViewModel
+    @ObservedObject var highlightsListVM: HighlightsListViewModel
     
-    @State var selectedId: UUID?
+    @Binding var selectedId: UUID?
     
     
     var body: some View {
@@ -43,9 +43,8 @@ struct DocumentSideView: View {
                             highlightsListVM.selectedHighlightId = nil
                         }
                     }
-                    
-                    
                 })
+                
             }
         }
         .padding(.top)
@@ -61,6 +60,6 @@ struct DocumentSideView: View {
 
 struct DocumentSideView_Previews: PreviewProvider {
     static var previews: some View {
-        DocumentSideView(isOpenSideBar: true, highlightsListVM: HighlightsListViewModel())
+        DocumentSideView(isOpenSideBar: true, highlightsListVM: HighlightsListViewModel(), selectedId: .constant(nil))
     }
 }
