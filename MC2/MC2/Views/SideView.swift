@@ -64,7 +64,8 @@ struct SideView: View {
             })
             .background(Color.primaryColor)
             
-        }
+            DashboardView()
+        }.navigationBarHidden(true)
     }
 }
 

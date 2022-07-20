@@ -17,10 +17,14 @@ struct ContentView: View {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(.secondaryColor)]
         
         UINavigationBar.appearance().barTintColor    = UIColor.white
+//
     }
     
     var body: some View {
         SideView(selection: 0)
+            .onAppear{
+                UserDefaults.standard.set(false, forKey: "onboarding")
+            }
     }
 }
 
