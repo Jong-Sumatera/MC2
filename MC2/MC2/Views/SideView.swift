@@ -21,42 +21,48 @@ struct SideView: View {
     
     var body: some View {
         NavigationView {
-                List {
-                    NavigationLink(destination:DashboardView(), tag: 0, selection: $selection) {
-                        Label("Home",systemImage: "house")
-                            .foregroundColor(Color.primaryColor)
-                            
-                    }.listRowBackground(Color.white)
+            List {
+                NavigationLink(destination:DashboardView(), tag: 0, selection: $selection) {
+                    Label("Home",systemImage: "house")
+                        .foregroundColor(selection == 0 ? Color.primaryColor : .white)
                     
-                    if file != nil {
-                        NavigationLink(destination: DocumentView(file: file!), tag: 1, selection: $selection) {
-                        }.hidden()
-                    }
-                    
-                }.navigationBarItems(trailing: HStack {
-                    
-                    Button(action: {
-                        print("Reload button pressed...")
-                    }) {
-                        Image(systemName: "gear")
-                    }
-                    
-                    Button(action: {
-                        self.showPopover = true
-                    }) {
-                        Image(systemName: "plus")
-                    }
-                    .popover(isPresented: self.$showPopover,
-                             attachmentAnchor: .point(.topLeading), arrowEdge: .trailing) {
-                        AddFileView(addFileVM: addFileVM, onPressAdd: { file in
-                            self.file = file
-                            self.selection = 1
-                            
-                        })
-                    }
-                })
-                .background(Color.primaryColor)
+                }
+                .listRowBackground((selection == 0 ? Color.white : Color.clear).clipped()
+                    .cornerRadius(10))
                 
+                
+                if file != nil {
+                    NavigationLink(destination: DocumentView(file: file!), tag: 1, selection: $selection) {
+                    }.hidden()
+                }
+                
+            }
+            .navigationTitle("LearnUp")
+            .navigationBarItems(trailing: HStack {
+                
+                Button(action: {
+                    print("Reload button pressed...")
+                }) {
+                    Image(systemName: "gear")
+                        .foregroundColor(.white)
+                }
+                
+                Button(action: {
+                    self.showPopover = true
+                }) {
+                    Image(systemName: "plus")
+                        .foregroundColor(.white)
+                }
+                .popover(isPresented: self.$showPopover,
+                         attachmentAnchor: .point(.topLeading), arrowEdge: .trailing) {
+                    AddFileView(addFileVM: addFileVM, onPressAdd: { file in
+                        self.file = file
+                        self.selection = 1
+                        
+                    })
+                }
+            })
+            .background(Color.primaryColor)
             
         }
     }

@@ -21,6 +21,7 @@ struct HighlightDetailView: View {
     
     @StateObject var addNotesVM = AddNoteViewModel()
     @StateObject var notesListVM = NotesListViewModel()
+    @StateObject var addTranslationVM = AddTranslationViewModel()
     
     var body: some View {
         VStack {
@@ -140,14 +141,21 @@ struct HighlightDetailView: View {
     
     func getTranslation(q: String) async {
         var res = "loading"
+        let trans = Translation.findByText(text: q)
         
+        if trans != nil {
+            self.translation = trans?.translationText ?? ""
+        }
         await GTranslation.shared.translateText(q: q, targetLanguage: "id", callback: { text in
             res = text
             self.translation = res
+            addTranslationVM.text = q
+            addTranslationVM.translationText = res
+            addTranslationVM.addTranslation()
         })
-
-        
     }
+    
+    
 }
 
 struct HighlightDetailView_Previews: PreviewProvider {

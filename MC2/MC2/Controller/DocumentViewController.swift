@@ -153,7 +153,6 @@ class DocumentViewController: UIViewController {
     
     func addHighlightOnPage() {
         for highlight in self.highlights {
-            print(highlight)
             for selection in highlight.selections {
                 highlightSelection(fieldName: selection.selectionId, bounds: selection.bounds, pdfPage: (pdfView.document?.page(at: selection.page))!, color: highlight.color)
             }
@@ -163,6 +162,7 @@ class DocumentViewController: UIViewController {
     func highlightSelection(fieldName: String, bounds: CGRect, pdfPage: PDFPage, color: UIColor) {
         
         let highlight = PDFAnnotation(bounds: bounds, forType: .highlight, withProperties: nil)
+        print("color", color)
         highlight.color = color
         highlight.fieldName = fieldName
         pdfPage.addAnnotation(highlight)
@@ -174,8 +174,8 @@ extension DocumentViewController: HighlightsListViewModelDelegate {
     func didChangeContent(_ highlights: [HighlightViewModel]) {
         print("did change")
         self.highlights = highlights
-        removeAllAnnotations()
-        addHighlightOnPage()
+//        removeAllAnnotations()
+//        addHighlightOnPage()
         DispatchQueue.main.async {
 //            self.hLTableView.reloadData()
         }

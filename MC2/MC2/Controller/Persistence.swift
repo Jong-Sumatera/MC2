@@ -35,13 +35,13 @@ struct PersistenceController {
         ValueTransformer.setValueTransformer(UIColorTransformer(), forName: NSValueTransformerName("UIColorTransformer"))
         
         
-        container = NSPersistentCloudKitContainer(name: "MC2")
+        container = NSPersistentContainer(name: "MC2")
         
-        container.persistentStoreDescriptions.first!.setOption(true as NSNumber,forKey:
-        NSPersistentHistoryTrackingKey)
-        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        container.viewContext.automaticallyMergesChangesFromParent=true
-        
+//        container.persistentStoreDescriptions.first!.setOption(true as NSNumber,forKey:
+//        NSPersistentHistoryTrackingKey)
+//        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+//        container.viewContext.automaticallyMergesChangesFromParent=true
+//
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }

@@ -46,7 +46,7 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="tags" inverseEntity="Note"/>
     </entity>
-    <entity name="Translation" representedClassName="Translation" syncable="YES" codeGenerationType="class">
+    <entity name="Translation" representedClassName=".Translation" syncable="YES">
         <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="text" optional="YES" attributeType="String" defaultValueString=""/>
@@ -54,11 +54,11 @@
         <relationship name="highlights" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Highlight" inverseName="translation" inverseEntity="Highlight"/>
     </entity>
     <elements>
-        <element name="File" positionX="1.3515625" positionY="62.2421875" width="128" height="134"/>
-        <element name="Highlight" positionX="277.3046875" positionY="38.66796875" width="128" height="194"/>
-        <element name="Note" positionX="236.0078125" positionY="383.81640625" width="128" height="119"/>
-        <element name="SelectionLine" positionX="478.828125" positionY="19.86328125" width="128" height="149"/>
-        <element name="Tag" positionX="189.71484375" positionY="564.48046875" width="128" height="89"/>
-        <element name="Translation" positionX="-11.23046875" positionY="362.2109375" width="128" height="104"/>
+        <element name="File" positionX="-52520.9921875" positionY="-645.27734375" width="128" height="148"/>
+        <element name="Highlight" positionX="-52245.0390625" positionY="-668.8515625" width="128" height="208"/>
+        <element name="Note" positionX="-52286.3359375" positionY="-323.703125" width="128" height="119"/>
+        <element name="SelectionLine" positionX="-52043.515625" positionY="-687.65625" width="128" height="149"/>
+        <element name="Tag" positionX="-52332.62890625" positionY="-143.0390625" width="128" height="89"/>
+        <element name="Translation" positionX="-52533.57421875" positionY="-345.30859375" width="128" height="118"/>
     </elements>
 </model>

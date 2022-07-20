@@ -46,6 +46,7 @@ extension BaseModel {
     static func findBy<T>(format: String, _ args: CVarArg...) -> [T] where T: NSManagedObject {
         let fetchRequest : NSFetchRequest<T> = NSFetchRequest(entityName: String(describing: T.self))
         fetchRequest.predicate = NSPredicate(format: format, args)
+        print(format, fetchRequest)
         do {
             let objs: [T]? = try Self.context.fetch(fetchRequest)
             guard let objs = objs, objs.count > 0 else {
@@ -53,6 +54,7 @@ extension BaseModel {
             }
             return objs
         } catch {
+            print(error)
             return []
         }
     }

@@ -11,10 +11,13 @@ import UIKit
 struct ContentView: View {
     
     init() {
-            /// These could be anywhere before the list has loaded.
-            UITableView.appearance().backgroundColor = .clear // tableview background
-            UITableViewCell.appearance().backgroundColor = .clear // cell background
-        }
+        /// These could be anywhere before the list has loaded.
+        UITableView.appearance().backgroundColor = .clear // tableview background
+        UITableViewCell.appearance().backgroundColor = .clear // cell background
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(.secondaryColor)]
+        
+        UINavigationBar.appearance().barTintColor    = UIColor.white
+    }
     
     var body: some View {
         SideView(selection: 0)

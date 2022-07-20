@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AddTranslationViewModel {
+class AddTranslationViewModel: ObservableObject {
     var text: String = ""
     var translationText: String = ""
     
