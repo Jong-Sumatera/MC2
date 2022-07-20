@@ -89,10 +89,11 @@ class DocumentViewController: UIViewController {
         
         let selections = pdfView!.currentSelection
         //munculin sidebar kanan
-        self.openSideBar!()
-        //simpan posisi highlight dan selection line di core data
-        var highlight = addHighlightToCoreData(selections: selections)
         
+        //simpan posisi highlight dan selection line di core data
+        let highlight = addHighlightToCoreData(selections: selections)
+        self.openSideBar!()
+        print(self.highlightListVM.highlights.count)
         setSelectedId!(highlight?.highlightId)
     }
     
@@ -171,12 +172,8 @@ class DocumentViewController: UIViewController {
 
 extension DocumentViewController: HighlightsListViewModelDelegate {
     func didChangeContent(_ highlights: [HighlightViewModel]) {
-        print("did change", highlights.count)
         self.highlights = highlights
         removeAllAnnotations()
         addHighlightOnPage()
-        DispatchQueue.main.async {
-//            self.hLTableView.reloadData()
-        }
     }
 }

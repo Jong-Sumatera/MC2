@@ -60,4 +60,12 @@ struct HighlightViewModel: Hashable {
     }
     
     var isShowDetail: Bool = false
+    
+    var translationText: String? {
+        let res = Translation.findByText(text: text)
+        if (res != nil) {
+            return res!.translationText ?? nil
+        }
+        return nil
+    }
 }

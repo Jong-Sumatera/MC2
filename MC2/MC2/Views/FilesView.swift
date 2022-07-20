@@ -16,9 +16,18 @@ struct FilesView: View {
         
         List {
             ForEach(vm.files, id: \.id) { file in
+                
                 NavigationLink(destination: DocumentView(file: file), label: {
                     Text(file.fileTitle)
                 })
+                .swipeActions(edge: .leading){
+                    Button(action: {
+                        file.file.delete()
+                    }, label: {
+                        Image(systemName: "minus.circle.fill")
+                    })
+                    .tint(Color .red)
+                }
             }
             
         }.onAppear{

@@ -33,6 +33,7 @@ extension BaseModel {
     
     func delete() {
         Self.context.delete(self)
+        save()
     }
     
     static func byId<T: NSManagedObject>(id: NSManagedObjectID) -> T? {

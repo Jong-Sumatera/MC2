@@ -10,10 +10,9 @@ import SwiftUI
 struct DocumentSideView: View {
     var isOpenSideBar: Bool
     
-    @ObservedObject var highlightsListVM: HighlightsListViewModel
+    @StateObject var highlightsListVM: HighlightsListViewModel
     
     @Binding var selectedId: UUID?
-    
     
     var body: some View {
         VStack(alignment: .leading){

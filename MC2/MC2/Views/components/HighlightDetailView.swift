@@ -70,7 +70,7 @@ struct HighlightDetailView: View {
                 switch selected {
                 case 0:
                     VStack(alignment: .leading){
-                        Text(translation)
+                        Text(highlightVM.translationText ?? translation)
                             .multilineTextAlignment(.leading)
                         
                         
@@ -144,15 +144,14 @@ struct HighlightDetailView: View {
         let trans = Translation.findByText(text: q)
         
         if trans != nil {
-            self.translation = trans?.translationText ?? ""
-            return
+            self.highlightVM.highlight.translation = trans
         } else {
             await GTranslation.shared.translateText(q: q, targetLanguage: "id", callback: { text in
                 res = text
                 self.translation = res
                 addTranslationVM.text = q
                 addTranslationVM.translationText = res
-                addTranslationVM.addTranslation()
+                addTranslationVM.addTranslation(highlightVM: highlightVM)
             })
         }
         
