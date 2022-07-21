@@ -50,6 +50,10 @@
 		0AD62B602885D11700D70A35 /* Note+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD62B5F2885D11700D70A35 /* Note+Extensions.swift */; };
 		0AD62B6228864E9700D70A35 /* DateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD62B6128864E9700D70A35 /* DateExt.swift */; };
 		0AD62B662886F94900D70A35 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD62B652886F94900D70A35 /* CloudKit.framework */; };
+		0AEAEF39288978FD00B23E6A /* TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEAEF38288978FD00B23E6A /* TagViewModel.swift */; };
+		0AEAEF3B2889799500B23E6A /* Tag+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEAEF3A2889799500B23E6A /* Tag+Extension.swift */; };
+		0AEAEF3D28899A1D00B23E6A /* SimilarHighlightsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEAEF3C28899A1D00B23E6A /* SimilarHighlightsViewModel.swift */; };
+		0AEAEF412889A62E00B23E6A /* SimilarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEAEF402889A62E00B23E6A /* SimilarItemView.swift */; };
 		658D76302871CD7100C60B5C /* FilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658D762F2871CD7100C60B5C /* FilesView.swift */; };
 		658D76322871CD7E00C60B5C /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658D76312871CD7E00C60B5C /* TagsView.swift */; };
 		658D76342871D31200C60B5C /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658D76332871D31200C60B5C /* EmptyView.swift */; };
@@ -115,6 +119,10 @@
 		0AD62B6128864E9700D70A35 /* DateExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExt.swift; sourceTree = "<group>"; };
 		0AD62B632886F94600D70A35 /* MC2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MC2.entitlements; sourceTree = "<group>"; };
 		0AD62B652886F94900D70A35 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		0AEAEF38288978FD00B23E6A /* TagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewModel.swift; sourceTree = "<group>"; };
+		0AEAEF3A2889799500B23E6A /* Tag+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+Extension.swift"; sourceTree = "<group>"; };
+		0AEAEF3C28899A1D00B23E6A /* SimilarHighlightsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarHighlightsViewModel.swift; sourceTree = "<group>"; };
+		0AEAEF402889A62E00B23E6A /* SimilarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarItemView.swift; sourceTree = "<group>"; };
 		658D762F2871CD7100C60B5C /* FilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesView.swift; sourceTree = "<group>"; };
 		658D76312871CD7E00C60B5C /* TagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
 		658D76332871D31200C60B5C /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
@@ -164,6 +172,8 @@
 				0AD62B592885CFCE00D70A35 /* NoteViewModel.swift */,
 				0AD62B5B2885D07500D70A35 /* AddNoteViewModel.swift */,
 				0AD62B5D2885D0C700D70A35 /* NotesListViewModel.swift */,
+				0AEAEF38288978FD00B23E6A /* TagViewModel.swift */,
+				0AEAEF3C28899A1D00B23E6A /* SimilarHighlightsViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -186,6 +196,7 @@
 				0A37B23A28855100002107F6 /* HighlightCellView.swift */,
 				0A37B23C2885559F002107F6 /* HighlightDetailView.swift */,
 				0A37B23E28855EF8002107F6 /* NoteInputView.swift */,
+				0AEAEF402889A62E00B23E6A /* SimilarItemView.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -264,6 +275,7 @@
 				0A13060D2883D24E0025F183 /* SelectionLine+Extensions.swift */,
 				0A1306152884551D0025F183 /* Translation+Extensions.swift */,
 				0AD62B5F2885D11700D70A35 /* Note+Extensions.swift */,
+				0AEAEF3A2889799500B23E6A /* Tag+Extension.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -388,6 +400,7 @@
 				0A1306162884551D0025F183 /* Translation+Extensions.swift in Sources */,
 				65EC7FD7286C40BB007F47D4 /* Persistence.swift in Sources */,
 				0A1305EF28819F500025F183 /* File+Extensions.swift in Sources */,
+				0AEAEF412889A62E00B23E6A /* SimilarItemView.swift in Sources */,
 				0A37B23128848D57002107F6 /* TranslationView.swift in Sources */,
 				0A1306082883C7B10025F183 /* UIColorTransformer.swift in Sources */,
 				658D76322871CD7E00C60B5C /* TagsView.swift in Sources */,
@@ -419,15 +432,18 @@
 				0A37B23D2885559F002107F6 /* HighlightDetailView.swift in Sources */,
 				0AD62B5A2885CFCE00D70A35 /* NoteViewModel.swift in Sources */,
 				0A35A1CD287344A70001CFBD /* HighlightCoreDataManager.swift in Sources */,
+				0AEAEF3B2889799500B23E6A /* Tag+Extension.swift in Sources */,
 				0A35A1D128734A8D0001CFBD /* UIColorExt.swift in Sources */,
 				0AD62B5C2885D07500D70A35 /* AddNoteViewModel.swift in Sources */,
 				0A13060E2883D24E0025F183 /* SelectionLine+Extensions.swift in Sources */,
 				658D76362871EA3100C60B5C /* SearchObservableObjectFile.swift in Sources */,
 				0A8B3F28286CB9B0003DE765 /* DocumentViewController.swift in Sources */,
 				0A35A1CA2872DAE90001CFBD /* UIViewExt.swift in Sources */,
+				0AEAEF39288978FD00B23E6A /* TagViewModel.swift in Sources */,
 				902EB26C288865420021D6E6 /* OnboardingScreen.swift in Sources */,
 				0A1305E9288196750025F183 /* Highlight+Extensions.swift in Sources */,
 				0A680C3C288731C900C9C4D4 /* Highlight+CoreDataClass.swift in Sources */,
+				0AEAEF3D28899A1D00B23E6A /* SimilarHighlightsViewModel.swift in Sources */,
 				0A4DB0F52887F413009DC3B0 /* HighlightViewModel.swift in Sources */,
 				0A1305F72883B7B10025F183 /* HighlightsListViewModel.swift in Sources */,
 				0AD62B602885D11700D70A35 /* Note+Extensions.swift in Sources */,
@@ -569,7 +585,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MC2/Preview Content\"";
-				DEVELOPMENT_TEAM = W9BTV688UW;
+				DEVELOPMENT_TEAM = PSKBVM3X2F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MC2/Info.plist;
@@ -583,7 +599,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Dewi.MC2;
+				PRODUCT_BUNDLE_IDENTIFIER = Clara.MC2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -602,7 +618,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MC2/Preview Content\"";
-				DEVELOPMENT_TEAM = W9BTV688UW;
+				DEVELOPMENT_TEAM = PSKBVM3X2F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MC2/Info.plist;
@@ -616,7 +632,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Dewi.MC2;
+				PRODUCT_BUNDLE_IDENTIFIER = Clara.MC2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

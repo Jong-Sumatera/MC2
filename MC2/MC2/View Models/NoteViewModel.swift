@@ -30,4 +30,13 @@ struct NoteViewModel {
     var text: String {
         return note.text ?? ""
     }
+    
+    var tags: [TagViewModel] {
+        if noteId != nil {
+            let res: [Tag] = Tag.byNote(note: note)
+            return res.map(TagViewModel.init)
+        } else {
+            return []
+        }
+    }
 }

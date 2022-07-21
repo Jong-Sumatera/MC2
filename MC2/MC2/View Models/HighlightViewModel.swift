@@ -68,4 +68,14 @@ struct HighlightViewModel: Hashable {
         }
         return nil
     }
+    
+    var notes: [NoteViewModel] {
+        if highlightId != nil {
+            let res: [Note] = Note.getNotesByHighlight(highlight: highlight)
+            return res.map(NoteViewModel.init)
+        } else {
+            return []
+        }
+    }
+ 
 }

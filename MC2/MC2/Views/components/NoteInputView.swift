@@ -40,7 +40,7 @@ struct NoteInputView: View {
                     .padding(.horizontal, 5)
                     .opacity(addNotesVM.text.isEmpty ? 0.3 : 1)
                     .onChange(of: addNotesVM.text, perform: { newValue in
-                        self.isAddingNote = !newValue.isEmpty || !self.tags.isEmpty
+                        self.isAddingNote = !newValue.isEmpty || !self.addNotesVM.tags.isEmpty
                     })
                 //                    .overlay(
                 //                             RoundedRectangle(cornerRadius: 8)
@@ -62,14 +62,18 @@ struct NoteInputView: View {
                             .opacity(0.5)
                         
                     }
-                    TextEditor(text: $tags)
+                    TextEditor(text: $addNotesVM.tags)
+                        .foregroundColor(.primaryColor)
                         .frame(minHeight: 38, alignment: .leading)
                         .fixedSize(horizontal: false, vertical: true)
                         .padding(.horizontal, 5)
-                        .opacity(tags.isEmpty ? 0.3 : 1)
-                        .onChange(of: tags, perform: { newValue in
+                        .opacity(addNotesVM.tags.isEmpty ? 0.3 : 1)
+                        .onChange(of: addNotesVM.tags, perform: { newValue in
                             self.isAddingNote = !newValue.isEmpty || !self.addNotesVM.text.isEmpty
+                            
+                            modifyTags(q: newValue)
                         })
+                        
                     //                    .overlay(
                     //                             RoundedRectangle(cornerRadius: 8)
                     //                               .stroke(Color.gray, lineWidth: 1)
@@ -86,6 +90,14 @@ struct NoteInputView: View {
             
             Divider().padding(10)
         }
+    }
+    
+    func modifyTags(q: String){
+        var text = q
+//        text = q.replacingOccurrences(of: "(?<=\\S)\\s(?=\\S)(?![#])", with: " #", options: .regularExpression)
+        text = q.replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression).replacingOccurrences(of: "(\\s|^)(?=\\S)(?![#])", with: " #", options: .regularExpression).replacingOccurrences(of: "^\\s+", with: "", options: .regularExpression)
+        
+        self.addNotesVM.tags = text
     }
 }
 

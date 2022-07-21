@@ -19,12 +19,17 @@ struct HighlightDetailView: View {
     @State var translation: String = ""
     @State var isShowOnWatch: Bool = false
     
+    @State var goToHome: Bool = false
+    
     @StateObject var addNotesVM = AddNoteViewModel()
     @StateObject var notesListVM = NotesListViewModel()
     @StateObject var addTranslationVM = AddTranslationViewModel()
+    @StateObject var similarHighlightVM = SimilarHighlightsViewModel()
     
     var body: some View {
         VStack {
+            
+            
             HStack{
                 Picker("", selection: $selected, content: {
                     Text("Translation").tag(0)
@@ -37,7 +42,10 @@ struct HighlightDetailView: View {
                 if(isAddingNote) {
                     Button(action: {
                         let res = addNotesVM.addNoteToHighlight(highlightVM: highlightVM)
-                        self.isAddingNote = false
+                        if (res != nil) {
+                            self.isAddingNote = false
+                        }
+                        
                     }, label: {
                         Image(systemName: "checkmark")
                     })
@@ -89,14 +97,22 @@ struct HighlightDetailView: View {
                         VStack{
                             ForEach(notesListVM.notes, id: \.noteId) { note in
                                 VStack(alignment: .leading){
-                                    Text(note.text)
+                                    Text(.init("\(note.text)\(getTags(tags: note.tags))"))
+                                        .fixedSize(horizontal: false, vertical: true)
+                                        .environment(\.openURL, OpenURLAction { url in
+                                            self.goToHome = true
+                                            return .handled
+                                        })
                                         .padding(.horizontal, 10)
-                                    Text(note.modifiedDate.formattedDate)
+                                        .padding(.bottom, 3)
+                                    Text("Last modified \(note.modifiedDate.formattedDate)")
                                         .font(.system(size: 10))
-                                        .frame(maxWidth: .infinity, alignment: .center)
+                                        .italic()
+                                        .frame(maxWidth: .infinity, alignment: .trailing)
+                                        .foregroundColor(.gray)
+                                        .padding(.horizontal, 10)
                                     Divider().padding(10)
                                 }
-                                
                             }.onDelete(perform: { i in
                                 
                             })
@@ -110,7 +126,12 @@ struct HighlightDetailView: View {
                     }
                 case 2:
                     VStack{
+                        ForEach(similarHighlightVM.similarHighlights, id: \.highlightId) { highlight in
+                            SimilarItemView(highlight: highlight)
+                        }
                         Divider().padding(.vertical, 10)
+                    }.onAppear{
+                        similarHighlightVM.getSimilarHighlights(text: highlightVM.text, currentHighlight: highlightVM)
                     }
                 default:
                     VStack{}
@@ -134,6 +155,9 @@ struct HighlightDetailView: View {
                 }
                 .padding(.horizontal, 5)
                 
+                //            if goToHome {
+                NavigationLink(destination: DashboardView(), isActive: $goToHome, label: {}).hidden()
+                //            }
             }
             .animation(.linear, value: selected)
         }.padding(.bottom, 10)
@@ -155,6 +179,16 @@ struct HighlightDetailView: View {
             })
         }
         
+    }
+    
+    func getTags(tags: [TagViewModel]) -> String {
+        var text = ""
+        if tags.count > 0 {
+            for tag in tags {
+                text += " [\(tag.title)](https://)"
+            }
+        }
+        return text
     }
     
     

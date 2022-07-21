@@ -14,7 +14,7 @@ struct ContentView: View {
         /// These could be anywhere before the list has loaded.
         UITableView.appearance().backgroundColor = .clear // tableview background
         UITableViewCell.appearance().backgroundColor = .clear // cell background
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(.secondaryColor)]
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(.white)]
         
         UINavigationBar.appearance().barTintColor    = UIColor.white
 //
