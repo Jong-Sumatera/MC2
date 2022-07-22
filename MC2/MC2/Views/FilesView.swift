@@ -21,24 +21,43 @@ struct FilesView: View {
                     .padding(.horizontal, 20)
             }
             
-            List {
-                ForEach(vm.files, id: \.id) { file in
-                    
-                    NavigationLink(destination: DocumentView(file: file), label: {
-                        Text(file.fileTitle)
-                    })
-                }
-                .onDelete(perform: { i in
-                    i.forEach{index in
-                        vm.files[index].file.delete()
+            if(vm.files.count == 0) {
+                VStack{
+                    Spacer()
+                    HStack{
+                        Spacer()
+                        Text("Tap to button + to add document")
+                            .foregroundColor(.gray)
+                            .opacity(0.5)
+                            .font(.system(size: 24))
+                        Spacer()
                     }
-                })
-                .listRowBackground(Color.secondaryColor.opacity(0.1))
+                    Spacer()
+                }
                 
-            }.onAppear{
-                vm.getFiles()
+                
+            } else {
+                List {
+                    ForEach(vm.files, id: \.id) { file in
+                        
+                        NavigationLink(destination: DocumentView(file: file), label: {
+                            Text(file.fileTitle)
+                        })
+                    }
+                    .onDelete(perform: { i in
+                        i.forEach{index in
+                            vm.files[index].file.delete()
+                        }
+                    })
+                    .listRowBackground(Color.secondaryColor.opacity(0.1))
+                    
+                }
             }
             
+            
+            
+        }.onAppear{
+            vm.getFiles()
         }
         
     }

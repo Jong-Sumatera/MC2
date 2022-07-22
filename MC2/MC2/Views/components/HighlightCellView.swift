@@ -45,8 +45,9 @@ struct HighlightCellView: View {
             })
             
             if isShowDetail {
-                HighlightDetailView(highlightVM: highlightVM, color: Color(highlightVM.color),
-                                    isShowOnWatch: highlightVM.isShowOnWatch)
+                HighlightDetailView(highlightVM: highlightVM, color: Color(highlightVM.color)
+//                                    ,isShowOnWatch: highlightVM.isShowOnWatch
+                )
             }
             
         }

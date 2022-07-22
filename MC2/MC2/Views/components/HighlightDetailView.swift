@@ -17,7 +17,7 @@ struct HighlightDetailView: View {
     
     @State var text: String = ""
     @State var translation: String = ""
-    @State var isShowOnWatch: Bool = false
+//    @State var isShowOnWatch: Bool = false
     
     @State var goToHome: Bool = false
     
@@ -147,14 +147,14 @@ struct HighlightDetailView: View {
                             highlightVM.updateColor(color: newValue)
                         })
                     Spacer()
-                    HStack{
-                        Toggle("Show on watch", isOn: $isShowOnWatch)
-                            .frame(width: 180)
-                    }.onAppear{
-                        self.isShowOnWatch = highlightVM.isShowOnWatch
-                    }.onChange(of: isShowOnWatch, perform: { _ in
-                        highlightVM.toggleIsShowOnWatch()
-                    })
+//                    HStack{
+//                        Toggle("Show on watch", isOn: $isShowOnWatch)
+//                            .frame(width: 180)
+//                    }.onAppear{
+//                        self.isShowOnWatch = highlightVM.isShowOnWatch
+//                    }.onChange(of: isShowOnWatch, perform: { _ in
+//                        highlightVM.toggleIsShowOnWatch()
+//                    })
                 }
                 .padding(.horizontal, 5)
                 

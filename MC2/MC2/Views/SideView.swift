@@ -78,13 +78,13 @@ struct SideView: View {
             }
             .navigationTitle("LearnUp")
             .navigationBarItems(trailing: HStack {
-                
-                Button(action: {
-                    print("Reload button pressed...")
-                }) {
-                    Image(systemName: "gear")
-                        .foregroundColor(.white)
-                }
+//                
+//                Button(action: {
+//                    print("Reload button pressed...")
+//                }) {
+//                    Image(systemName: "gear")
+//                        .foregroundColor(.white)
+//                }
                 
                 Button(action: {
                     self.showPopover = true

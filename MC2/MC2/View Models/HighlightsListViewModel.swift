@@ -19,7 +19,6 @@ class HighlightsListViewModel: NSObject, ObservableObject {
     var delegate: HighlightsListViewModelDelegate?
 
     func getHighLightsfromFile(fileVM: FileViewModel) {
-        print("fileId", fileVM.id)
         let fetchRequest : NSFetchRequest<Highlight> = Highlight.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdDate", ascending: false)]
         fetchRequest.predicate = NSPredicate(format: "file == %@", fileVM.id)

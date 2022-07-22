@@ -45,18 +45,28 @@ struct AddFileView: View {
             if addFileVM.fileUrl != nil {
                 HStack {
                     Text(addFileVM.fileName)
-                    Button("x") {
+                    Spacer()
+                    Button(action: {
                         addFileVM.fileUrl = nil
-                    }
+                    }, label: {
+                        Image(systemName: "xmark.circle.fill")
+                    })
                 }
+                .foregroundColor(.primaryColor)
+                .padding(.bottom, 20)
+                .padding(.horizontal, 15)
             } else {
                 Button(action: {
                     isShowing.toggle()
                 }) {
                     HStack{
-                        Image(systemName: "plus")
+                        Image(systemName: "square.and.arrow.down")
                         Text("Import PDF")
+                        Spacer()
                     }
+                    .foregroundColor(.primaryColor)
+                    .padding(.bottom, 20)
+                    .padding(.horizontal, 15)
                 }
                 .fileImporter(isPresented: $isShowing, allowedContentTypes: [.pdf], allowsMultipleSelection: false, onCompletion: { results in
                     do{
@@ -70,7 +80,8 @@ struct AddFileView: View {
                 })
             }
         }
-        .frame(width: 300, height: 150, alignment: .topTrailing)
+        .frame(minWidth: 300, maxWidth: 300)
+        
     }
 }
 

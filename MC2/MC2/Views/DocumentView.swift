@@ -30,7 +30,7 @@ struct DocumentVCRepresentable: UIViewControllerRepresentable {
         controller.setSelectedId = setSelectedId
         
         context.coordinator.parentObserver = controller.observe(\.parent, changeHandler: { vc, _ in
-            print("parent")
+//            print("parent")
         })
         
         return controller

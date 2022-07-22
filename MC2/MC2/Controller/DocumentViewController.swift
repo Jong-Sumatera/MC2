@@ -41,7 +41,6 @@ class DocumentViewController: UIViewController {
             highlightListVM.delegate = self
             highlightListVM.getHighLightsfromFile(fileVM: file)
             self.highlights = highlightListVM.highlights
-            print("view did load", highlights.count)
             
             self.highlightsTranslations = Array(repeating: "", count: highlights.count)
         } catch {
@@ -52,7 +51,6 @@ class DocumentViewController: UIViewController {
         NotificationCenter.default.addObserver(forName: .PDFViewAnnotationHit, object: nil, queue: nil) { [self] (notification) in
             
             if let annotation = notification.userInfo?["PDFAnnotationHit"] as? PDFAnnotation {
-                print(annotation.fieldName)
                 highlightListVM.selectedHighlightId = annotation.fieldName
                 self.openSideBar!()
                 
@@ -163,7 +161,6 @@ class DocumentViewController: UIViewController {
     func highlightSelection(fieldName: String, bounds: CGRect, pdfPage: PDFPage, color: UIColor) {
         
         let highlight = PDFAnnotation(bounds: bounds, forType: .highlight, withProperties: nil)
-        print("color", color)
         highlight.color = color
         highlight.fieldName = fieldName
         pdfPage.addAnnotation(highlight)
