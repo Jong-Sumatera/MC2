@@ -50,10 +50,10 @@ class DashboardHighlightListViewModel: NSObject, ObservableObject {
 extension DashboardHighlightListViewModel: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         
-        try? controller.performFetch()
-        DispatchQueue.main.async { [self] in
-            self.highlights = (self.fetchController.fetchedObjects ?? []).map(HighlightViewModel.init)
-        }
+//        try? controller.performFetch()
+//        DispatchQueue.main.async { [self] in
+//            self.highlights = (self.fetchController.fetchedObjects ?? []).map(HighlightViewModel.init)
+//        }
         
     }
 }

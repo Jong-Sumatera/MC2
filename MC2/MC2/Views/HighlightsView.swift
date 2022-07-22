@@ -129,9 +129,16 @@ struct HighlightsView: View {
                     }.onDelete(perform: { i in
                         i.forEach{index in
                             vm.highlights[index].highlight.delete()
+                            vm.highlights.remove(at: index)
                         }
                     })
-                }
+                    
+                }.refreshable(action: {
+                    if tag != nil {
+                        vm.tag = tag
+                    }
+                    vm.getHighLights()
+                })
             }
         }
         .onAppear{
