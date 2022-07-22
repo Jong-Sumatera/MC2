@@ -33,6 +33,7 @@ class DocumentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.sideView.applyShadow(cornerRadius: 0)
+        
         self.setupPdfView()
         
         

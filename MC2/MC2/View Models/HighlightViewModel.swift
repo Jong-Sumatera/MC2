@@ -76,6 +76,15 @@ struct HighlightViewModel: Hashable {
         } else {
             return []
         }
+//        return (highlight.notes?.allObjects as! [Note]).map(NoteViewModel.init)
+    }
+    
+    var file: FileViewModel? {
+        if highlight.file != nil {
+            return FileViewModel(file: highlight.file!)
+        }else{
+            return nil
+        }
     }
  
 }

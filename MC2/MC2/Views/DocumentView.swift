@@ -81,7 +81,7 @@ struct DocumentView: View {
             }
             
             
-                
+            
         }.toolbar {
             ToolbarItem(placement:ToolbarItemPlacement.navigationBarTrailing){
                 Button(action: {
@@ -94,10 +94,8 @@ struct DocumentView: View {
                 })
                 
             }
-        }.edgesIgnoringSafeArea(.bottom)
-            .onAppear{
-                
-            }
+        }
+        .edgesIgnoringSafeArea(.bottom)
     }
 }
 

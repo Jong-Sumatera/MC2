@@ -13,6 +13,7 @@ struct ContentView: View {
     init() {
         /// These could be anywhere before the list has loaded.
         UITableView.appearance().backgroundColor = .clear // tableview background
+        
         UITableViewCell.appearance().backgroundColor = .clear // cell background
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(.white)]
         
@@ -21,10 +22,12 @@ struct ContentView: View {
     }
     
     var body: some View {
-        SideView(selection: 0)
+        SideView()
             .onAppear{
                 UserDefaults.standard.set(false, forKey: "onboarding")
             }
+            .background(.green)
+            .environmentObject(ActiveScreenViewModel())
     }
 }
 

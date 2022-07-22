@@ -10,6 +10,8 @@ import SwiftUI
 struct SimilarItemView: View {
     var highlight: HighlightViewModel
     @State var goToHome: Bool = false
+    
+    @EnvironmentObject var activeScreen: ActiveScreenViewModel
     var body: some View {
         VStack{
             HStack{
@@ -37,11 +39,12 @@ struct SimilarItemView: View {
                     VStack{
                         ForEach(highlight.notes, id: \.noteId) { note in
                             VStack(alignment: .leading){
-                                Text(.init("\(note.text)\(getTags(tags: note.tags))"))
+                                Text(.init("\(note.text)\(Helper.tagsToString(tags: note.tags))"))
                                     .environment(\.openURL, OpenURLAction { url in
-                                        self.goToHome = true
+                                        activeScreen.screen = "#\(url.fragment!)"
                                         return .handled
                                     })
+                                    .textSelection(.enabled)
                                 Text("Last modified \(note.modifiedDate.formattedDate)")
                                     .font(.system(size: 10))
                                     .italic()
@@ -62,15 +65,7 @@ struct SimilarItemView: View {
         .padding(.top, 10)
     }
 
-    func getTags(tags: [TagViewModel]) -> String {
-        var text = ""
-        if tags.count > 0 {
-            for tag in tags {
-                text += " [\(tag.title)](https://)"
-            }
-        }
-        return text
-    }
+    
 }
 
 struct SimilarItemView_Previews: PreviewProvider {

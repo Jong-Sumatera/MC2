@@ -11,9 +11,8 @@ import CoreData
 extension Highlight: BaseModel {
     static func getByText(text: String) -> [Highlight] {
         let request : NSFetchRequest<Highlight> = Highlight.fetchRequest()
-        
+        request.sortDescriptors = [NSSortDescriptor(key: "fileName", ascending: true), NSSortDescriptor(key: "createdDate", ascending: false)]
         request.predicate = NSPredicate(format: "text CONTAINS[cd] %@", text)
-        request.fetchLimit = 5
         
         do {
             return try Highlight.context.fetch(request)

@@ -26,6 +26,8 @@ struct HighlightDetailView: View {
     @StateObject var addTranslationVM = AddTranslationViewModel()
     @StateObject var similarHighlightVM = SimilarHighlightsViewModel()
     
+    @EnvironmentObject var activeScreen: ActiveScreenViewModel
+    
     var body: some View {
         VStack {
             
@@ -97,14 +99,15 @@ struct HighlightDetailView: View {
                         VStack{
                             ForEach(notesListVM.notes, id: \.noteId) { note in
                                 VStack(alignment: .leading){
-                                    Text(.init("\(note.text)\(getTags(tags: note.tags))"))
+                                    Text(.init("\(note.text)\(Helper.tagsToString(tags: note.tags))"))
                                         .fixedSize(horizontal: false, vertical: true)
                                         .environment(\.openURL, OpenURLAction { url in
-                                            self.goToHome = true
+                                            activeScreen.screen = "#\(url.fragment!)"
                                             return .handled
                                         })
                                         .padding(.horizontal, 10)
                                         .padding(.bottom, 3)
+                                        .textSelection(.enabled)
                                     Text("Last modified \(note.modifiedDate.formattedDate)")
                                         .font(.system(size: 10))
                                         .italic()
@@ -180,17 +183,6 @@ struct HighlightDetailView: View {
         }
         
     }
-    
-    func getTags(tags: [TagViewModel]) -> String {
-        var text = ""
-        if tags.count > 0 {
-            for tag in tags {
-                text += " [\(tag.title)](https://)"
-            }
-        }
-        return text
-    }
-    
     
 }
 

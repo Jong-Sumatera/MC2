@@ -54,7 +54,7 @@
         <relationship name="highlights" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Highlight" inverseName="translation" inverseEntity="Highlight"/>
     </entity>
     <elements>
-        <element name="File" positionX="-52520.9921875" positionY="-645.27734375" width="128" height="148"/>
+        <element name="File" positionX="-52520.9921875" positionY="-645.27734375" width="128" height="134"/>
         <element name="Highlight" positionX="-52245.0390625" positionY="-668.8515625" width="128" height="208"/>
         <element name="Note" positionX="-52286.3359375" positionY="-323.703125" width="128" height="119"/>
         <element name="SelectionLine" positionX="-52043.515625" positionY="-687.65625" width="128" height="149"/>

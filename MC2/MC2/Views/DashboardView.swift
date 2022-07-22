@@ -10,67 +10,65 @@ import SwiftUI
 struct DashboardView: View {
     @State private var selectedIndex = 0
     @State private var searchText = ""
-    @EnvironmentObject var oo: SearchObservableObject
     
     @StateObject var fileListVM = FilesListViewModel()
-
+    @StateObject var highlightListVM = DashboardHighlightListViewModel()
+    
     @FetchRequest(sortDescriptors: [SortDescriptor(\.createdDate, order: .reverse)]) var tags: FetchedResults<Tag>
+
+    @State var tag: TagViewModel?
     
     var body: some View {
         VStack{
+            
             if (selectedIndex == 0) {
                 FilesView(vm: fileListVM)
             } else if (selectedIndex == 1) {
-                TagsView()
+                HighlightsView(vm: highlightListVM, tag: tag)
             }
             
-        } .navigationBarTitle("Home", displayMode: .inline)
-            .toolbar {
+        }
+        .onAppear{
+            if tag != nil {
+                selectedIndex = 1
+            }
+        }
+        .navigationBarTitle(tag != nil ? tag?.title ?? "" : "Home", displayMode: .inline)
+        .toolbar {
                 ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading){
                     Picker(selection: $selectedIndex, label: EmptyView()) {
-                        Text("Files")
-                            .tag(0)
-                        Text("Tags")
+                            Text("Files")
+                                .tag(0)
+                        Text("Highlights")
                             .tag(1)
                     }
                     .pickerStyle(SegmentedPickerStyle())
                 }
-                ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing){
-                    List {}
-                    .searchable(text: selectedIndex == 0 ? $fileListVM.search : $searchText){
+            
+           
+            ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing){
+                List {}
+                    .searchable(text: selectedIndex == 0 ? $fileListVM.search : $highlightListVM.search){
                     }
-                    .onChange(of: selectedIndex == 0 ? fileListVM.search : searchText) { _ in
+                    .onChange(of: selectedIndex == 0 ? fileListVM.search : highlightListVM.search) { _ in
                         if (selectedIndex == 0) {
                             fileListVM.getFiles()
                         } else {
-//                            // BUAT VARIABEL SEMENTARA UNTUK MENAMPUNG HASIL PENCARIAN
-//                            var tempFilteredTags: [Tag] = []
-//
-//                            // UNTUK SETIAP DATA DI "FILES" < core data
-//                            for tag in tags {
-//                                // JIKA FILE YANG ADA DI FILES = SEARCH TEXT,
-//                                // MAKA MASUKIN HASIL PENCARIAN KE VARIABEL DI ATAS
-//                                if (tag.title!.localizedCaseInsensitiveContains(searchText)) {
-//                                    tempFilteredTags.append(tag)
-//                                }
-//                            }
-//
-//                            // MASUKIN VARIABEL TADI KE SEARCH RESULTS (OBSERVABLE OBJECT)
-//                            oo.searchTagsResults = tempFilteredTags
+                            highlightListVM.getHighLights()
                         }
                     }
-                }
             }
-    }
-}
-
-struct DashboardView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            DashboardView()
-                .previewInterfaceOrientation(.landscapeLeft)
-            DashboardView()
-                .previewInterfaceOrientation(.landscapeLeft)
         }
     }
 }
+
+//struct DashboardView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            DashboardView()
+//                .previewInterfaceOrientation(.landscapeLeft)
+//            DashboardView()
+//                .previewInterfaceOrientation(.landscapeLeft)
+//        }
+//    }
+//}
