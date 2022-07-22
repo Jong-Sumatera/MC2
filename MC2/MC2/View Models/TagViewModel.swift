@@ -38,4 +38,6 @@ struct TagViewModel {
     var createdDate: Date {
         return tag.createdDate ?? Date()
     }
+    
+    var isSelected: Bool = false
 }

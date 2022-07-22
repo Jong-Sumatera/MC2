@@ -12,6 +12,8 @@ struct SideView: View {
     @State var file: FileViewModel?
     
     @StateObject var addFileVM = AddFileViewModel()
+    @StateObject var tagListVM = TagListViewModel()
+    @StateObject var selectedTagVM = SelectedTagsViewModel()
     @Environment(\.presentationMode) var presentationMode
     
     @FetchRequest(sortDescriptors: []) var files: FetchedResults<File>
@@ -36,6 +38,37 @@ struct SideView: View {
                     }.hidden()
                 }
                 
+                Section(header: Text("Recent Files").foregroundColor(.white)) {
+                    ForEach($tagListVM.tags, id: \.tagId) { (tag : Binding<TagViewModel>) in
+                        Toggle(isOn: tag.isSelected, label: {
+                                Label("\(tag.tag.title.wrappedValue ?? "")", systemImage: "tag")
+                                    .foregroundColor(tag.isSelected.wrappedValue ? Color.primaryColor : .white)
+                            
+                            
+                        }).toggleStyle(ButtonToggleStyle())
+                            .tint(.white)
+                            
+                        
+                    }
+                }
+                
+                Section(header: Text("Tags").foregroundColor(.white)) {
+                    ForEach($tagListVM.tags, id: \.tagId) { (tag : Binding<TagViewModel>) in
+                        Toggle(isOn: tag.isSelected, label: {
+                                Label("\(tag.tag.title.wrappedValue ?? "")", systemImage: "tag")
+                                    .foregroundColor(tag.isSelected.wrappedValue ? Color.primaryColor : .white)
+                            
+                            
+                        }).toggleStyle(ButtonToggleStyle())
+                            .tint(.white)
+                            
+                        
+                    }
+                }
+                
+            }
+            .onAppear{
+                tagListVM.getTags()
             }
             .navigationTitle("LearnUp")
             .navigationBarItems(trailing: HStack {

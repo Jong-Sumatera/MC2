@@ -11,7 +11,7 @@ import CoreData
 extension Note: BaseModel {
     static func getNotesByHighlight(highlight: Highlight) -> [Note] {
         let request : NSFetchRequest<Note> = Note.fetchRequest()
-
+        request.sortDescriptors = [NSSortDescriptor(key: "modifiedDate", ascending: false)]
         request.predicate = NSPredicate(format: "highlight.id CONTAINS[cd] %@", highlight.id! as CVarArg)
         request.fetchLimit = 3
 
