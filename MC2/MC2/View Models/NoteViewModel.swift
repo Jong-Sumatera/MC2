@@ -32,6 +32,11 @@ struct NoteViewModel {
     }
     
     var tags: [TagViewModel] {
-        return (note.tags?.allObjects as! [Tag]).map(TagViewModel.init)
+        if noteId != nil {
+            let res: [Tag] = Tag.byNote(note: note)
+            return res.map(TagViewModel.init)
+        } else {
+            return []
+        }
     }
 }
