@@ -49,7 +49,6 @@
 		0AD62B5E2885D0C700D70A35 /* NotesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD62B5D2885D0C700D70A35 /* NotesListViewModel.swift */; };
 		0AD62B602885D11700D70A35 /* Note+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD62B5F2885D11700D70A35 /* Note+Extensions.swift */; };
 		0AD62B6228864E9700D70A35 /* DateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD62B6128864E9700D70A35 /* DateExt.swift */; };
-		0AD62B662886F94900D70A35 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD62B652886F94900D70A35 /* CloudKit.framework */; };
 		0AEAEF39288978FD00B23E6A /* TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEAEF38288978FD00B23E6A /* TagViewModel.swift */; };
 		0AEAEF3B2889799500B23E6A /* Tag+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEAEF3A2889799500B23E6A /* Tag+Extension.swift */; };
 		0AEAEF3D28899A1D00B23E6A /* SimilarHighlightsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEAEF3C28899A1D00B23E6A /* SimilarHighlightsViewModel.swift */; };
@@ -164,7 +163,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AD62B662886F94900D70A35 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,10 +615,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MC2/Preview Content\"";
-				DEVELOPMENT_TEAM = PSKBVM3X2F;
+				DEVELOPMENT_TEAM = F96XCQ75VU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MC2/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "LearnUp-Indonesia";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -631,12 +630,12 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Clara.MC2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.clara.mc2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -650,10 +649,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MC2/Preview Content\"";
-				DEVELOPMENT_TEAM = PSKBVM3X2F;
+				DEVELOPMENT_TEAM = F96XCQ75VU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MC2/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "LearnUp-Indonesia";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -664,12 +664,12 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Clara.MC2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.clara.mc2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};

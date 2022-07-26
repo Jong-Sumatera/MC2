@@ -77,8 +77,9 @@ class DocumentViewController: UIViewController {
         
         pdfView = PDFView(frame: self.contentPdfView.bounds)
         self.contentPdfView.addSubview(pdfView)
+        print("fileUrl",file.fileUrl)
         pdfView!.document = PDFDocument(url: file.fileUrl!)
-        
+        print("halo")
         file.fileUrl!.stopAccessingSecurityScopedResource()
         
         pdfView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
