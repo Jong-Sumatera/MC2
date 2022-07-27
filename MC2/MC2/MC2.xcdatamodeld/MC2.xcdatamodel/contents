@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E230" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="File" representedClassName="File" syncable="YES" codeGenerationType="class">
+        <attribute name="bookmarkData" optional="YES" attributeType="Binary"/>
         <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="fileExt" optional="YES" attributeType="String"/>
         <attribute name="fileTitle" optional="YES" attributeType="String"/>
@@ -54,7 +55,7 @@
         <relationship name="highlights" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Highlight" inverseName="translation" inverseEntity="Highlight"/>
     </entity>
     <elements>
-        <element name="File" positionX="-52520.9921875" positionY="-645.27734375" width="128" height="134"/>
+        <element name="File" positionX="-52520.9921875" positionY="-645.27734375" width="128" height="149"/>
         <element name="Highlight" positionX="-52245.0390625" positionY="-668.8515625" width="128" height="208"/>
         <element name="Note" positionX="-52286.3359375" positionY="-323.703125" width="128" height="119"/>
         <element name="SelectionLine" positionX="-52043.515625" positionY="-687.65625" width="128" height="149"/>

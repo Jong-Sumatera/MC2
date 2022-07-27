@@ -11,4 +11,7 @@ import SwiftUI
 extension Color {
     static let primaryColor = Color("primaryColor")
     static let secondaryColor = Color("secondaryColor")
+    static let textColor = Color("textColor")
+    static let textBoxColor = Color("textBoxColor")
+    static let sidebarColor = Color("sidebarColor")
 }

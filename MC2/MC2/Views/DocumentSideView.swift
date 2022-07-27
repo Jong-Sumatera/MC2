@@ -49,7 +49,7 @@ struct DocumentSideView: View {
         .padding(.top)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         .clipped()
-        .background(Color.white.shadow(color: .gray, radius: 0.5, x: -1, y: 0.5))
+        .background(Color.sidebarColor.shadow(color: .gray, radius: 0.5, x: -1, y: 0.5))
         
         
         

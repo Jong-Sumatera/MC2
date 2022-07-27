@@ -73,14 +73,20 @@ class DocumentViewController: UIViewController {
     func setupPdfView() {
         let menuItem = UIMenuItem(title: "Add Highlight", action: #selector(addHighlight))
         UIMenuController.shared.menuItems = [menuItem]
-        let _ = file?.fileUrl!.startAccessingSecurityScopedResource()
+        
+        var url: URL?
+        do{
+            var stale = false
+            url = try URL(resolvingBookmarkData: file.bookmarkData!, bookmarkDataIsStale: &stale)
+        } catch {
+            print(error)
+            return
+        }
         
         pdfView = PDFView(frame: self.contentPdfView.bounds)
         self.contentPdfView.addSubview(pdfView)
-        print("fileUrl",file.fileUrl)
-        pdfView!.document = PDFDocument(url: file.fileUrl!)
-        print("halo")
-        file.fileUrl!.stopAccessingSecurityScopedResource()
+
+        pdfView!.document = PDFDocument(url: url!)
         
         pdfView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }

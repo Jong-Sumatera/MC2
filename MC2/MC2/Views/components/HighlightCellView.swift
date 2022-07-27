@@ -53,7 +53,7 @@ struct HighlightCellView: View {
         }
         .padding(.all, 8)
         .background(RoundedRectangle(cornerRadius: 10)
-            .fill(Color.white))
+            .fill(Color.textBoxColor))
         .compositingGroup()
         .shadow(color: Color.gray, radius: 3, x: 2, y: 2)
         .onChange(of: selectedId, perform: { i in

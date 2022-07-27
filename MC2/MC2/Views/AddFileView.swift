@@ -71,9 +71,29 @@ struct AddFileView: View {
                 .fileImporter(isPresented: $isShowing, allowedContentTypes: [.pdf], allowsMultipleSelection: false, onCompletion: { results in
                     do{
                         let result = try results.get()
+                        let url = result[0]
+                        var bookmarkData: Data?
+                        
+                        let res = url.startAccessingSecurityScopedResource()
+                        if !res {
+                            return
+                        }
+                        var fileError: NSError?
+                        NSFileCoordinator().coordinate(readingItemAt: url, options: .withoutChanges, error: &fileError, byAccessor: {(newURL: URL) -> Void in
+                            do {
+                                bookmarkData = try newURL.bookmarkData()
+                                url .stopAccessingSecurityScopedResource()
+                            } catch let error {
+                                print("\(error)")
+                                return
+                            }
+                        })
+                        
+                        addFileVM.bookmarkData = bookmarkData
                         addFileVM.fileUrl = result[0]
                         isFileTitleFocus = true
                     } catch {
+                        
                         print(error)
                     }
                     

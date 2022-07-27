@@ -9,6 +9,7 @@ import Foundation
 
 class AddFileViewModel: ObservableObject {
     @Published var fileTitle: String = ""
+    var bookmarkData: Data?
     var fileUrl: URL? {
         didSet {
             if fileUrl != nil {
@@ -36,6 +37,7 @@ class AddFileViewModel: ObservableObject {
         newFile.fileUrl = fileUrl
         newFile.fileExt = fileUrl?.pathExtension
         newFile.fileTitle = fileTitle
+        newFile.bookmarkData = bookmarkData
         let res = newFile.save()
         
         if res {

@@ -50,6 +50,7 @@ struct HighlightsView: View {
                                             .resizable()
                                             .frame(width: 22, height: 22, alignment: .center)
                                             .aspectRatio(contentMode: .fit)
+                                            .foregroundColor(.black)
                                         
                                     }
                                     .frame(width: 34, height: 34, alignment: .center)
@@ -60,7 +61,10 @@ struct HighlightsView: View {
                                 .padding(.trailing, 10)
                                 
                                 VStack(alignment: .leading){
-                                    Text(.init("\(highlight.text)")).textSelection(.enabled)
+                                    Text(.init("\(highlight.text)"))
+                                        .textSelection(.enabled)
+                                        .foregroundColor(.textColor)
+                                    
                                     Text("\(highlight.fileName)")
                                         .font(.system(size: 10))
                                         .fontWeight(.semibold)
@@ -71,7 +75,7 @@ struct HighlightsView: View {
                                 
                             }
                             .padding(10)
-                            .background(RoundedRectangle(cornerRadius: 10).fill(Color.white).onTapGesture(perform: {
+                            .background(RoundedRectangle(cornerRadius: 10).fill(Color.textBoxColor).onTapGesture(perform: {
                                 if highlight.file != nil {
                                     self.selection = index
                                 } else {

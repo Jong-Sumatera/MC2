@@ -34,4 +34,8 @@ struct FileViewModel {
     var fileName: String {
         return file.fileUrl?.lastPathComponent ?? ""
     }
+    
+    var bookmarkData: Data? {
+        return file.bookmarkData
+    }
 }
