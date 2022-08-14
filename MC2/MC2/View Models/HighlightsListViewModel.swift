@@ -36,10 +36,10 @@ extension HighlightsListViewModel: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         
         try? controller.performFetch()
-        DispatchQueue.main.async { [self] in
+//        DispatchQueue.main.async { [self] in
             self.highlights = (self.fetchController.fetchedObjects ?? []).map(HighlightViewModel.init)
             self.delegate?.didChangeContent(highlights)
-        }
+//        }
         
     }
 }
