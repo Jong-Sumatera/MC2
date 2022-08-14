@@ -117,6 +117,7 @@
 		0A8B3F1D286CAA9E003DE765 /* DocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentView.swift; sourceTree = "<group>"; };
 		0A8B3F25286CB99E003DE765 /* Document.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Document.storyboard; sourceTree = "<group>"; };
 		0A8B3F27286CB9B0003DE765 /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
+		0AB849DA28A9293A009E9FB6 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		0AD62B51288595A300D70A35 /* UpdateHighlightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateHighlightViewModel.swift; sourceTree = "<group>"; };
 		0AD62B532885C6F100D70A35 /* ColorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExt.swift; sourceTree = "<group>"; };
 		0AD62B592885CFCE00D70A35 /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
@@ -305,6 +306,7 @@
 		65EC7FC1286C40BA007F47D4 = {
 			isa = PBXGroup;
 			children = (
+				0AB849DA28A9293A009E9FB6 /* Config.xcconfig */,
 				65EC7FCC286C40BA007F47D4 /* MC2 */,
 				65EC7FCB286C40BA007F47D4 /* Products */,
 				0AD62B642886F94900D70A35 /* Frameworks */,
@@ -493,6 +495,7 @@
 /* Begin XCBuildConfiguration section */
 		65EC7FDB286C40BB007F47D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0AB849DA28A9293A009E9FB6 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -553,6 +556,7 @@
 		};
 		65EC7FDC286C40BB007F47D4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0AB849DA28A9293A009E9FB6 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -615,7 +619,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MC2/Preview Content\"";
-				DEVELOPMENT_TEAM = F96XCQ75VU;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MC2/Info.plist;
@@ -630,7 +634,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.clara.mc2;
+				PRODUCT_BUNDLE_IDENTIFIER = Clara.MC2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -664,7 +668,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.clara.mc2;
+				PRODUCT_BUNDLE_IDENTIFIER = Clara.MC2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -52,7 +52,7 @@ struct AddFileView: View {
                         Image(systemName: "xmark.circle.fill")
                     })
                 }
-                .foregroundColor(.primaryColor)
+                .foregroundColor(.selectedTextBgColor)
                 .padding(.bottom, 20)
                 .padding(.horizontal, 15)
             } else {
@@ -64,7 +64,7 @@ struct AddFileView: View {
                         Text("Import PDF")
                         Spacer()
                     }
-                    .foregroundColor(.primaryColor)
+                    .foregroundColor(.selectedTextBgColor)
                     .padding(.bottom, 20)
                     .padding(.horizontal, 15)
                 }

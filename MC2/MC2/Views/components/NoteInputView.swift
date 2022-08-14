@@ -51,7 +51,7 @@ struct NoteInputView: View {
             
             HStack{
                 Image(systemName: "tag")
-                    .foregroundColor(.black)
+                    .foregroundColor(.textColor)
                     .padding(.leading, 10)
                 ZStack{
                     if tags.isEmpty && !isFocusedTags {
@@ -63,7 +63,7 @@ struct NoteInputView: View {
                         
                     }
                     TextEditor(text: $addNotesVM.tags)
-                        .foregroundColor(.primaryColor)
+                        .foregroundColor(.blue)
                         .frame(minHeight: 38, alignment: .leading)
                         .fixedSize(horizontal: false, vertical: true)
                         .padding(.horizontal, 5)

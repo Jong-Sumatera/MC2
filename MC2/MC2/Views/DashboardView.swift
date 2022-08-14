@@ -36,7 +36,7 @@ struct DashboardView: View {
         .navigationBarTitle(tag != nil ? tag?.title ?? "" : "Home", displayMode: .inline)
         .toolbar {
                 ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading){
-                    Picker(selection: $selectedIndex, label: EmptyView()) {
+                    Picker(selection: $selectedIndex, label: CustomEmptyView()) {
                             Text("Files")
                                 .tag(0)
                         Text("Highlights")

@@ -1,0 +1,11 @@
+//
+//  Config.xcconfig
+//  MC2
+//
+//  Created by Widya Limarto on 14/08/22.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+TRANSLATE_API_KEY = AIzaSyBDO-Fwf-vsPR-2Re3_N6n_GgltoUMRoG4

@@ -9,20 +9,19 @@ import Foundation
 
 class GTranslation {
     static var shared : GTranslation = GTranslation()
-    var pKey: String = "AIzaSyBDO-Fwf-vsPR-2Re3_N6n_GgltoUMRoG4"
-    
-
+    let apiKey: String? = Bundle.main.infoDictionary?["TRANSLATE_API_KEY"] as? String
+    let bundleIdentifier: String? = Bundle.main.bundleIdentifier as? String
     
     func translateText(q: String, targetLanguage: String, callback:@escaping (_ translatedText:String) -> ()) async {
-        print("translate")
-        guard pKey != "" else {
+        
+        guard let pKey = apiKey, let bi = bundleIdentifier else {
             return
         }
 
-        var request = URLRequest(url: URL(string: "https://translation.googleapis.com/language/translate/v2?key=\(self.pKey)")!)
+        var request = URLRequest(url: URL(string: "https://translation.googleapis.com/language/translate/v2?key=\(pKey)")!)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Clara.MC2", forHTTPHeaderField: "X-Ios-Bundle-Identifier")
+        request.addValue(bi, forHTTPHeaderField: "X-Ios-Bundle-Identifier")
 
             let jsonRequest = [
                 "q": q,

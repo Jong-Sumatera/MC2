@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct EmptyView: View {
+struct CustomEmptyView: View {
     var body: some View {
         Text("Tap + to start")
     }
 }
 
-struct EmptyView_Previews: PreviewProvider {
+struct CustomEmptyView_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyView()
+        CustomEmptyView()
     }
 }

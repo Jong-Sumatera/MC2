@@ -50,6 +50,7 @@ struct HighlightDetailView: View {
                         
                     }, label: {
                         Image(systemName: "checkmark")
+                            .foregroundColor(.blue)
                     })
                     .frame(width: 24, height: 22)
                     .aspectRatio(contentMode: .fit)
@@ -59,6 +60,7 @@ struct HighlightDetailView: View {
                         self.isShowNotesOptions = true
                     }, label: {
                         Image(systemName: "ellipsis")
+                            .foregroundColor(.lightGrayColor)
                     })
                     .frame(width: 24, height: 22)
                     .aspectRatio(contentMode: .fit)

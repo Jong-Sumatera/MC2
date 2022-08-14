@@ -16,14 +16,14 @@ struct OnboardingScreen: View {
                     .frame(width: 500, height: 100, alignment: .center)
                     .font(.system(size: 40))
                     .multilineTextAlignment(.center)
-                    .foregroundColor(Color("primaryColor"))
+                    .foregroundColor(.selectedTextBgColor)
                     .padding()
                 
                 HStack{
                     Image(systemName: "highlighter")
                         .font(.system(size: 55))
                       //  .frame(width: 100, height: 100)
-                        .foregroundColor(Color("primaryColor"))
+                        .foregroundColor(.selectedTextBgColor)
                         .padding()
                         .frame(width:105, alignment: .center)
                     
@@ -31,7 +31,7 @@ struct OnboardingScreen: View {
                         Text ("Highlight")
                             .font(.system(size: 25))
                             .bold()
-                            .foregroundColor(Color("primaryColor"))
+                            .foregroundColor(.selectedTextBgColor)
                             .frame(width: 500,  alignment: .leading)
                         
                         Text ("""
@@ -51,7 +51,7 @@ struct OnboardingScreen: View {
                     Image(systemName: "text.bubble")
                         .font(.system(size: 55))
                       //  .frame(width: 100, height: 100)
-                        .foregroundColor(Color("primaryColor"))
+                        .foregroundColor(.selectedTextBgColor)
                         .padding()
                         .frame(width:105, alignment: .center)
                     
@@ -59,7 +59,7 @@ struct OnboardingScreen: View {
                         Text ("Comment")
                             .font(.system(size: 25))
                             .bold()
-                            .foregroundColor(Color("primaryColor"))
+                            .foregroundColor(.selectedTextBgColor)
                             .frame(width: 500,  alignment: .leading)
                         
                         Text ("You can provide explanations or comments on the words, sentences, and paragraphs that you have marked so that you can understand them better")
@@ -74,7 +74,7 @@ struct OnboardingScreen: View {
                     Image(systemName: "tag")
                         .font(.system(size: 55))
                       //  .frame(width: 100, height: 100)
-                        .foregroundColor(Color("primaryColor"))
+                        .foregroundColor(.selectedTextBgColor)
                         .padding()
                         .frame(width:105, alignment: .center)
                     
@@ -82,7 +82,7 @@ struct OnboardingScreen: View {
                         Text ("Tags")
                             .font(.system(size: 25))
                             .bold()
-                            .foregroundColor(Color("primaryColor"))
+                            .foregroundColor(.selectedTextBgColor)
                             .frame(width: 500,  alignment: .leading)
                         
                         Text ("You can mark words, sentences and paragraphs that you highlight by putting a (#) sign at the beginning of the tag in the comments so that you can find them more easily.")
@@ -96,7 +96,7 @@ struct OnboardingScreen: View {
                     Image(systemName: "character.book.closed.fill")
                         .font(.system(size: 55))
                       //  .frame(width: 100, height: 100)
-                        .foregroundColor(Color("primaryColor"))
+                        .foregroundColor(.selectedTextBgColor)
                         .padding()
                         .frame(width:105, alignment: .center)
                     
@@ -104,7 +104,7 @@ struct OnboardingScreen: View {
                         Text ("Translate")
                             .font(.system(size: 25))
                             .bold()
-                            .foregroundColor(Color("primaryColor"))
+                            .foregroundColor(.selectedTextBgColor)
                             .frame(width: 500,  alignment: .leading)
                         
                         Text ("We provide a translate to Bahasa feature so you can find the meaning of the word in Bahasa")

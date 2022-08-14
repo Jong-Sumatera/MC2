@@ -33,12 +33,13 @@ struct HighlightCellView: View {
                     Text(highlightVM.text)
                         .lineLimit(1)
                         .multilineTextAlignment(.leading)
-                        .foregroundColor(.black)
+                        .foregroundColor(.textColor)
+                        .font(Font.body.bold())
                     Spacer()
                     Image(systemName: "chevron.down")
                         .frame(width: 24, height: 22)
                         .aspectRatio(contentMode: .fit)
-                        .foregroundColor(Color.blue)
+                        .foregroundColor(Color.lightBlueColor)
                         .scaleEffect(CGSize(width: 1.0, height: isShowDetail ? -1.0: 1.0))
                     
                 }
@@ -53,9 +54,9 @@ struct HighlightCellView: View {
         }
         .padding(.all, 8)
         .background(RoundedRectangle(cornerRadius: 10)
-            .fill(Color.textBoxColor))
+            .fill(Color.highlightBoxColor))
         .compositingGroup()
-        .shadow(color: Color.gray, radius: 3, x: 2, y: 2)
+        .shadow(color: Color.shadowColor, radius: 3, x: 2, y: 2)
         .onChange(of: selectedId, perform: { i in
             if(i == highlightVM.highlightId){
                 withAnimation{

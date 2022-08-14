@@ -26,10 +26,10 @@ struct SideView: View {
             List {
                 NavigationLink(destination:DashboardView(), tag: Screen.home.rawValue, selection: $selection.screen) {
                     Label("Home",systemImage: "house")
-                        .foregroundColor(selection.screen == Screen.home.rawValue ? Color.primaryColor : .white)
+                        .foregroundColor(selection.screen == Screen.home.rawValue ? Color.selectedTextColor : Color.textColor )
                     
                 }
-                .listRowBackground((selection.screen == Screen.home.rawValue ? Color.white : Color.clear).clipped()
+                .listRowBackground((selection.screen == Screen.home.rawValue ? Color.selectedTextBgColor : Color.clear).clipped()
                     .cornerRadius(10))
                 
                 
@@ -38,29 +38,29 @@ struct SideView: View {
 //                    }.hidden()
 //                }
                 
-                Section(header: Text("Recent Added").foregroundColor(.white)) {
+                Section(header: Text("Recent Added").foregroundColor(.textColor)) {
                     ForEach(recentFileVM.files, id: \.fileId) { f in
                         NavigationLink(destination: DocumentView(file: f), tag: f.fileUrl!.absoluteString, selection: $selection.screen) {
                             Label("\(f.fileTitle)", systemImage: "doc")
-                                .foregroundColor(selection.screen == f.fileUrl?.absoluteString ? Color.primaryColor : .white)
+                                .foregroundColor(selection.screen == f.fileUrl?.absoluteString ? Color.selectedTextColor : Color.textColor)
                                 .padding(0)
                         }
-                        .listRowBackground((selection.screen == f.fileUrl?.absoluteString ? Color.white : Color.clear).clipped()
+                        .listRowBackground((selection.screen == f.fileUrl?.absoluteString ? Color.selectedTextBgColor : Color.clear).clipped()
                             .cornerRadius(10))
                     }
                 }
                 
-                Section(header: Text("Tags").foregroundColor(.white)) {
+                Section(header: Text("Tags").foregroundColor(.textColor)) {
                     ForEach($tagListVM.tags, id: \.tagId) { (tag : Binding<TagViewModel>) in
                         //                        Toggle(isOn: tag.isSelected, label: {
                         let tagTitle = tag.tag.title.wrappedValue ?? ""
                         NavigationLink(destination:DashboardView(tag: TagViewModel(tag.tag.wrappedValue)), tag: tagTitle, selection: $selection.screen) {
                             Label("\(tagTitle)", systemImage: "tag")
                             //                                    .foregroundColor(tag.isSelected.wrappedValue ? Color.primaryColor : .white)
-                                .foregroundColor(selection.screen == tagTitle ? Color.primaryColor : .white)
+                                .foregroundColor(selection.screen == tagTitle ? Color.selectedTextColor : Color.textColor )
                                 .padding(0)
                         }
-                        .listRowBackground((selection.screen == tagTitle ? Color.white : Color.clear).clipped()
+                        .listRowBackground((selection.screen == tagTitle ? Color.selectedTextBgColor : Color.clear).clipped()
                             .cornerRadius(10))
                         
                         //                        })
@@ -90,7 +90,7 @@ struct SideView: View {
                     self.showPopover = true
                 }) {
                     Image(systemName: "plus")
-                        .foregroundColor(.white)
+                        .foregroundColor(.textColor)
                 }
                 .popover(isPresented: self.$showPopover,
                          attachmentAnchor: .point(.topLeading), arrowEdge: .trailing) {
@@ -101,7 +101,7 @@ struct SideView: View {
                     })
                 }
             })
-            .background(Color.primaryColor)
+            .background(Color.sidebarColor)
             
             DashboardView()
         }.navigationBarHidden(true)

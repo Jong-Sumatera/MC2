@@ -39,17 +39,20 @@ struct FilesView: View {
             } else {
                 List {
                     ForEach(vm.files, id: \.id) { file in
-                        
-                        NavigationLink(destination: DocumentView(file: file), label: {
+                        HStack {
                             Text(file.fileTitle)
-                        })
+                                .foregroundColor(.black)
+                            NavigationLink(destination: DocumentView(file: file)) { EmptyView()}.opacity(0)
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(Color.lightGrayColor)
+                        }
                     }
                     .onDelete(perform: { i in
                         i.forEach{index in
                             vm.files[index].file.delete()
                         }
                     })
-                    .listRowBackground(Color.secondaryColor.opacity(0.1))
+                    .listRowBackground(Color.fileListColor)
                     
                 }
             }

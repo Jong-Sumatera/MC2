@@ -15,9 +15,8 @@ struct ContentView: View {
         UITableView.appearance().backgroundColor = .clear // tableview background
         
         UITableViewCell.appearance().backgroundColor = .clear // cell background
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(.white)]
-        
-        UINavigationBar.appearance().barTintColor    = UIColor.white
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(.textColor)]
+//        UINavigationBar.appearance().barTintColor    = UIColor(.textColor)
 //
     }
     

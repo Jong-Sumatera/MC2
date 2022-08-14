@@ -14,4 +14,12 @@ extension Color {
     static let textColor = Color("textColor")
     static let textBoxColor = Color("textBoxColor")
     static let sidebarColor = Color("sidebarColor")
+    static let sidebarHighlightColor = Color("sidebarHighlightColor")
+    static let highlightBoxColor = Color("highlightBoxColor")
+    static let shadowColor = Color("shadowColor")
+    static let lightBlueColor = Color("lightBlueColor")
+    static let lightGrayColor = Color("lightGrayColor")
+    static let selectedTextColor = Color("selectedTextColor")
+    static let selectedTextBgColor = Color("selectedTextBgColor")
+    static let fileListColor = Color("fileListColor")
 }

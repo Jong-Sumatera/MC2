@@ -64,6 +64,7 @@ struct HighlightsView: View {
                                     Text(.init("\(highlight.text)"))
                                         .textSelection(.enabled)
                                         .foregroundColor(.textColor)
+                                        .font(Font.body.bold())
                                     
                                     Text("\(highlight.fileName)")
                                         .font(.system(size: 10))
@@ -85,7 +86,7 @@ struct HighlightsView: View {
                                 Alert(title: Text("404"), message: Text("File has been deleted"), dismissButton: .default(Text("Understand")))
                             }))
                             .compositingGroup()
-                            .shadow(color: Color.gray, radius: 3, x: 2, y: 2)
+                            .shadow(color: Color.shadowColor, radius: 3, x: 2, y: 2)
                             .onTapGesture{
                                 if highlight.file != nil {
                                     self.selection = index
@@ -136,6 +137,7 @@ struct HighlightsView: View {
                             vm.highlights.remove(at: index)
                         }
                     })
+                    .listRowBackground(Color.clear)
                     
                 }.refreshable(action: {
                     if tag != nil {
@@ -143,6 +145,7 @@ struct HighlightsView: View {
                     }
                     vm.getHighLights()
                 })
+                
             }
         }
         .onAppear{
