@@ -20,6 +20,9 @@ struct HighlightDetailView: View {
 //    @State var isShowOnWatch: Bool = false
     
     @State var goToHome: Bool = false
+    @State var isEditMode: Bool = false
+    @State var editNotes: [NoteViewModel] = []
+    @State var isSave: Bool = false
     
     @StateObject var addNotesVM = AddNoteViewModel()
     @StateObject var notesListVM = NotesListViewModel()
@@ -41,7 +44,7 @@ struct HighlightDetailView: View {
                 .pickerStyle(SegmentedPickerStyle())
                 .frame(maxWidth: 350)
                 Spacer()
-                if(isAddingNote) {
+                    if(isAddingNote) {
                     Button(action: {
                         let res = addNotesVM.addNoteToHighlight(highlightVM: highlightVM)
                         if (res != nil) {
@@ -68,9 +71,16 @@ struct HighlightDetailView: View {
                     .actionSheet(isPresented: $isShowNotesOptions) {
                         ActionSheet(
                             title: Text(""),
-                            buttons: [.default(Text("Delete")) {
+                            buttons: [
+                                .default(Text("Edit Notes")) {
+                                    selected = 1
+                                    isEditMode = true
+                                    editNotes = notesListVM.notes
+                                },
+                                .default(Text("Delete")) {
                                 highlightVM.highlight.delete()
-                            }]
+                            }
+                            ]
                         )
                     }
                 }
@@ -97,37 +107,84 @@ struct HighlightDetailView: View {
                     
                 case 1:
                     VStack{
-                        NoteInputView(addNotesVM: addNotesVM, isAddingNote: $isAddingNote)
-                        VStack{
-                            ForEach(notesListVM.notes, id: \.noteId) { note in
-                                VStack(alignment: .leading){
-                                    Text(.init("\(note.text)\(Helper.tagsToString(tags: note.tags))"))
-                                        .fixedSize(horizontal: false, vertical: true)
-                                        .environment(\.openURL, OpenURLAction { url in
-                                            activeScreen.screen = "#\(url.fragment!)"
-                                            return .handled
-                                        })
-                                        .padding(.horizontal, 10)
-                                        .padding(.bottom, 3)
-                                        .textSelection(.enabled)
-                                    Text("Last modified \(note.modifiedDate.formattedDate)")
-                                        .font(.system(size: 10))
-                                        .italic()
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                        .foregroundColor(.gray)
-                                        .padding(.horizontal, 10)
-                                    Divider().padding(10)
+                        if (!isEditMode ||  notesListVM.notes.count == 0) {
+                            NoteInputView(addNotesVM: addNotesVM, isAddingNote: $isAddingNote)
+                            
+                            VStack{
+                                ForEach(notesListVM.notes, id: \.noteId) { note in
+                                    VStack(alignment: .leading){
+                                        Text(.init("\(note.text)\(Helper.tagsToString(tags: note.tags))"))
+                                            .fixedSize(horizontal: false, vertical: true)
+                                            .environment(\.openURL, OpenURLAction { url in
+                                                activeScreen.screen = "#\(url.fragment!)"
+                                                return .handled
+                                            })
+                                            .padding(.horizontal, 10)
+                                            .padding(.bottom, 3)
+                                            .textSelection(.enabled)
+                                        Text("Last modified \(note.modifiedDate.formattedDate)")
+                                            .font(.system(size: 10))
+                                            .italic()
+                                            .frame(maxWidth: .infinity, alignment: .trailing)
+                                            .foregroundColor(.gray)
+                                            .padding(.horizontal, 10)
+                                        Divider().padding(10)
+                                    }
+                                }.onDelete(perform: { i in
+                                    
+                                })
+                            }
+                        } else {
+                            HStack{
+                                Button(action: {
+                                    Note.context.rollback()
+                                    isEditMode = false
+                                }, label: {
+                                    Text("Cancel")
+                                })
+                                Spacer()
+                                Button(action: {
+                                    isEditMode = false
+                                    do {
+                                        try Note.context.save()
+                                    }catch {
+                                        print("save failed")
+                                    }
+                                }, label: {
+                                    Text("Save")
+                                })
+                            }
+                            .padding(10)
+                            .background(Color.clear)
+                            Divider().padding(0)
+                            
+                            VStack{
+                                ForEach(Array(editNotes.enumerated()), id: \.element.noteId) { (idx, note) in
+                                    HStack(alignment: .top){
+                                        Button(action: {
+                                            editNotes.remove(at: idx)
+                                            Note.context.delete(note.note)
+                                        }, label: {
+                                            Image(systemName: "minus.circle")
+                                                .foregroundColor(.red)
+                                        }).frame(width: 50, height: 50, alignment: .center)
+                                        
+                                        UpdateNotesView(vm: UpdateNoteViewModel(noteVM: note), isSave: $isSave)
+                                    }
                                 }
-                            }.onDelete(perform: { i in
-                                
-                            })
+                            }
+                            Divider().padding(10)
                         }
+                        
                         
                     }
                     .padding(.top, 15)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .onAppear{
                         notesListVM.getNotesFromHighlight(highlightVM: highlightVM)
+                        if(isEditMode) {
+                            self.editNotes = notesListVM.notes
+                        }
                     }
                 case 2:
                     VStack{

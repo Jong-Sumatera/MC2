@@ -61,6 +61,8 @@
 		0AEAEF4F288AB49D00B23E6A /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEAEF4E288AB49D00B23E6A /* Screen.swift */; };
 		0AEAEF53288ABEB600B23E6A /* ActiveScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEAEF52288ABEB600B23E6A /* ActiveScreenViewModel.swift */; };
 		0AEAEF55288AD16100B23E6A /* RecentFilesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEAEF54288AD16100B23E6A /* RecentFilesViewModel.swift */; };
+		0AF078D828BE56C20056AF25 /* UpdateNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF078D728BE56C20056AF25 /* UpdateNotesView.swift */; };
+		0AF078DA28BE59F20056AF25 /* UpdateNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF078D928BE59F20056AF25 /* UpdateNoteViewModel.swift */; };
 		658D76302871CD7100C60B5C /* FilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658D762F2871CD7100C60B5C /* FilesView.swift */; };
 		658D76322871CD7E00C60B5C /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658D76312871CD7E00C60B5C /* TagsView.swift */; };
 		658D76342871D31200C60B5C /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658D76332871D31200C60B5C /* EmptyView.swift */; };
@@ -139,6 +141,8 @@
 		0AEAEF4E288AB49D00B23E6A /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		0AEAEF52288ABEB600B23E6A /* ActiveScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveScreenViewModel.swift; sourceTree = "<group>"; };
 		0AEAEF54288AD16100B23E6A /* RecentFilesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentFilesViewModel.swift; sourceTree = "<group>"; };
+		0AF078D728BE56C20056AF25 /* UpdateNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNotesView.swift; sourceTree = "<group>"; };
+		0AF078D928BE59F20056AF25 /* UpdateNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNoteViewModel.swift; sourceTree = "<group>"; };
 		658D762F2871CD7100C60B5C /* FilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesView.swift; sourceTree = "<group>"; };
 		658D76312871CD7E00C60B5C /* TagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
 		658D76332871D31200C60B5C /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 				0AD62B51288595A300D70A35 /* UpdateHighlightViewModel.swift */,
 				0AD62B592885CFCE00D70A35 /* NoteViewModel.swift */,
 				0AD62B5B2885D07500D70A35 /* AddNoteViewModel.swift */,
+				0AF078D928BE59F20056AF25 /* UpdateNoteViewModel.swift */,
 				0AD62B5D2885D0C700D70A35 /* NotesListViewModel.swift */,
 				0AEAEF38288978FD00B23E6A /* TagViewModel.swift */,
 				0AEAEF3C28899A1D00B23E6A /* SimilarHighlightsViewModel.swift */,
@@ -216,6 +221,7 @@
 				0A37B23A28855100002107F6 /* HighlightCellView.swift */,
 				0A37B23C2885559F002107F6 /* HighlightDetailView.swift */,
 				0A37B23E28855EF8002107F6 /* NoteInputView.swift */,
+				0AF078D728BE56C20056AF25 /* UpdateNotesView.swift */,
 				0AEAEF402889A62E00B23E6A /* SimilarItemView.swift */,
 			);
 			path = components;
@@ -424,6 +430,7 @@
 				0A1306162884551D0025F183 /* Translation+Extensions.swift in Sources */,
 				65EC7FD7286C40BB007F47D4 /* Persistence.swift in Sources */,
 				0A1305EF28819F500025F183 /* File+Extensions.swift in Sources */,
+				0AF078D828BE56C20056AF25 /* UpdateNotesView.swift in Sources */,
 				0AEAEF412889A62E00B23E6A /* SimilarItemView.swift in Sources */,
 				0A37B23128848D57002107F6 /* TranslationView.swift in Sources */,
 				0A1306082883C7B10025F183 /* UIColorTransformer.swift in Sources */,
@@ -485,6 +492,7 @@
 				0AD62B542885C6F100D70A35 /* ColorExt.swift in Sources */,
 				65EC7FE1286C41BE007F47D4 /* ContentView.swift in Sources */,
 				0A130614288453150025F183 /* TranslationViewModel.swift in Sources */,
+				0AF078DA28BE59F20056AF25 /* UpdateNoteViewModel.swift in Sources */,
 				0AEAEF452889B9C900B23E6A /* SelectedTagsViewModel.swift in Sources */,
 				0A37B23F28855EF8002107F6 /* NoteInputView.swift in Sources */,
 			);
@@ -544,7 +552,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -599,7 +607,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -619,7 +627,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MC2/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = PSKBVM3X2F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MC2/Info.plist;
@@ -653,7 +661,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MC2/Preview Content\"";
-				DEVELOPMENT_TEAM = F96XCQ75VU;
+				DEVELOPMENT_TEAM = PSKBVM3X2F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MC2/Info.plist;
